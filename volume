@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Get the volume percentage:
+VOLUME=$(amixer -D pulse sget Master | egrep -o -m 1 "[0-9]+%")
+
+# Check if muted:
+STATE=`amixer -D pulse sget Master | egrep -m 1 'Playback.*?\[o' | egrep -o '\[o.+\]'`
+
+# Use mouse to change volume and toggle mute in i3bar:
+case $BLOCK_BUTTON in
+  3) amixer -q -D pulse sset Master toggle ;;  # Right click to toggle mute
+  4) amixer -q -D pulse sset Master 5%+ ;;     # Scroll up to increase volume
+  5) amixer -q -D pulse sset Master 5%- ;;     # Scroll down to decrease volume
+esac
+
+# What to display in i3bar:
+if [[ $STATE == '[off]' ]]; then
+        echo "♫"
+        echo "♫"
+        echo "#F2CC66"
+        exit 0
+else
+        echo "♫" $VOLUME
+        exit 0
+fi

@@ -1,0 +1,209 @@
+ _ _____
+(_)___ /_      ___ __ ___
+| | |_ \ \ /\ / / '_ ` _ \
+| |___) \ V  V /| | | | | |
+|_|____/ \_/\_/ |_| |_| |_|
+
+# Super/Windows key is $mod
+set $mod Mod4
+
+font pango: Roboto:style=Light, Weather Icons, FontAwesome
+
+# Shortcuts to open common apps:
+bindsym $mod+Return exec lilyterm
+bindsym $mod+Ctrl+f exec thunar
+bindsym $mod+Ctrl+Shift+f exec nautilus --no-desktop
+bindsym $mod+Ctrl+e exec evince
+bindsym $mod+Ctrl+x exec firefox --touch-events=enabled
+bindsym $mod+Shift+Ctrl+x exec google-chrome --touch-events=enabled
+bindsym $mod+Ctrl+p exec pavucontrol
+bindsym $mod+a exec xfce4-appfinder
+bindsym $mod+Ctrl+d exec xrandr --auto
+bindsym $mod+Ctrl+w exec ~/.i3/set-random-desktop-background.bash
+bindsym Ctrl+Mod1+s exec ~/.i3/suspend-and-lock.bash
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+bindsym Mod1+F4 kill
+
+# Keybindings to add and remove i3-gaps:
+gap_size 0
+bindsym $mod+Ctrl+g gap_size 16
+bindsym $mod+Ctrl+Shift+g gap_size 0
+
+# Use Mouse+$mod to drag floating windows to their wanted position:
+floating_modifier $mod
+
+for_window [class="Xfce4-appfinder"] floating enable; floating_maximum_size 180 x 180
+for_window [class="Pavucontrol"] floating enable; floating_maximum_size 100 x 50
+
+# Adjust volume up and down:
+bindsym XF86AudioRaiseVolume exec amixer -c 1 set Speaker unmute & exec amixer -c 1 set Master unmute  & exec amixer -c 1 set Headphone unmute & exec amixer -c 1 set Master 10%+
+bindsym $mod+Ctrl+Up exec amixer -c 1 set Speaker unmute & exec amixer -c 1 set Master unmute  & exec amixer -c 1 set Headphone unmute & exec amixer -c 1 set Master 10%+
+bindsym XF86AudioLowerVolume exec amixer -c 1 set Master 10%-
+bindsym $mod+Ctrl+Down exec amixer -c 1 set Master 10%-
+bindsym XF86AudioMute exec amixer -c 1 set Speaker mute & \
+                      exec amixer -c 1 set Master mute  & \
+                      exec amixer -c 1 set Headphone mute
+
+# Change brightness
+bindsym $mod+Ctrl+o exec xrandr --output eDP1 --brightness 0.0
+bindsym $mod+Ctrl+1 exec xrandr --output eDP1 --brightness 0.1
+bindsym $mod+Ctrl+2 exec xrandr --output eDP1 --brightness 0.2
+bindsym $mod+Ctrl+3 exec xrandr --output eDP1 --brightness 0.3
+bindsym $mod+Ctrl+4 exec xrandr --output eDP1 --brightness 0.4
+bindsym $mod+Ctrl+5 exec xrandr --output eDP1 --brightness 0.5
+bindsym $mod+Ctrl+6 exec xrandr --output eDP1 --brightness 0.6
+bindsym $mod+Ctrl+7 exec xrandr --output eDP1 --brightness 0.7
+bindsym $mod+Ctrl+8 exec xrandr --output eDP1 --brightness 0.8
+bindsym $mod+Ctrl+9 exec xrandr --output eDP1 --brightness 0.9
+bindsym $mod+Ctrl+0 exec xrandr --output eDP1 --brightness 1.0
+
+# Toggle touchpad on and off
+bindsym $mod+Ctrl+Shift+t exec synclient TouchpadOff=1
+bindsym $mod+Ctrl+t exec synclient TouchpadOff=0
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run -nb "#90b7f8" -nf "#000000" -sb "#000000" -sf "#ffffff"
+
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym Mod1+Tab focus left
+bindsym Mod1+Shift+Tab focus right
+
+# Alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal orientation
+bindsym $mod+Ctrl+h split h
+
+bindsym $mod+m move workspace to output left
+# Split in vertical orientation
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+#bindsym $mod+a focus parent
+
+# Focus the child container
+#bindsym $mod+d focus child
+
+# Switch to workspace
+# Add names to encourage me to put same things in each workspace each time
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+Shift+m move workspace to output left
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Resize window (you can also use the mouse for that)
+mode "resize" {
+  # These bindings trigger as soon as you enter the resize mode
+  bindsym h resize shrink width 30 px or 30 ppt # Faster with the hjkl keys
+  bindsym j resize grow height 30 px or 30 ppt
+  bindsym k resize shrink height 30 px or 30 ppt
+  bindsym l resize grow width 30 px or 30 ppt
+
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Lock screen:
+bindsym $mod+Ctrl+l exec ~/.i3/blurred-lock.sh
+
+# Display startup script:
+exec --no-startup-id  bash ~/.i3/display-startup.sh
+
+new_window 1pixel
+
+client.focused          #999999 #999999 #2d2d2d #999999
+client.focused_inactive #393939 #393939 #999999 #393939
+client.unfocused        #2d2d2d #2d2d2d #cccccc #2d2d2d
+bar {
+  status_command i3blocks -c ~/.i3/i3blocks.conf
+  position top
+  colors {
+    separator  #393939
+    background #2d2d2d
+    statusline #cccccc
+    focused_workspace   #999999 #999999 #2d2d2d
+    active_workspace    #999999 #999999 #cccccc
+    inactive_workspace  #393939 #2d2d2d #cccccc
+    urgent_workspace    #f2777a #f2777a #cccccc
+  }
+}
+
+# Start Dropbox, Copy, Network manager, etc.:
+exec ~/.dropbox-dist/dropboxd
+exec sudo bash -c "echo 100000 > /proc/sys/fs/inotify/max_user_watches"
+exec ~/.local/share/copy/x86/CopyAgent
+exec nm-applet
+exec gnome-settings-daemon

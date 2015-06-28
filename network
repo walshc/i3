@@ -1,0 +1,23 @@
+#!/bin/sh
+eth_state="$(cat /sys/class/net/eth0/operstate)"
+
+if [ "$eth_state" = "up" ]; then
+        echo ""
+        echo ""
+        echo "#99CC99"
+        exit 0
+fi
+
+if [ "$eth_state" = "down" ]; then
+        echo ""
+        echo ""
+        echo "#F2777A"
+        exit 0
+fi
+
+if [ "$eth_state" = "dormant" ]; then
+        echo ""
+        echo ""
+        echo "#F99157"
+        exit 0
+fi
