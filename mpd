@@ -19,6 +19,12 @@ else
                         TRACK=""
                 fi
 fi
+
+# If mopidy is connected but nothing is in the playlist, display nothing:
+if [[ "${TRACK}" =~ "volume:" ]]; then
+        TRACK=""
+fi
+
 echo $TRACK
 echo $TRACK
 echo "#66CCCC"
