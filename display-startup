@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Display startup script.
+# Different settings for different laptops.
+# If the monitor is connected via HDMI, display only that.
+# If the monitor is disconnected, display from laptop screen only.
+
+HOST=$(hostname)
+
+if [[ "$HOST" == "acer" ]]; then
+        LAPTOP=LVDS1
+        LAPTOP_RES_HDMI_ON=1366x768
+        LAPTOP_RES_HDMI_OFF=1366x768
+        EXTERNAL=HDMI1
+elif [[ "$HOST" == "debian" ]]; then
+        LAPTOP=eDP1
+        LAPTOP_RES_HDMI_ON=1920x1080
+        LAPTOP_RES_HDMI_OFF=2560x1440
+        EXTERNAL=HDMI2
+else
+        exit 1
+fi
+
+function dual-displays {
+        # Dual monitors by default (with laptop on the right-hand-side):
+        xrandr --output $EXTERNAL --mode 1920x1080 --primary --left-of $LAPTOP \
+                --output $LAPTOP --mode $LAPTOP_RES_HDMI_ON
+        MONITOR=$EXTERNAL
+}
+
+function display-on-laptop-only {
+        xrandr --output $EXTERNAL --off --output $LAPTOP \
+                --mode $LAPTOP_RES_HDMI_OFF
+        MONITOR=$LAPTOP
+}
+
+function hdmi-is-connected {
+        ! xrandr | grep "^$EXTERNAL" | grep disconnected
+}
+
+if hdmi-is-connected; then
+        dual-displays
+else
+        display-on-laptop-only
+fi

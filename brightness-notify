@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Create a short delay so changes in brightness can be registered
+sleep 0.2
+
+# Get the brightness percentage:
+BRIGHTNESS=$(xbacklight -get)
+
+# Round the brightness percentage:
+BRIGHTNESS=$(printf %.0f $BRIGHTNESS)
+
+# Kill previous notifications so the brightness notifications don't pile up:
+killall -q mate-notification-daemon
+
+# Send the notification with the icon:
+notify-send "Socrú Gile:" $BRIGHTNESS -t 1000 -i ~/.i3/brightness-icon.png

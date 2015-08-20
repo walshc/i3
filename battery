@@ -1,16 +1,8 @@
 #!/usr/bin/perl
-#
-# Copyright 2014 Pierre Mavro <deimos@deimos.fr>
-# Copyright 2014 Vivien Didelot <vivien@didelot.org>
-#
-# Licensed under the terms of the GNU GPL v3, or any later version.
-#
-# This script is meant to use with i3blocks. It parses the output of the "acpi"
-# command (often provided by a package of the same name) to read the status of
-# the battery, and eventually its remaining time (to full charge or discharge).
-#
-# The color will gradually change for a percentage below 85%, and the urgency
-# (exit code 33) is set if there is less that 5% remaining.
+# Adapted from the code by Pierre Mavro and Vivien Didelot.
+# Changed to add symbols to charging/discharging states and changed colours to
+# match the Tomorrow Night Eighties Color Scheme.
+# Added a low battery notification.
 
 use strict;
 use warnings;
@@ -19,62 +11,57 @@ use utf8;
 my $acpi;
 my $status;
 my $percent;
-my $full_text;
-my $short_text;
+my $output;
 
-# read the first line of the "acpi" command output
+# Read the first line of the "acpi" command output
 open (ACPI, 'acpi -b |') or die "Can't exec acpi: $!\n";
 $acpi = <ACPI>;
 close(ACPI);
 
-# fail on unexpected output
+# Fail on unexpected output:
 if ($acpi !~ /: (\w+), (\d+)%/) {
-	die "$acpi\n";
+        die "$acpi\n";
 }
 
 $status = $1;
 $percent = $2;
-#$full_text = "$percent%";
 
-
+# Add symbols to the output depending on the status:
 if ($status eq 'Discharging') {
-	$full_text .= ' ';
+        $output .= ' ';
 } elsif ($status eq 'Charging') {
-	$full_text .= ' ';
+        $output .= ' ';
 } elsif ($status eq 'Full') {
-	$full_text .= ' ';
+        $output .= ' ';
 } elsif ($status eq 'Unknown') {
-	$full_text .= ' ';
-}
-# Move this to here because I want the symbol first:
-$full_text .= "$percent%";
-
-$short_text = $full_text;
-
-if ($acpi =~ /(\d\d:\d\d):/) {
-	$full_text .= " ($1)";
+        $output .= ' ';
 }
 
-# print text
-print "$full_text\n";
-print "$short_text\n";
+# Add the percentage battery remaining:
+$output .= "$percent%";
 
-# consider color and urgent flag only on discharge
+# Uncomment to add time remaining in parentheses:
+#if ($acpi =~ /(\d\d:\d\d):/) {
+#        $output .= " ($1)";
+#}
+
+print "$output\n";
+print "$output\n";
+
+# Change color at different percentage levels when discharging:
 if ($status eq 'Discharging') {
-
-	if ($percent < 20) {
-		print "#F2777A\n";
-	} elsif ($percent < 40) {
-		print "#F99157\n";
-	} elsif ($percent < 60) {
-		print "#FFCC66\n";
-	} elsif ($percent < 85) {
-		print "#99CC99\n";
-	}
-
-	if ($percent < 5) {
-		exit(33);
-	}
+        if ($percent < 20) {
+                print "#F2777A\n";
+                system("notify-send -t 10000 -i ~/.i3/low-battery.png 'Ceallraí Íseal'")
+        } elsif ($percent < 40) {
+                print "#F99157\n";
+        } elsif ($percent < 60) {
+                print "#FFCC66\n";
+        } elsif ($percent < 85) {
+                print "#99CC99\n";
+        }
+        if ($percent < 5) {
+                exit(33);
+        }
 }
-
 exit(0);

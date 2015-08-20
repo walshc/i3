@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Create a button to toggle play and pause on the mpd server.
+
+# First check the RPi, then check locally:
+MPC=$(mpc -h 192.168.8.106)
+if [[ $MPC != 'error: Connection refused' ]] & ! [[ ${MPD} =~ "volume:" ]]; then
+        STATE=$(echo -e $MPC | sed -n '1p' | cut -d "[" -f2 | cut -d "]" -f1)
+        if [[ $STATE == "playing" ]]; then
+                echo "||"
+                if [[ $BLOCK_BUTTON == '1' ]]; then
+                        mpc -h 192.168.8.106 pause
+                fi
+        fi
+        if [[ $STATE == "paused" ]]; then
+                echo "▶"
+                if [[ $BLOCK_BUTTON == '1' ]]; then
+                        mpc -h 192.168.8.106 play
+                fi
+        fi
+fi
+
+MPC=$(mpc)
+if [[ $MPC != 'error: Connection refused' ]]; then
+        STATE=$(echo -e $MPC | sed -n '1p' | cut -d "[" -f2 | cut -d "]" -f1)
+        if [[ $STATE == "playing" ]]; then
+                echo "||"
+                if [[ $BLOCK_BUTTON == '1' ]]; then
+                        mpc pause
+                fi
+        fi
+        if [[ $STATE == "paused" ]]; then
+                echo "▶"
+                if [[ $BLOCK_BUTTON == '1' ]]; then
+                        mpc play
+                fi
+        fi
+fi

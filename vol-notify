@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Script to create pop-up notification when volume changes.
+
+# Create a delay so the change in volume can be registered:
+sleep 0.05
+
+# Get the volume and check if muted or not (STATE):
+VOLUME=$(amixer sget Master      | \
+         egrep -o -m 1 "[0-9]+%" | \
+         egrep -o "[0-9]+")
+STATE=`amixer sget Master          | \
+       egrep -m 1 'Playback.*?\[o' | \
+       egrep -o '\[o.+\]'`
+
+# To avoid many notifications piling on top of eachother when pressing the
+# volume buttons multiple times, kill the notification daemon each time.
+killall -q mate-notification-daemon
+
+# Have a different symbol for varying volume levels:
+if [[ $STATE != '[off]' ]]; then
+        if [ $VOLUME == "0" ]; then
+                notify-send "Airde: $VOLUME" -t 1000 -i ~/.i3/vol-mute.png
+        elif [ $VOLUME -lt "33" ] && [ $VOLUME -gt "0" ]; then
+                notify-send "Airde: $VOLUME" -t 1000 -i ~/.i3/vol-low.png
+        elif [ $VOLUME -lt "67" ] && [ $VOLUME -ge "33" ]; then
+                notify-send "Airde: $VOLUME" -t 1000 -i ~/.i3/vol-med.png
+        else
+                notify-send "Airde: $VOLUME" -t 1000 -i ~/.i3/vol-high.png
+        fi
+# If volume is muted, display the mute sybol:
+else
+        notify-send "Gan Fuaim" -t 1000  -i ~/.i3/vol-mute.png
+fi

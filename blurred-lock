@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Create a pixelated image with a lock symbol in the middle for i3lock. If using
+# multimonitor, the lock symbol will show up on each screen. This assumes that
+# the internal display (laptop screen) is to the right of the external display
+# when using multi-monitor.
+
+IMAGE=~/.blur.png
+LEFT=~/.blur-0.png
+RIGHT=~/.blur-1.png
+LOCK_ICON=~/.i3/lock-icon.png
+NUM_ACTIVE_SCREENS=`xrandr -q | grep ' connected' | grep '[0-9]x[0-9]' | wc -l`
+
+if [[ "$NUM_ACTIVE_SCREENS" == "2" ]]; then
+        # Screenshot:
+        scrot $IMAGE
+        # Pixelate:
+        mogrify -scale 5% -scale 2000% $IMAGE
+        # Get the monitor resolution of both displays:
+        SCREEN1_RES=`xrandr | grep \* | cut -d' ' -f4 | sed -n '1p'`
+        SCREEN2_RES=`xrandr | grep \* | cut -d' ' -f4 | sed -n '2p'`
+        # Get the width of the external display:
+        SCREEN2_WIDTH=`echo $SCREEN2_RES | cut -d x -f 1`
+        # Extract the left display from the screenshot:
+        convert $IMAGE -crop $SCREEN2_RES+0+0 $LEFT
+        # Extract the right display from the screenshot:
+        convert $IMAGE -crop $SCREEN1_RES+$SCREEN2_WIDTH+0 $RIGHT
+        # Add the lock symbol to the center of each display:
+        convert $LEFT $LOCK_ICON -gravity center -composite -matte $LEFT
+        convert $RIGHT $LOCK_ICON -gravity center -composite -matte $RIGHT
+        # Put the two images together:
+        convert $LEFT $RIGHT +append $IMAGE
+else
+        # With only 1 connected screen, just screenshot, pixelate and add lock
+        # to the center of the image:
+        scrot $IMAGE
+        mogrify -scale 5% -scale 2000% $IMAGE
+        convert $IMAGE $LOCK_ICON -gravity center -composite -matte $IMAGE
+fi
+
+i3lock -u -i $IMAGE --pointer=win

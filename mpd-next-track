@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Create a button to skip to next track on the mpd server. First it checks the
+# Raspberry Pi to see if it's running, then it checks locally.
+
+MPC=$(mpc -h 192.168.8.106)
+if [[ $MPC != 'error: Connection refused' ]] & ! [[ ${MPD} =~ "volume:" ]]; then
+        STATE=$(echo -e $MPC | sed -n '1p' | cut -d "[" -f2 | cut -d "]" -f1)
+        if [[ $STATE == "playing" ]] || [[ $STATE == "paused" ]]; then
+                echo "▶|"
+                if [[ $BLOCK_BUTTON == '1' ]]; then
+                        mpc -h 192.168.8.106 next
+                fi
+        fi
+fi
+
+# Now locally:
+MPC=$(mpc)
+if [[ $MPC != 'error: Connection refused' ]]; then
+        STATE=$(echo -e $MPC | sed -n '1p' | cut -d "[" -f2 | cut -d "]" -f1)
+        if [[ $STATE == "playing" ]] || [[ $STATE == "paused" ]]; then
+                echo "▶|"
+                if [[ $BLOCK_BUTTON == '1' ]]; then
+                        mpc next
+                fi
+        fi
+fi

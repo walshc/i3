@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Show the current playing track on the mpd server. First checks the Raspberry
+# Pi, then checks locally.
+
+# First try get the track info from the Rpi, then locally:
+TRACK=$(mpc -h 192.168.8.106 -f "[[[%title% - ]%artist% - ]%album%]" | head -1)
+if [[ "${TRACK}" =~ "error:" ]] | [[ "${TRACK}" == "" ]] ; then
+        TRACK=`mpc -f "[[[%title% - ]%artist% - ]%album%]" | head -1`
+        if [ "$TRACK" = "error: Connection refused" ]; then
+                TRACK=""
+        fi
+elif [[ "${TRACK}" =~ "volume:" ]]; then
+        TRACK=`mpc -f "[[[%title% - ]%artist% - ]%album%]" | head -1`
+        if [ "$TRACK" = "error: Connection refused" ]; then
+                TRACK=""
+        fi
+fi
+
+# If mopidy is connected but nothing is in the playlist, display nothing:
+if [[ "${TRACK}" =~ "volume:" ]]; then
+        TRACK=""
+fi
+
+echo $TRACK
+echo $TRACK
+echo "#66CCCC"
+exit 0

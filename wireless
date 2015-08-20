@@ -1,19 +1,21 @@
 #!/bin/sh
+
+# If WiFi is connected, show the WiFi symbol as green.
+# If it's disconnected, show it as red. If dormannt, as yellow.
+
 wlan_state="$(cat /sys/class/net/wlan0/operstate)"
 
 if [ "$wlan_state" = "up" ]; then
         echo ""
-        echo "j"
+        echo ""
         echo "#99CC99"
         exit 0
-fi
-if [ "$wlan_state" = "down" ]; then
+elif [ "$wlan_state" = "down" ]; then
         echo ""
         echo ""
         echo "#F2777A"
         exit 0
-fi
-if [ "$wlan_state" = "dormant" ]; then
+elif [ "$wlan_state" = "dormant" ]; then
         echo ""
         echo ""
         echo "#F299157"

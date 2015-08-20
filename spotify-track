@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Display the current track on Spotify if it's running
+
+TITLE=`playerctl -p spotify metadata 'xesam:title'`
+ARTIST=`playerctl -p spotify metadata 'xesam:artist'`
+ALBUM=`playerctl -p spotify metadata 'xesam:album'`
+if [[ $TITLE != '' ]]; then
+        TRACK=`echo " " $TITLE " - " $ARTIST " - " $ALBUM`
+        echo $TRACK
+fi

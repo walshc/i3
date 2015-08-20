@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Add a button to toggle play and pause on Spotify if it's running
+
+TRACK=$(playerctl -p spotify metadata)
+if [[ $TRACK != '' ]]; then
+        STATUS=$(playerctl -p spotify status)
+        if [[ $STATUS == 'Paused' ]]; then
+                echo "▶"
+                if [[ $BLOCK_BUTTON == '1' ]]; then
+                        playerctl -p spotify play-pause
+                fi
+        fi
+        if [[ $STATUS == 'Playing' ]]; then
+                echo "||"
+                if [[ $BLOCK_BUTTON == '1' ]]; then
+                        playerctl -p spotify play-pause
+                fi
+        fi
+fi
