@@ -1,21 +1,26 @@
 # Super/Windows key is $mod
 set $mod Mod4
 
-font pango: Open Sans, Weather Icons, FontAwesome 14
+font pango: Cantarell, Weather Icons, FontAwesome 12
 
 # Shortcuts to open common apps:
-bindsym $mod+Return exec lilyterm -s -g "80x24+0+0"
+bindsym $mod+Return exec urxvt
+bindsym $mod+t exec urxvt  -title "float"
+for_window [instance="urxvt" title="float"] floating enable
 bindsym $mod+Ctrl+f exec nautilus --no-desktop
 bindsym $mod+Ctrl+e exec evince
 bindsym $mod+Ctrl+x exec iceweasel --touch-events=enabled
+bindsym $mod+Mod1+x exec chromium --touch-events=enabled
 bindsym $mod+Shift+Ctrl+x exec google-chrome --touch-events=enabled
+bindsym Print exec scrot -q 100  # Fn+t on X1 Carbon
+bindsym $mod+Print exec gnome-screenshot -i
+bindsym $mod+d exec --no-startup-id lighthouse | sh
 
 # Shortcuts for scripts:
 bindsym $mod+Ctrl+d exec xrandr --auto
 bindsym $mod+Ctrl+w exec ~/.i3/set-random-desktop-background
 bindsym Ctrl+Mod1+s exec ~/.i3/suspend-and-lock
 bindsym $mod+Shift+Mod1+c exec compton -b --conf ~/.i3/compton
-bindsym $mod+d exec --no-startup-id lighthouse | sh
 
 # Kill focused window (add Alt+F4 as well):
 bindsym $mod+Shift+q kill
@@ -187,12 +192,12 @@ bar {
 }
 
 # Start Dropbox, Copy, Network manager, etc.:
-exec ~/.dropbox-dist/dropboxd
-exec numlockx on
-exec ~/.copy-agent/x86_64/CopyAgent
-exec nm-applet
-exec xautolock -time 5 -bell 0 -detectsleep -locker ~/.i3/blurred-lock -notify 5 -notifier "notify-send -t 1000 -i ~/.i3/lock-icon.png 'Beidh an scáileán faoi ghlas i 5 soicind...'"
+exec --no-startup-id numlockx on
+exec --no-startup-id nm-applet
 exec --no-startup-id compton -b --conf ~/.i3/compton
 exec --no-startup-id rofi -key-run F12 -font "Inconsolata 14"
 exec --no-startup-id rofi -key-window mod1+Tab -font "Inconsolata 14"
-exec --no-startup-id i3-msg 'workspace 5; exec icedove; workspace 3; exec nautilus; workspace 4; exec iceweasel'
+exec --no-startup-id "sh -c 'sleep 10; exec ~/.dropbox-dist/dropboxd'"
+exec --no-startup-id "sh -c 'sleep 20; exec ~/.copy-agent/x86_64/CopyAgent'"
+exec xautolock -time 10 -bell 0 -detectsleep -locker ~/.i3/blurred-lock -notify 5 -notifier "notify-send -t 1000 -i ~/.i3/lock-icon.png 'Beidh an scáileán faoi ghlas i 5 soicind...'"
+exec --no-startup-id i3-msg 'workspace 3; exec nautilus; workspace 5; exec icedove; workspace 4; exec chromium --touch-events=enabled'

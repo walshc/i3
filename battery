@@ -1,67 +1,61 @@
-#!/usr/bin/perl
-# Adapted from the code by Pierre Mavro and Vivien Didelot.
-# Changed to add symbols to charging/discharging states and changed colours to
-# match the Tomorrow Night Eighties Color Scheme.
-# Added a low battery notification.
+#!/bin/bash
 
-use strict;
-use warnings;
-use utf8;
+# Show battery percentage and status in i3bar.
+# Change the color with the percentage and display low battery notifications.
 
-my $acpi;
-my $status;
-my $percent;
-my $output;
+HOST=$(hostname)
 
-# Read the first line of the "acpi" command output
-open (ACPI, 'acpi -b |') or die "Can't exec acpi: $!\n";
-$acpi = <ACPI>;
-close(ACPI);
+if [[ "$HOST" == "acer" ]] || [[ "$HOST" == "debian" ]]; then
+        POWER=$(acpi -b)
+        if [[ "$POWER" == "" ]]; then
+                exit 1
+        fi
+        STATE=$(echo $POWER | cut -d : -f 2              \
+                            | cut -d , -f 1              \
+                            | tr '[:upper:]' '[:lower:]' \
+                            | sed 's/[[:space:]]//g')
+        PERCENTAGE=$(echo $POWER | grep -o '[^ ]*%' | grep -o '[0-9]*')
+elif [[ "$HOST" == "localhost" ]]; then
+        POWER=$(upower -i /org/freedesktop/UPower/devices/battery_sbs_104_000b)
+        STATE=$(echo $POWER | sed -n "12p"                \
+                            | awk -F'state:' '{print $2}' \
+                            | sed 's/[[:space:]]//g')
+        PERCENTAGE=$(echo $POWER | sed -n "20p"                     \
+                                 | awk -F'percentage:' '{print $2}' \
+                                 | tr -d -c 0-9)
+else
+        exit 1
+fi
 
-# Fail on unexpected output:
-if ($acpi !~ /: (\w+), (\d+)%/) {
-        die "$acpi\n";
-}
-
-$status = $1;
-$percent = $2;
-
-# Add symbols to the output depending on the status:
-if ($status eq 'Discharging') {
-        $output .= ' ';
-} elsif ($status eq 'Charging') {
-        $output .= ' ';
-} elsif ($status eq 'Full') {
-        $output .= ' ';
-} elsif ($status eq 'Unknown') {
-        $output .= ' ';
-}
+if [[ "$STATE" == "discharging" ]]; then
+        if [[ "$HOST" == "localhost" ]]; then
+                OUTPUT=" "
+        else
+                OUTPUT=""
+        fi
+elif [[ "$STATE" == "charging" ]]; then
+        OUTPUT=" "
+elif [[ "$STATE" == "full" ]]; then
+        OUTPUT=" "
+else
+        OUTPUT=""
+fi
 
 # Add the percentage battery remaining:
-$output .= "$percent%";
+OUTPUT="$OUTPUT $PERCENTAGE%"
+echo $OUTPUT
+echo $OUTPUT
 
-# Uncomment to add time remaining in parentheses:
-#if ($acpi =~ /(\d\d:\d\d):/) {
-#        $output .= " ($1)";
-#}
-
-print "$output\n";
-print "$output\n";
-
-# Change color at different percentage levels when discharging:
-if ($status eq 'Discharging') {
-        if ($percent < 20) {
-                print "#F2777A\n";
-                system("notify-send -t 10000 -i ~/.i3/low-battery.png 'Ceallraí Íseal'")
-        } elsif ($percent < 40) {
-                print "#F99157\n";
-        } elsif ($percent < 60) {
-                print "#FFCC66\n";
-        } elsif ($percent < 85) {
-                print "#99CC99\n";
-        }
-        if ($percent < 5) {
-                exit(33);
-        }
-}
-exit(0);
+# Change color at different PERCENTAGEage levels when discharging:
+if [[ "$STATE" == "discharging" ]]; then
+        if [[ "$PERCENTAGE" -lt "20" ]]; then
+                echo "#F2777A"
+                notify-send -t 10000 -i ~/.i3/low-battery.png 'Ceallraí Íseal'
+        elif [[ "$PERCENTAGE" -lt "40" ]]; then
+                echo "#F99157"
+        elif [[ "$PERCENTAGE" -lt "60" ]]; then
+                echo "#FFCC66"
+        elif [[ "$PERCENTAGE" -lt "85" ]]; then
+                echo "#99CC99"
+        fi
+fi

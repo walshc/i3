@@ -7,5 +7,5 @@ ARTIST=`playerctl -p spotify metadata 'xesam:artist'`
 ALBUM=`playerctl -p spotify metadata 'xesam:album'`
 if [[ $TITLE != '' ]]; then
         TRACK=`echo " " $TITLE " - " $ARTIST " - " $ALBUM`
-        echo $TRACK
+        echo "$TRACK" | sed -e 's/?/\?/g'
 fi

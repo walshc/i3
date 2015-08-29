@@ -3,6 +3,12 @@
 # Show the current playing track on the mpd server. First checks the Raspberry
 # Pi, then checks locally.
 
+# If at work don't display anything
+SSID=$(iwgetid -r)
+if [[ "SSID" == "BU (802.1x)" ]]
+        exit 1
+fi
+
 # First try get the track info from the Rpi, then locally:
 TRACK=$(mpc -h 192.168.8.106 -f "[[[%title% - ]%artist% - ]%album%]" | head -1)
 if [[ "${TRACK}" =~ "error:" ]] | [[ "${TRACK}" == "" ]] ; then
@@ -22,7 +28,8 @@ if [[ "${TRACK}" =~ "volume:" ]]; then
         TRACK=""
 fi
 
-echo $TRACK
-echo $TRACK
+
+echo "$TRACK" | sed -e 's/?/\?/g'
+echo "$TRACK" | sed -e 's/?/\?/g'
 echo "#66CCCC"
 exit 0
