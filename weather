@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Run python script to display weather, click button to display forecast
+
+if [[ $BLOCK_BUTTON == '1' ]]; then
+       urxvt -title "float" --geometry 80x42 -hold -e \
+               weatherpy location 02138 -o
+fi
+
+python3 ~/.i3/weather.py

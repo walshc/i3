@@ -4,8 +4,10 @@
 
 TRACK=$(playerctl -p spotify metadata)
 if [[ $TRACK != '' ]]; then
-        echo "▶|"
-                if [[ $BLOCK_BUTTON == '1' ]]; then
-                        playerctl -p spotify next
-                fi
+        echo ""
+        echo ""
+        echo "#99CC99"
+        if [[ $BLOCK_BUTTON == '1' ]]; then
+                playerctl -p spotify next
+        fi
 fi

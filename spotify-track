@@ -6,6 +6,13 @@ TITLE=`playerctl -p spotify metadata 'xesam:title'`
 ARTIST=`playerctl -p spotify metadata 'xesam:artist'`
 ALBUM=`playerctl -p spotify metadata 'xesam:album'`
 if [[ $TITLE != '' ]]; then
-        TRACK=`echo " " $TITLE " - " $ARTIST " - " $ALBUM`
+        TRACK=`echo "-"$TITLE " - " $ARTIST " - " $ALBUM`
         echo "$TRACK" | sed -e 's/?/\?/g'
+        echo "$TRACK" | sed -e 's/?/\?/g'
+        echo "#99CC99"
+fi
+
+
+if [[ $BLOCK_BUTTON == '1' ]]; then
+        spotify
 fi

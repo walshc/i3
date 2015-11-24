@@ -6,13 +6,17 @@ TRACK=$(playerctl -p spotify metadata)
 if [[ $TRACK != '' ]]; then
         STATUS=$(playerctl -p spotify status)
         if [[ $STATUS == 'Paused' ]]; then
-                echo "▶"
+                echo ""
+                echo ""
+                echo "#99CC99"
                 if [[ $BLOCK_BUTTON == '1' ]]; then
                         playerctl -p spotify play-pause
                 fi
         fi
         if [[ $STATUS == 'Playing' ]]; then
-                echo "||"
+                echo ""
+                echo ""
+                echo "#99CC99"
                 if [[ $BLOCK_BUTTON == '1' ]]; then
                         playerctl -p spotify play-pause
                 fi

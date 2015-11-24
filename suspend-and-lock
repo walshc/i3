@@ -3,6 +3,4 @@
 # Script for i3 keybinding to lock the screen and suspend.
 
 bash ~/.i3/blurred-lock
-killall ~/.i3/change-background-every-x-minutes
 sudo pm-suspend
-bash ~/.i3/change-background-every-x-minutes

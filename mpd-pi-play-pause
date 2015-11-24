@@ -1,22 +1,23 @@
 #!/bin/bash
 
-# Create a button to toggle play/pause on the mpd server if it is running.
-MPC=$(mpc)
+# Create a button to toggle play/pause on the Raspberry Pi mpd server if it is
+# running.
+MPC=$(mpc -h 192.168.0.106)
 if [[ $MPC != 'error: Connection refused' ]]; then
         STATE=$(echo -e $MPC | sed -n '1p' | cut -d "[" -f2 | cut -d "]" -f1)
         if [[ $STATE == "playing" ]]; then
                 echo ""
                 echo ""
-                echo "$66CCCC"
+                echo "#F2777A"
                 if [[ $BLOCK_BUTTON == '1' ]]; then
-                        mpc pause
+                        mpc -h 192.168.0.106 pause
                 fi
         elif [[ $STATE == "paused" ]]; then
                 echo ""
                 echo ""
-                echo "$66CCCC"
+                echo "#F2777A"
                 if [[ $BLOCK_BUTTON == '1' ]]; then
-                        mpc play
+                        mpc -h 192.168.0.106 play
                 fi
         fi
 fi

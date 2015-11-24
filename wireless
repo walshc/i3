@@ -1,23 +1,28 @@
-#!/bin/sh
+#!/bin/bash
 
 # If WiFi is connected, show the WiFi symbol as green.
 # If it's disconnected, show it as red. If dormannt, as yellow.
 
+if [[ $BLOCK_BUTTON == '1' ]]; then
+        urxvt -title "float" -geometry 80x12 -hold -e sudo iwconfig wlan0
+fi
+
 wlan_state="$(cat /sys/class/net/wlan0/operstate)"
 
 if [ "$wlan_state" = "up" ]; then
-        echo ""
-        echo ""
+        echo ""
+        echo ""
         echo "#99CC99"
         exit 0
 elif [ "$wlan_state" = "down" ]; then
-        echo ""
-        echo ""
+        echo ""
+        echo ""
         echo "#F2777A"
         exit 0
 elif [ "$wlan_state" = "dormant" ]; then
-        echo ""
-        echo ""
+        echo ""
+        echo ""
         echo "#F299157"
         exit 0
 fi
+

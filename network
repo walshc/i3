@@ -1,23 +1,27 @@
-#!/bin/sh
+#!/bin/bash
 
 # If ethernet is connected, show symbol as green.
 # If it's not connected, show it as red. If it's dormant, show as yellow.
 
+if [[ $BLOCK_BUTTON == '1' ]]; then
+        urxvt -title "float" -geometry 80x12 -hold -e sudo ifconfig eth0
+fi
+
 eth_state="$(cat /sys/class/net/eth0/operstate)"
 
 if [ "$eth_state" = "up" ]; then
-        echo ""
-        echo ""
+        echo ""
+        echo ""
         echo "#99CC99"
         exit 0
 elif [ "$eth_state" = "down" ]; then
-        echo ""
-        echo ""
+        echo ""
+        echo ""
         echo "#F2777A"
         exit 0
 elif [ "$eth_state" = "dormant" ]; then
-        echo ""
-        echo ""
+        echo ""
+        echo ""
         echo "#F99157"
         exit 0
 fi

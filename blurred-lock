@@ -16,6 +16,7 @@ if [[ "$NUM_ACTIVE_SCREENS" == "2" ]]; then
         scrot $IMAGE
         # Pixelate:
         mogrify -scale 5% -scale 2000% $IMAGE
+        #$convert $IMAGE -blur 0x8 $IMAGE
         # Get the monitor resolution of both displays:
         SCREEN1_RES=`xrandr | grep \* | cut -d' ' -f4 | sed -n '1p'`
         SCREEN2_RES=`xrandr | grep \* | cut -d' ' -f4 | sed -n '2p'`

@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "-"$(date "+%a, %e. %b, %H:%M")
+if [[ $BLOCK_BUTTON == '1' ]]; then
+       urxvt -title "float" -geometry 120x40 -hold -e \
+               vim -c 'Calendar -view=week'
+fi
+
