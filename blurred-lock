@@ -1,22 +1,32 @@
 #!/bin/bash
 
-# Create a pixelated image with a lock symbol in the middle for i3lock. If using
+# Create a blurred image with a lock symbol in the middle for i3lock. If using
 # multimonitor, the lock symbol will show up on each screen. This assumes that
 # the internal display (laptop screen) is to the right of the external display
-# when using multi-monitor.
+# when using multi-monitor. Also pauses music and mutes volume.
 
 IMAGE=~/.blur.png
+TEXT=~/.text.png
 LEFT=~/.blur-0.png
 RIGHT=~/.blur-1.png
-LOCK_ICON=~/.i3/lock-icon.png
+LOCK_ICON=~/.i3/keys.png
 NUM_ACTIVE_SCREENS=`xrandr -q | grep ' connected' | grep '[0-9]x[0-9]' | wc -l`
+
+# Pause spotify and mopidy if either are running:
+playerctl -p spotify pause
+MPC_STATE=$(mpc | sed -n '2p' | cut -d "[" -f2 | cut -d "]" -f1)
+if [[ $MPC_STATE == "playing" ]]; then
+        mpc pause
+fi
+# Mute volume in case anything else is on:
+amixer -q sset Master mute
 
 if [[ "$NUM_ACTIVE_SCREENS" == "2" ]]; then
         # Screenshot:
         scrot $IMAGE
         # Pixelate:
-        mogrify -scale 5% -scale 2000% $IMAGE
-        #$convert $IMAGE -blur 0x8 $IMAGE
+        # mogrify -scale 5% -scale 2000% $IMAGE
+        convert $IMAGE -blur 0x8 $IMAGE
         # Get the monitor resolution of both displays:
         SCREEN1_RES=`xrandr | grep \* | cut -d' ' -f4 | sed -n '1p'`
         SCREEN2_RES=`xrandr | grep \* | cut -d' ' -f4 | sed -n '2p'`
@@ -33,10 +43,16 @@ if [[ "$NUM_ACTIVE_SCREENS" == "2" ]]; then
         convert $LEFT $RIGHT +append $IMAGE
 else
         # With only 1 connected screen, just screenshot, pixelate and add lock
-        # to the center of the image:
+        # to the center of the image (also add unlock text):
         scrot $IMAGE
-        mogrify -scale 5% -scale 2000% $IMAGE
+        # mogrify -scale 5% -scale 2000% $IMAGE
+        convert $IMAGE -blur 0x8 $IMAGE
         convert $IMAGE $LOCK_ICON -gravity center -composite -matte $IMAGE
+        convert -size 3000x60 xc:white -pointsize 26 \
+                -fill black -gravity center -annotate +0+0 \
+                'Press Enter and swipe fingerprint' $TEXT
+        convert $TEXT -alpha set -channel A -evaluate set 50% $TEXT
+        convert $IMAGE $TEXT -gravity center -geometry +0+200 -composite $IMAGE
 fi
 
 i3lock -u -i $IMAGE --pointer=win

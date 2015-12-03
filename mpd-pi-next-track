@@ -2,6 +2,12 @@
 
 # Create a button to skip to the next track on the Raspberry Pi mpd server.
 
+# If I'm not connected to my home network, exit script.
+#MY_SSID=`iwgetid -r`
+#if ! [[ $MY_SSID == *"dilseacht"* ]]; then
+#        exit 0
+#fi
+
 MPC=$(mpc -h 192.168.0.106)
 # If the output doesn't contain "error:" or "volume:", get the state.
 if [[ ${MPC} =~ "error:" ]] || [[ ${MPC} =~ "volume:" ]]; then

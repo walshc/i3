@@ -2,18 +2,19 @@
 set $mod Mod4
 
 font pango: Cantarell, Material Design Icons 12
+#font pango: Roboto Lt, Material Design Icons 12
 
 # Shortcuts to open common apps:
 bindsym $mod+Return exec urxvt
 bindsym $mod+t exec urxvt  -title "float" -geometry 85x24
 for_window [instance="urxvt" title="float"] floating enable
-bindsym $mod+Ctrl+f exec nautilus --no-desktop
+bindsym $mod+Ctrl+f exec nautilus --no-desktop -g 860x480
 bindsym $mod+Ctrl+e exec evince
 bindsym $mod+Mod1+x exec google-chrome
 bindsym $mod+Ctrl+x exec iceweasel
 
 bindsym Print exec scrot -q 100  # Fn+t on X1 Carbon
-bindsym $mod+Print exec gnome-screenshot -i
+bindsym $mod+Print exec shutter -s  # For screenshot selections
 bindsym $mod+d exec synapse
 
 for_window [title="Hangouts"] floating enable; move position center
@@ -47,6 +48,11 @@ bindsym XF86AudioMute exec amixer sset Master toggle & exec ~/.i3/vol-notify
 # Change brightness
 bindsym XF86MonBrightnessDown exec xbacklight -time 10 -dec 20 & exec ~/.i3/brightness-notify
 bindsym XF86MonBrightnessUp exec xbacklight -time 10 -inc 20 & exec ~/.i3/brightness-notify
+
+bindsym XF86Search exec synapse
+bindsym XF86WLAN exec synapse
+bindsym XF86TaskPane exec synapse
+bindsym XF86Tools exec synapse
 
 # start dmenu (a program launcher)
 bindsym Mod1+F2 exec dmenu_run -l -i -b -nb "#2d2d2d" -nf "#cccccc" -sb "#999999" -sf "#2d2d2d" -fn "-adobe-helvetica-medium-r-normal--24-*-75-75-p-130-iso8859-1"
@@ -106,18 +112,12 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Switch to workspace
-# bindsym $mod+1 workspace number 1 
-# bindsym $mod+2 workspace number 2 
-# bindsym $mod+3 workspace number 3 
-# bindsym $mod+4 workspace number 4 
-bindsym $mod+5 workspace number 5
-# bindsym $mod+6 workspace number 6 
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-# bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
+bindsym $mod+1 workspace number 1 
+bindsym $mod+2 workspace number 2 
+bindsym $mod+3 workspace number 3 
+bindsym $mod+4 workspace number 4 
+bindsym $mod+5 workspace number 5 
+bindsym $mod+6 workspace number 6 
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
@@ -127,18 +127,12 @@ bindsym $mod+0 workspace 10
  bindsym Ctrl+mod1+Right workspace next
 
 # Move focused container to workspace
-# bindsym $mod+Shift+1 move container to workspace number 1 
-# bindsym $mod+Shift+2 move container to workspace number 2 
-# bindsym $mod+Shift+3 move container to workspace number 3 
-# bindsym $mod+Shift+4 move container to workspace number 4 
-bindsym $mod+Shift+5 move container to workspace number 5
-# bindsym $mod+Shift+6 move container to workspace number 6 
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-# bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+1 move container to workspace number 1 
+bindsym $mod+Shift+2 move container to workspace number 2 
+bindsym $mod+Shift+3 move container to workspace number 3 
+bindsym $mod+Shift+4 move container to workspace number 4 
+bindsym $mod+Shift+5 move container to workspace number 5 
+bindsym $mod+Shift+6 move container to workspace number 6 
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
@@ -209,15 +203,18 @@ bar {
     urgent_workspace    #f2777a #f2777a #cccccc
   }
 }
+hide_edge_borders both
 
 # Start Dropbox, Copy, Network manager, etc.:
 exec --no-startup-id numlockx on
 exec --no-startup-id xset b off
 exec --no-startup-id nm-applet
+#exec --no-startup-id bluedevil-monolithic
 exec --no-startup-id mopidy
-#exec --no-startup-id geary --hidden
+# Hot corners:
+exec --no-startup-id xdotool behave_screen_edge bottom-left exec skippy-xd
 exec --no-startup-id compton -b --conf ~/.i3/compton
-exec --no-startup-id rofi -key-run F12 -font "Inconsolata 14"
+exec --no-startup-id rofi -key-run F12 -font "Inconsolata 14" -opacity 85
 exec --no-startup-id rofi -key-window mod1+Tab -font "Inconsolata 14"
 exec --no-startup-id "sh -c 'sleep 10; exec ~/.dropbox-dist/dropboxd'"
 exec xautolock -time 10 -bell 0 -detectsleep -locker ~/.i3/blurred-lock -notify 5 -notifier "notify-send -t 1000 -i ~/.i3/lock-icon.png 'Locking Screen...'"

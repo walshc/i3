@@ -10,7 +10,7 @@ if [[ ${MPC} =~ "error:" ]] || [[ ${MPC} =~ "volume:" ]]; then
         if [[ "$STATE" == "playing" ]] || [[ "$STATE" == "paused" ]]; then
                 echo ""
                 echo ""
-                echo "$66CCCC"
+                echo "#66CCCC"
                 if [[ $BLOCK_BUTTON == '1' ]]; then
                         mpc next
                 fi

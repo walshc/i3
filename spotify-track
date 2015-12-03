@@ -1,17 +1,26 @@
 #!/bin/bash
 
-# Display the current track on Spotify if it's running
+# Display the current track on Spotify if it's running.
 
 TITLE=`playerctl -p spotify metadata 'xesam:title'`
 ARTIST=`playerctl -p spotify metadata 'xesam:artist'`
 ALBUM=`playerctl -p spotify metadata 'xesam:album'`
 if [[ $TITLE != '' ]]; then
-        TRACK=`echo "-"$TITLE " - " $ARTIST " - " $ALBUM`
-        echo "$TRACK" | sed -e 's/?/\?/g'
-        echo "$TRACK" | sed -e 's/?/\?/g'
-        echo "#99CC99"
+        # If "title - artist - album" is very long, just display the title
+        # and artist.
+        NCHAR=(${#TITLE} + ${#ARTIST} + ${#ALBUM})
+        if [[ $NCHAR -gt 30 ]]; then
+                TRACK=`echo "- "$TITLE " - " $ARTIST`
+                echo "$TRACK" | sed -e 's/?/\?/g'
+                echo "$TRACK" | sed -e 's/?/\?/g'
+                echo "#99CC99"
+        else
+                TRACK=`echo "- "$TITLE " - " $ARTIST " - " $ALBUM`
+                echo "$TRACK" | sed -e 's/?/\?/g'
+                echo "$TRACK" | sed -e 's/?/\?/g'
+                echo "#99CC99"
+        fi
 fi
-
 
 if [[ $BLOCK_BUTTON == '1' ]]; then
         spotify

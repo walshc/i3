@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ `sudo ifconfig | grep tun0` ]]; then
+        VPN_CONNECTION="VPN"
+else
+        VPN_CONNECTION=""
+fi
+echo $VPN_CONNECTION
+
+if [[ $BLOCK_BUTTON == '1' ]]; then
+        urxvt -title "float" -geometry 94x30 -hold -e nmcli con
+fi
