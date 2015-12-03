@@ -1,8 +1,0 @@
-#!/bin/bash
-
-python ~/.i3/twitter-news-headlines.py
-URL=$(head -n 1 ~/.bbc-url)
-echo $URL
-if [[ $BLOCK_BUTTON == '1' ]]; then
-        urxvt -title "float" -hold -e w3m $URL
-fi
