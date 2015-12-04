@@ -2,6 +2,13 @@
 
 # Create a button to toggle play/pause on the Raspberry Pi mpd server if it is
 # running.
+
+# If I'm not connected to my home network, exit script.
+#MY_SSID=`iwgetid -r`
+#if ! [[ $MY_SSID == *"dilseacht"* ]]; then
+#        exit 0
+#fi
+
 MPC=$(mpc -h 192.168.0.106)
 if [[ $MPC != 'error: Connection refused' ]]; then
         STATE=$(echo -e $MPC | sed -n '1p' | cut -d "[" -f2 | cut -d "]" -f1)

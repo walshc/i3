@@ -4,11 +4,17 @@
 # If the playlist is empty, display just a symbol.
 # Clicking the track/symbol will open ncmpcpp.
 
-TRACK=$(mpc -h 192.168.0.106 -f \
+# If I'm not connected to my home network, exit script.
+#MY_SSID=`iwgetid -r`
+#if ! [[ $MY_SSID == *"dilseacht"* ]]; then
+#        exit 0
+#fi
+
+TRACK="- "$(mpc -h 192.168.0.106 -f \
         "[[[%title% - ]%artist% - ]%album%]" | head -1)
 
 # If the mpd server is not connected, display nothing in i3bar.
-if [[ "${TRACK}" =~ "error:" ]] | [[ "${TRACK}" == "" ]] ; then
+if [[ "${TRACK}" =~ "error:" ]] | [[ "${TRACK}" == "- " ]] ; then
         TRACK=" "
 fi
 

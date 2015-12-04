@@ -14,25 +14,25 @@ shadow-opacity = 0.75;   # The translucency for shadows. (default .75)
 # shadow-green = 0.0;   # Green color value of shadow. (0.0 - 1.0, defaults to 0)
 # shadow-blue = 0.0;    # Blue color value of shadow. (0.0 - 1.0, defaults to 0)
 shadow-exclude = [
-    "! name~=''",
-    "_GTK_FRAME_EXTENTS@:c",
-    "name = 'Notification'",
-    "name = 'Plank'",
-    "name = 'Docky'",
-    "name = 'Kupfer'",
-    "name = 'xfce4-notifyd'",
-    "name *= 'VLC'",
-    "name *= 'compton'",
-    "name *= 'Chromium'",
-    "name *= 'Chrome'",
-    "name *= 'Firefox'",
-    "class_g = 'Conky'",
-    "class_g = 'Kupfer'",
-    "class_g = 'Synapse'",
-    "class_g ?= 'Notify-osd'",
-    "class_g ?= 'Cairo-dock'",
-    "class_g ?= 'Xfce4-notifyd'",
-    "class_g ?= 'Xfce4-power-manager'"
+#    "! name~=''",
+#    "_GTK_FRAME_EXTENTS@:c",
+#    "name = 'Notification'",
+#    "name = 'Plank'",
+#    "name = 'Docky'",
+#    "name = 'Kupfer'",
+#    "name = 'xfce4-notifyd'",
+#    "name *= 'VLC'",
+#    "name *= 'compton'",
+#    "name *= 'Chromium'",
+#    "name *= 'Chrome'",
+#    "name *= 'Firefox'",
+#    "class_g = 'Conky'",
+#    "class_g = 'Kupfer'",
+#    "class_g = 'Synapse'",
+    "class_g ?= 'Notify-osd'"
+#    "class_g ?= 'Cairo-dock'",
+#    "class_g ?= 'Xfce4-notifyd'",
+#    "class_g ?= 'Xfce4-power-manager'"
 ];
 shadow-ignore-shaped = true;  # Avoid drawing shadow on all shaped windows
         # (see also: --detect-rounded-corners)
@@ -102,12 +102,34 @@ invert-color-include = [ ]; # Conditions for windows to be painted with inverted
 # glx-no-rebind-pixmap = true;  # Recommended if it works.  
 glx-swap-method = "undefined";  # See man page.
 
-# Window type settings
+## Window type settings
+#wintypes:
+#{
+#  tooltip = { fade = true; shadow = false; opacity = 0.75; focus = true; };
+#  # fade: Fade the particular type of windows.
+#  # shadow: Give those windows shadow
+#  # opacity: Default opacity for the type of windows.
+#  # focus: Whether to always consider windows of this type focused.
+#};
+
+
+
 wintypes:
 {
-  tooltip = { fade = true; shadow = false; opacity = 0.75; focus = true; };
-  # fade: Fade the particular type of windows.
-  # shadow: Give those windows shadow
-  # opacity: Default opacity for the type of windows.
-  # focus: Whether to always consider windows of this type focused.
+    tooltip =
+    {
+        # fade: Fade the particular type of windows.
+        fade = true;
+        # shadow: Give those windows shadow
+        shadow = false;
+        # opacity: Default opacity for the type of windows.
+        opacity = 0.75;
+        # focus: Whether to always consider windows of this type focused.
+        focus = true;
+    };
+
+    dock =
+    {
+        opacity = 0.90;
+    };
 };
