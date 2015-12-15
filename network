@@ -15,9 +15,9 @@ if [ "$eth_state" = "up" ]; then
         echo "#99CC99"
         exit 0
 elif [ "$eth_state" = "down" ]; then
-        echo ""
-        echo ""
-        echo "#F2777A"
+        #echo ""
+        #echo ""
+        #echo "#F2777A"
         exit 0
 elif [ "$eth_state" = "dormant" ]; then
         echo ""

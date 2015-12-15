@@ -18,8 +18,8 @@ bindsym $mod+d exec synapse
 
 # Floating windows by default:
 for_window [instance="chrome_app_list" window_role="bubble"] floating enable
-for_window [title="Hangouts"] floating enable; move position center
-for_window [title="Keep"] floating enable; move position center
+for_window [title="Hangouts" class="^Google-chrome$"] floating enable; move position center
+for_window [title="Keep" class="^Google-chrome$"] floating enable; move position center
 for_window [title="Pocket Casts"] floating enable; move position center
 
 # Shortcuts for scripts:
@@ -44,12 +44,17 @@ floating_modifier $mod
 
 # Adjust volume up and down with a notification:
 bindsym XF86AudioRaiseVolume exec amixer sset Master 10%+ & exec ~/.i3/vol-notify
+bindsym $mod+F3 exec amixer sset Master 10%+ & exec ~/.i3/vol-notify
 bindsym XF86AudioLowerVolume exec amixer sset Master 10%- & exec ~/.i3/vol-notify
+bindsym $mod+F1 exec amixer sset Master 10%- & exec ~/.i3/vol-notify
 bindsym XF86AudioMute exec amixer sset Master toggle & exec ~/.i3/vol-notify
+bindsym $mod+F2 exec amixer sset Master toggle & exec ~/.i3/vol-notify
 
 # Change brightness
-bindsym XF86MonBrightnessDown exec xbacklight -time 10 -dec 20 & exec ~/.i3/brightness-notify
-bindsym XF86MonBrightnessUp exec xbacklight -time 10 -inc 20 & exec ~/.i3/brightness-notify
+bindsym XF86MonBrightnessDown exec xbacklight -time 10 -dec 10 & exec ~/.i3/brightness-notify
+bindsym $mod+F4 exec xbacklight -time 10 -dec 10 & exec ~/.i3/brightness-notify
+bindsym XF86MonBrightnessUp exec xbacklight -time 10 -inc 10 & exec ~/.i3/brightness-notify
+bindsym $mod+F5 exec xbacklight -time 10 -inc 10 & exec ~/.i3/brightness-notify
 
 # start dmenu (a program launcher)
 bindsym Mod1+F2 exec dmenu_run -l -i -b -nb "#2d2d2d" -nf "#cccccc" -sb "#999999" -sf "#2d2d2d"
@@ -190,8 +195,10 @@ exec --no-startup-id sleep 1; feh --bg-scale ~/bu-drive/wallpapers/sea.jpg
 
 new_window 1pixel
 
-client.focused          #999999 #999999 #2d2d2d #999999
-client.focused_inactive #393939 #393939 #999999 #393939
+# Window colors:
+# colorclass            border  bckgrnd text    indicator
+client.focused          #2d2d2d #2d2d2d #999999 #2d2d2d
+client.focused_inactive #2d2d2d #2d2d2d #999999 #393939
 client.unfocused        #2d2d2d #2d2d2d #cccccc #2d2d2d
 bar {
   status_command i3blocks -c ~/.i3/i3blocks.conf
@@ -200,6 +207,7 @@ bar {
     separator  #393939
     background #2d2d2d
     statusline #cccccc
+    # colorclass        border  bckgrnd text
     focused_workspace   #999999 #999999 #2d2d2d
     active_workspace    #999999 #999999 #cccccc
     inactive_workspace  #393939 #2d2d2d #cccccc

@@ -4,7 +4,7 @@
 # If it's disconnected, show it as red. If dormannt, as yellow.
 
 if [[ $BLOCK_BUTTON == '1' ]]; then
-        urxvt -title "float" -geometry 80x12 -hold -e sudo iwconfig wlan0
+        urxvt -title "float" -geometry 80x12 -hold -e  zsh /home/christoph/.i3/wifi-info
 fi
 
 wlan_state="$(cat /sys/class/net/wlan0/operstate)"

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# If free disk space is lower than 5GB show it in the status bar:
+# If free disk space is lower than 10GB show it in the status bar:
 DISK_SPACE=$(df -h | awk '{ print $4 }' | sed -n "2p" | tr -d 'G')
 DISK_SPACE=`echo $DISK_SPACE "* 10" | bc -l | cut -d "." -f 1`
-if [[ $((DISK_SPACE)) -lt 50 ]]; then
+if [[ $((DISK_SPACE)) -lt 100 ]]; then
         DISK_SPACE=`echo $DISK_SPACE "/ 10" | bc -l |  awk '{printf "%.1f\n", $0}'`
         echo "-Disk Space Remaining:" $DISK_SPACE"G"
         echo "-Disk Space Remaining:" $DISK_SPACE"G"
