@@ -1,7 +1,7 @@
 # Super/Windows key is $mod
 set $mod Mod4
 
-font pango: Cantarell, Material Design Icons 12
+font pango: Lato, Material Design Icons 12
 
 # Shortcuts to open common apps:
 bindsym $mod+Return exec urxvt
@@ -197,9 +197,9 @@ new_window 1pixel
 
 # Window colors:
 # colorclass            border  bckgrnd text    indicator
-client.focused          #2d2d2d #2d2d2d #999999 #2d2d2d
-client.focused_inactive #2d2d2d #2d2d2d #999999 #393939
-client.unfocused        #2d2d2d #2d2d2d #cccccc #2d2d2d
+client.focused          #2d2d2d #2d2d2d #cccccc #2d2d2d
+client.focused_inactive #2d2d2d #2d2d2d #cccccc #393939
+client.unfocused        #2d2d2d #2d2d2d #999999 #2d2d2d
 bar {
   status_command i3blocks -c ~/.i3/i3blocks.conf
   position top
