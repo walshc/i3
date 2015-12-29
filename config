@@ -1,7 +1,7 @@
 # Super/Windows key is $mod
 set $mod Mod4
 
-font pango: Lato, Material Design Icons 12
+font pango: Lato, Material Design Icons 16
 
 # Shortcuts to open common apps:
 bindsym $mod+Return exec urxvt
@@ -225,7 +225,7 @@ exec --no-startup-id mopidy
 # exec --no-startup-id xdotool behave_screen_edge bottom-left exec skippy-xd
 exec --no-startup-id compton -b --conf ~/.i3/compton
 exec --no-startup-id rofi -key-run F12 -font "Inconsolata 14" -opacity 85
-exec --no-startup-id rofi -key-window mod1+Tab -font "Inconsolata 14"
+exec --no-startup-id rofi -key-window mod1+Tab -font "Inconsolata 16"
 exec --no-startup-id "sh -c 'sleep 10; exec ~/.dropbox-dist/dropboxd'"
 exec xautolock -time 10 -bell 0 -detectsleep -locker ~/.i3/blurred-lock -notify 5 -notifier "notify-send -t 1000 -i ~/.i3/lock-icon.png 'Locking Screen...'"
 
