@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if [[ ` hcitool dev | grep hci0` ]]; then
-        BT_STATUS=""
-else
-        BTSTATUS=""
-fi
-echo $BT_STATUS
-

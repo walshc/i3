@@ -17,18 +17,21 @@ elif [[ "$HOST" == "debian" ]]; then
         LAPTOP_RES_HDMI_ON=2560x1440
         LAPTOP_RES_HDMI_OFF=2560x1440
         EXTERNAL=HDMI2
+elif [[ "$HOST" == "m73" ]]; then
+        xrandr --output HDMI1 --mode 1920x1080 --left-of VGA1 \
+                --output VGA1 --mode 1280x1024 \
+                --output HDMI1 --primary
+        exit 1
 else
         exit 1
 fi
 
-#function dual-displays {
-#        # Dual monitors by default (with laptop on the right-hand-side):
-#        xrandr --output $EXTERNAL --mode 1920x1080 --primary --left-of $LAPTOP \
-#                --output $LAPTOP --mode $LAPTOP_RES_HDMI_ON
-#}
+function dual-displays {
+        xrandr --output $EXTERNAL --mode 1920x1080 --primary --left-of $LAPTOP \
+                --output $LAPTOP --mode $LAPTOP_RES_HDMI_ON
+}
 
 function monitor-only {
-        # Dual monitors by default (with laptop on the right-hand-side):
         xrandr --output $EXTERNAL --mode 1920x1080 --output $LAPTOP --off
 }
 
@@ -41,8 +44,10 @@ function hdmi-is-connected {
         ! xrandr | grep "^$EXTERNAL" | grep disconnected
 }
 
-if hdmi-is-connected; then
+if hdmi-is-connected & [[ "$HOST" == "debian" ]]; then
         monitor-only
+elif hdmi-is-connected & [[ "$HOST" == "acer" ]]; then
+        dual-displays
 else
         display-on-laptop-only
 fi

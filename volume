@@ -10,7 +10,7 @@ VOLUME=$(amixer sget Master | egrep -o -m 1 "[0-9]+%")
 STATE=`amixer sget Master | egrep -m 1 'Playback.*?\[o' | egrep -o '\[o.+\]'`
 # Use mouse to change volume and toggle mute in i3bar:
 case $BLOCK_BUTTON in
-  1) urxvt -title "float" -e alsamixer --view all ;;
+  1) pavucontrol ;; #urxvt -title "float" -e alsamixer --view all ;;
   # Right click to toggle mute
   3) amixer -q sset Master toggle & ~/.i3/vol-notify ;;
   # Scroll up to increase volume
@@ -19,22 +19,22 @@ case $BLOCK_BUTTON in
   5) amixer -q sset Master 5%- & bash ~/.i3/vol-notify ;;
 esac
 
-# What to display in i3bar:
+# # What to display in i3bar:
 if [[ $STATE == '[off]' ]]; then
-        echo ""
-        echo ""
+        echo ""
+        echo ""
         echo "#F2CC66"
         exit 0
 else
         VOLNUM=$(echo -e $VOLUME | egrep -o "[0-9]+")
         if [ $VOLNUM -lt "33" ]; then
-                echo ""$VOLUME
+                echo ""$VOLUME
                 exit 0
         elif [ $VOLNUM -lt "66" ]; then
-                echo ""$VOLUME
+                echo ""$VOLUME
                 exit 0
         else
-                echo ""$VOLUME
+                echo ""$VOLUME
                 exit 0
         fi
 fi

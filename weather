@@ -1,10 +1,72 @@
 #!/bin/bash
 
-# Run python script to display weather, click button to display forecast
+WEATHER=$(weatherpy)
+LOCATION=$(echo $WEATHER | \
+        sed -e 's/Weather for//g' | \
+        sed -e 's/Currently*.*$//g' | \
+        sed -e 's/[ \t]*$//' | \
+        sed -e 's/^[ \t]*//')
+TEMPERATURE=$(echo $WEATHER | \
+        sed -e 's/°C*.*$//g' | \
+        cut -d : -f 2 | \
+        sed -e 's/[ \t]*$//' | \
+        sed -e 's/^[ \t]*//')
 
-if [[ $BLOCK_BUTTON == '1' ]]; then
-       urxvt -title "float" --geometry 80x42 -hold -e \
-               weatherpy location 02138 -o
+if [[ "$TEMPERATURE" == "" ]]; then
+        exit 0
 fi
 
-python3 ~/.i3/weather.py
+CONDITION=$(echo $WEATHER | \
+        cut -d ')' -f 2 | \
+        sed -e 's/Wind*.*$//g' | \
+        sed -e 's/[ \t]*$//' | \
+        sed -e 's/^[ \t]*//')
+
+
+if [[ `echo $CONDITION | grep "Cloud"` ]]; then
+        ICON=""
+elif [[ `echo $CONDITION | grep "Overcast"` ]]; then
+        ICON=""
+elif [[ `echo $CONDITION | grep "Thunder"` ]]; then
+        ICON=""
+elif [[ `echo $CONDITION | grep "Rain"` ]]; then
+        ICON=""
+elif [[ `echo $CONDITION | grep "Drizzle"` ]]; then
+        ICON=""
+elif [[ `echo $CONDITION | grep "Fog"` ]]; then
+        ICON=""
+elif [[ `echo $CONDITION | grep "Fair"` ]]; then
+        ICON=""
+elif [[ `echo $CONDITION | grep "Sunny"` ]]; then
+        ICON=""
+elif [[ `echo $CONDITION | grep "Clear"` ]]; then
+        ICON=""
+elif [[ `echo $CONDITION | grep "Snow"` ]]; then
+        ICON=""
+elif [[ `echo $CONDITION | grep "Wind"` ]]; then
+        ICON=""
+fi
+
+if [[ $BLOCK_BUTTON == '1' ]]; then
+       urxvt -title "float" --geometry 130x41 -hold -e \
+               curl wttr.in
+elif [[ $BLOCK_BUTTON == '3' ]]; then
+       notify-send "`weatherpy`"
+fi
+
+# Change the color if it there is rain, snow or thunder in the next 5 hours.
+HOURLY=$(weatherpy -o | head -8 | tail -5)
+if [[ `echo $HOURLY | grep "Rain"` ]]; then
+        COLOR="#66CCCC"
+elif [[ `echo $HOURLY | grep "Snow"` ]]; then
+        COLOR="#FFFFFF"
+elif [[ `echo $HOURLY | grep "Thunder"` ]]; then
+        COLOR="#F2777A"
+else
+        COLOR=""
+fi
+
+
+echo ${ICON}"-"${LOCATION}": "${CONDITION}", "${TEMPERATURE}"°C"
+echo ${ICON}"-"${LOCATION}": "${CONDITION}", "${TEMPERATURE}"°C"
+echo $COLOR

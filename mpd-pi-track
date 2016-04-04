@@ -5,29 +5,36 @@
 # Clicking the track/symbol will open ncmpcpp.
 
 # If I'm not connected to my home network, exit script.
-#MY_SSID=`iwgetid -r`
-#if ! [[ $MY_SSID == *"dilseacht"* ]]; then
-#        exit 0
-#fi
+if [ $(iwgetid -r | grep -oF "dilseacht") ]; then
+#         TRACK="- "$(mpc -h 192.168.0.106 -f \
+#                 "[[[%title% - ]%artist% - ]%album%]" | head -1)
+# 
+#         # If the mpd server is not connected, display nothing in i3bar.
+#         if [[ "${TRACK}" =~ "error:" ]] | [[ "${TRACK}" == "- " ]] ; then
+#                 TRACK=" "
+#         fi
+# 
+#         # If the mpd servier is connected but nothing is in the playlist, display just
+#         # a music symbol, which can be clicked to open ncmpcpp.
+        TRACK="sdfsdfds"
+         if [[ $TRACK == *volume:* ]]; then
+                 TRACK=""
+         fi
+# 
+#         # If the track is really long then don't display it:
+#         NCHAR=(${#TRACK})
+#         if [[ $NCHAR -gt 100 ]]; then
+#                 TRACK=""
+#         fi
+# 
+#         if [[ $BLOCK_BUTTON == '1' ]]; then
+#                 urxvt -title "float" -hold -e ncmpcpp -c ~/.i3/ncmpcpp-pi.conf
+#         fi
 
-TRACK="- "$(mpc -h 192.168.0.106 -f \
-        "[[[%title% - ]%artist% - ]%album%]" | head -1)
-
-# If the mpd server is not connected, display nothing in i3bar.
-if [[ "${TRACK}" =~ "error:" ]] | [[ "${TRACK}" == "- " ]] ; then
-        TRACK=" "
+        echo $TRACK | sed -e 's/?/\?/g'
+        echo $TRACK | sed -e 's/?/\?/g'
+        echo "#F2777A"
+else
+        echo "yo"
 fi
 
-# If the mpd servier is connected but nothing is in the playlist, display just
-# a music symbol, which can be clicked to open ncmpcpp.
-if [[ $TRACK == *volume:* ]]; then
-        TRACK=""
-fi
-
-if [[ $BLOCK_BUTTON == '1' ]]; then
-        urxvt -title "float" -hold -e ncmpcpp -c ~/.i3/ncmpcpp-pi.conf
-fi
-
-echo $TRACK | sed -e 's/?/\?/g'
-echo $TRACK | sed -e 's/?/\?/g'
-echo "#F2777A"

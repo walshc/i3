@@ -10,19 +10,26 @@ TRACK=$(mpc -f "[[[%title% - ]%artist% - ]%album%]" | head -1)
 if [[ "${TRACK}" =~ "error:" ]] | [[ "${TRACK}" == "" ]] ; then
         TRACK=""
 else
-        TRACK=""
+        TRACK=""
 fi
 
 # If the mpd servier is connected but nothing is in the playlist, display just
 # a music symbol, which can be clicked to open ncmpcpp.
 if [[ $TRACK == *volume:* ]]; then
-        TRACK=""
+        TRACK=""
 fi
 
 if [[ $BLOCK_BUTTON == '1' ]]; then
        urxvt -title "float" -hold -e ncmpcpp -c ~/.i3/ncmpcpp.conf
 fi
+if [[ $BLOCK_BUTTON == '3' ]]; then
+        TITLE=$(mpc -f "[%title%]" | head -1)
+        ARTIST=$(mpc -f "[%artist%]" | head -1)
+        ALBUM=$(mpc -f "[%album%]" | head -1)
+        notify-send "`echo -e $TITLE'\n'$ARTIST'\n'$ALBUM`" \
+                -i ~/.icons/Numix-Circle/48x48/apps/lxmusic.svg
+fi
 
 echo $TRACK | sed -e 's/?/\?/g'
 echo $TRACK | sed -e 's/?/\?/g'
-echo "#66CCCC"
+#echo "#66CCCC"

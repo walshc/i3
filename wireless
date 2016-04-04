@@ -3,26 +3,45 @@
 # If WiFi is connected, show the WiFi symbol as green.
 # If it's disconnected, show it as red. If dormannt, as yellow.
 
-if [[ $BLOCK_BUTTON == '1' ]]; then
-        urxvt -title "float" -geometry 80x12 -hold -e  zsh /home/christoph/.i3/wifi-info
+# The desktop doesn't connect to WiFi
+if [[ $(hostname) == "m73" ]]; then
+        exit 0
+else
+        if [[ $BLOCK_BUTTON == '1' ]]; then
+                gnome-control-center network
+        fi
+        if [[ $BLOCK_BUTTON == '3' ]]; then
+                SSID=`sudo iwconfig wlan0 | grep "ESSID" | cut -d ":" -f2`
+                FREQ=`sudo iwconfig wlan0 | grep Frequency | cut -d 'G' -f1 | \
+                        cut -d ':' -f3`
+                LOCAL_IP=`sudo ifconfig wlan0 | grep 'inet addr' | cut -d ":" -f2 | \
+                        cut -d "B" -f1`
+                notify-send "`echo -e 'SSID: ' $SSID'\nFrequency: ' $FREQ'\nLocal IP: '$LOCAL_IP`" \
+                        -i ~/.icons/Numix-Circle/48x48/apps/networkmanager.svg
+        fi
+        if [[ $BLOCK_BUTTON == '4' ]] | [[ $BLOCK_BUTTON == '5' ]]; then
+                notify-send "`echo $(macchanger wlan0 -s)`" \
+                        -i ~/.icons/Numix-Circle/48x48/apps/networkmanager.svg
+        fi
+
+        wlan_state="$(cat /sys/class/net/wlan0/operstate)"
+        #ssid="$(iwgetid | cut -d '"' -f2)"
+        #ssid=$(sudo iwconfig wlan0 | grep "ESSID" | cut -d '"' -f2)
+
+        if [ "$wlan_state" = "up" ]; then
+                echo ""
+                echo ""
+#                echo "#99CC99"
+                exit 0
+        elif [ "$wlan_state" = "down" ]; then
+                echo ""
+                echo ""
+                echo "#F2777A"
+                exit 0
+        elif [ "$wlan_state" = "dormant" ]; then
+                echo ""
+                echo ""
+                echo "#F99157"
+                exit 0
+        fi
 fi
-
-wlan_state="$(cat /sys/class/net/wlan0/operstate)"
-
-if [ "$wlan_state" = "up" ]; then
-        echo ""
-        echo ""
-        echo "#99CC99"
-        exit 0
-elif [ "$wlan_state" = "down" ]; then
-        echo ""
-        echo ""
-        echo "#F2777A"
-        exit 0
-elif [ "$wlan_state" = "dormant" ]; then
-        echo ""
-        echo ""
-        echo "#F299157"
-        exit 0
-fi
-

@@ -2,10 +2,9 @@
 
 # Create a button to skip to next track in Spotify.
 
-TRACK=$(playerctl -p spotify metadata)
-if [[ $TRACK != '' ]]; then
-        echo ""
-        echo ""
+if [[ $(ps -U root -u root -N | grep -Fo 'spotify') == *spotify* ]]; then
+        echo ""
+        echo ""
         echo "#99CC99"
         if [[ $BLOCK_BUTTON == '1' ]]; then
                 playerctl -p spotify next

@@ -6,6 +6,10 @@
 
 HOST=$(hostname)
 
+if [[ "$HOST" == "m73" ]]; then
+        exit 1
+fi
+
 if [[ "$HOST" == "acer" ]] || [[ "$HOST" == "debian" ]]; then
         POWER=$(acpi -b)
         if [[ "$POWER" == "" ]]; then
@@ -31,53 +35,56 @@ fi
 if [[ "$STATE" == "charging" ]]; then
         COLOR=""
         if [[ "$PERCENTAGE" -lt "15" ]]; then
-                SYMBOL=""
+                SYMBOL=""
         elif [[ "$PERCENTAGE" -lt "30" ]]; then
-                SYMBOL=""
+                SYMBOL=""
         elif [[ "$PERCENTAGE" -lt "45" ]]; then
-                SYMBOL=""
+                SYMBOL=""
         elif [[ "$PERCENTAGE" -lt "60" ]]; then
-                SYMBOL=""
+                SYMBOL=""
         elif [[ "$PERCENTAGE" -lt "75" ]]; then
-                SYMBOL=""
+                SYMBOL=""
         elif [[ "$PERCENTAGE" -lt "90" ]]; then
-                SYMBOL=""
+                SYMBOL=""
         else
-                SYMBOL=""
+                SYMBOL=""
         fi
 elif [[ "$STATE" == "discharging" ]]; then
         if [[ "$PERCENTAGE" -lt "10" ]]; then
-                SYMBOL=""
+                SYMBOL=""
                 COLOR="#F2777A"
                 notify-send -t 1000 -i ~/.i3/low-battery.png 'Battery Low'
         elif [[ "$PERCENTAGE" -lt "20" ]]; then
-                SYMBOL=""
+                SYMBOL=""
                 COLOR="#F2777A"
         elif [[ "$PERCENTAGE" -lt "30" ]]; then
-                SYMBOL=""
+                SYMBOL=""
                 COLOR="#F99157"
         elif [[ "$PERCENTAGE" -lt "40" ]]; then
-                SYMBOL=""
+                SYMBOL=""
                 COLOR="#F99157"
         elif [[ "$PERCENTAGE" -lt "50" ]]; then
-                SYMBOL=""
+                SYMBOL=""
                 COLOR="#FFCC66"
         elif [[ "$PERCENTAGE" -lt "60" ]]; then
-                SYMBOL=""
+                SYMBOL=""
                 COLOR="#FFCC66"
         elif [[ "$PERCENTAGE" -lt "70" ]]; then
-                SYMBOL=""
+                SYMBOL=""
                 COLOR="#99CC99"
         elif [[ "$PERCENTAGE" -lt "80" ]]; then
-                SYMBOL=""
+                SYMBOL=""
                 COLOR="#99CC99"
         elif [[ "$PERCENTAGE" -lt "90" ]]; then
-                SYMBOL=""
+                SYMBOL=""
         else
-                SYMBOL=""
+                SYMBOL=""
         fi
+elif [[ "$STATE" == "full" ]] | [[ "$STATE" == "unknown" ]]; then
+        SYMBOL=""
+        COLOR=""
 else
-        SYMBOL=""
+        SYMBOL=""
         COLOR=""
 fi
 
@@ -85,6 +92,6 @@ echo $SYMBOL$PERCENTAGE%
 echo $SYMBOL$PERCENTAGE%
 echo $COLOR
 
-if [[ $BLOCK_BUTTON == '1' ]]; then
+if [[ $BLOCK_BUTTON == '3' ]]; then
         notify-send "$REMAINING" -t 2000
 fi

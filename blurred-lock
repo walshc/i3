@@ -21,6 +21,13 @@ fi
 # Mute volume in case anything else is on:
 amixer -q sset Master mute
 
+HOST=$(hostname)
+if [[ "$HOST" == "debian" ]]; then
+        MESSAGE='Press enter and swipe fingerprint'
+else
+        MESSAGE='Enter password'
+fi
+
 if [[ "$NUM_ACTIVE_SCREENS" == "2" ]]; then
         # Screenshot:
         scrot $IMAGE
@@ -50,7 +57,7 @@ else
         convert $IMAGE $LOCK_ICON -gravity center -composite -matte $IMAGE
         convert -size 3000x60 xc:white -pointsize 26 \
                 -fill black -gravity center -annotate +0+0 \
-                'Press Enter and swipe fingerprint' $TEXT
+                "$MESSAGE" $TEXT
         convert $TEXT -alpha set -channel A -evaluate set 50% $TEXT
         convert $IMAGE $TEXT -gravity center -geometry +0+200 -composite $IMAGE
 fi

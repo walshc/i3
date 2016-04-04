@@ -1,7 +1,11 @@
 #!/bin/bash
-echo "-"$(date "+%a, %e. %b, %H:%M")
+echo "-"$(date "+%a, %e. %b, %H:%M")
 if [[ $BLOCK_BUTTON == '1' ]]; then
-       urxvt -title "float" -geometry 120x40 -hold -e \
-               vim -c 'Calendar -view=week'
+        firefox https://www.google.com/calendar
+        # urxvt -title "float" -geometry 120x40 -hold -e \
+        #         vim -c 'Calendar -view=week'
+fi
+if [[ $BLOCK_BUTTON == '3' ]]; then
+        notify-send "`python ~/.i3/calendar-events.py`"
 fi
 

@@ -5,16 +5,16 @@ MPC=$(mpc)
 if [[ $MPC != 'error: Connection refused' ]]; then
         STATE=$(echo -e $MPC | sed -n '1p' | cut -d "[" -f2 | cut -d "]" -f1)
         if [[ $STATE == "playing" ]]; then
-                echo ""
-                echo ""
-                echo "#66CCCC"
+                echo ""
+                echo ""
+#                echo "#66CCCC"
                 if [[ $BLOCK_BUTTON == '1' ]]; then
                         mpc pause
                 fi
         elif [[ $STATE == "paused" ]]; then
+                echo ""
                 echo ""
-                echo ""
-                echo "#66CCCC"
+#                echo "#66CCCC"
                 if [[ $BLOCK_BUTTON == '1' ]]; then
                         mpc play
                 fi

@@ -4,10 +4,8 @@ SSID=`sudo iwconfig wlan0 | grep "ESSID" | cut -d ":" -f2`
 FREQ=`sudo iwconfig wlan0 | grep Frequency | cut -d 'G' -f1 | cut -d ':' -f3`
 LOCAL_IP=`sudo ifconfig wlan0 | grep 'inet addr' | cut -d ":" -f2 | cut -d "B" -f1`
 
-echo "--------------------------------------------------"
-echo "WIFI-INFO"
-echo "--------------------------------------------------"
-echo "SSID:         " $SSID
-echo "Frequency:    " $FREQ
+echo "SSID:" $SSID
+echo "Frequency:    "
+echo $FREQ
 echo "Local IP:     " $LOCAL_IP
 macchanger wlan0 -s
