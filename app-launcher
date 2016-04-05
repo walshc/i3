@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo ""
+if [[ $BLOCK_BUTTON == '1' ]]; then
+        xfce4-appfinder
+fi
+if [[ $BLOCK_BUTTON == '3' ]]; then
+        synapse -s
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Only turn on screen lock if not connected to home network:
+if ! [[ `echo $(iwgetid -r) | grep "dilseacht*"` ]]; then
+        exec xautolock \
+                -time 10 \
+                -bell 0 \
+                -detectsleep \
+                -locker ~/.i3/blurred-lock \
+                -notify 5 \
+                -notifier "notify-send -t 1000 -i ~/.i3/lock-icon.png 'Locking Screen...'"
+fi
