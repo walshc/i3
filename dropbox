@@ -21,7 +21,7 @@ fi
 # Click to see status:
 if [[ $BLOCK_BUTTON == '3' ]]; then
         notify-send "`echo $(dropbox status)`" \
-                -i ~/.icons/Numix-Circle/scalable/apps/Dropbox.svg
+                -i /usr/share/icons/Numix-Circle/scalable/apps/Dropbox.svg
 fi
 
 echo $ICON

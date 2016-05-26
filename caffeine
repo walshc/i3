@@ -10,13 +10,6 @@ if [[ $BLOCK_BUTTON == '1' ]]; then
 elif [[ $BLOCK_BUTTON == '3' ]]; then
         notify-send -i ~/.i3/lock-icon.png "Enabling lock and screensaver" -t 3000
         xautolock -enable
-        # exec xautolock \
-        #         -time 10 \
-        #         -bell 0 \
-        #         -detectsleep \
-        #         -locker ~/.i3/blurred-lock \
-        #         -notify 5 \
-        #         -notifier "notify-send -t 1000 -i ~/.i3/lock-icon.png 'Locking Screen...'"
         xset s on
         xset +dpms
 fi

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-echo ""
-if [[ $BLOCK_BUTTON == '1' ]]; then
-        bash ~/.i3/suspend-and-lock
-fi

@@ -35,6 +35,8 @@ elif [[ `echo $CONDITION | grep "Drizzle"` ]]; then
         ICON=""
 elif [[ `echo $CONDITION | grep "Fog"` ]]; then
         ICON=""
+elif [[ `echo $CONDITION | grep "Haze"` ]]; then
+        ICON=""
 elif [[ `echo $CONDITION | grep "Fair"` ]]; then
         ICON=""
 elif [[ `echo $CONDITION | grep "Sunny"` ]]; then
@@ -45,6 +47,16 @@ elif [[ `echo $CONDITION | grep "Snow"` ]]; then
         ICON=""
 elif [[ `echo $CONDITION | grep "Wind"` ]]; then
         ICON=""
+fi
+
+if [[ $CONDITION == "Clear" ]]; then
+        CONDITION="Lá breá atá ann"
+elif [[ $CONDITION == "Sunny" ]]; then
+        CONDITION="Tá an ghrian ag taitneamh"
+elif [[ $CONDITION == "Partly Cloudy" ]]; then
+        CONDITION="Breacscamallach"
+elif [[ $CONDITION == "Scattered Clouds" ]]; then
+        CONDITION="Scamaill Scaipthe"
 fi
 
 if [[ $BLOCK_BUTTON == '1' ]]; then
@@ -66,6 +78,9 @@ else
         COLOR=""
 fi
 
+if [[ `echo $LOCATION | grep "Boston"` ]]; then
+        LOCATION="Bostún, MA"
+fi
 
 echo ${ICON}"-"${LOCATION}": "${CONDITION}", "${TEMPERATURE}"°C"
 echo ${ICON}"-"${LOCATION}": "${CONDITION}", "${TEMPERATURE}"°C"

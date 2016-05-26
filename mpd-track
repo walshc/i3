@@ -27,7 +27,7 @@ if [[ $BLOCK_BUTTON == '3' ]]; then
         ARTIST=$(mpc -f "[%artist%]" | head -1)
         ALBUM=$(mpc -f "[%album%]" | head -1)
         notify-send "`echo -e $TITLE'\n'$ARTIST'\n'$ALBUM`" \
-                -i ~/.icons/Numix-Circle/48x48/apps/lxmusic.svg
+                -i /usr/share/icons/Numix-Circle/48x48/apps/lxmusic.svg
 fi
 
 echo $TRACK | sed -e 's/?/\?/g'

@@ -34,5 +34,5 @@ if [[ $BLOCK_BUTTON == '3' ]]; then
         ARTIST=`playerctl -p spotify metadata 'xesam:artist'`
         ALBUM=`playerctl -p spotify metadata 'xesam:album'`
         notify-send "`echo -e $TITLE'\n'$ARTIST'\n'$ALBUM`" \
-                -i ~/.icons/Numix-Circle/scalable/apps/Spotify.svg
+                -i /usr/share/icons/Numix-Circle/scalable/apps/Spotify.svg
 fi

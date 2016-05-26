@@ -17,11 +17,11 @@ else
                 LOCAL_IP=`sudo ifconfig wlan0 | grep 'inet addr' | cut -d ":" -f2 | \
                         cut -d "B" -f1`
                 notify-send "`echo -e 'SSID: ' $SSID'\nFrequency: ' $FREQ'\nLocal IP: '$LOCAL_IP`" \
-                        -i ~/.icons/Numix-Circle/48x48/apps/networkmanager.svg
+                        -i /usr/share/icons/Numix-Circle/48x48/apps/networkmanager.svg
         fi
         if [[ $BLOCK_BUTTON == '4' ]] | [[ $BLOCK_BUTTON == '5' ]]; then
                 notify-send "`echo $(macchanger wlan0 -s)`" \
-                        -i ~/.icons/Numix-Circle/48x48/apps/networkmanager.svg
+                        -i /usr/share/icons/Numix-Circle/48x48/apps/networkmanager.svg
         fi
 
         wlan_state="$(cat /sys/class/net/wlan0/operstate)"

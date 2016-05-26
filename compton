@@ -41,7 +41,7 @@ wintypes:
 {
   tooltip = { fade = true; shadow = true; opacity = 0.95; focus = true; };
   # For transparent i3bar:
-  dock = { opacity = 0.95; };
+  dock = { opacity = 0.85; };
 };
 
 #########

@@ -84,7 +84,7 @@ elif [[ "$STATE" == "full" ]] | [[ "$STATE" == "unknown" ]]; then
         SYMBOL=""
         COLOR=""
 else
-        SYMBOL=""
+        SYMBOL=""
         COLOR=""
 fi
 
