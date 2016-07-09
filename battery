@@ -10,7 +10,7 @@ if [[ "$HOST" == "m73" ]]; then
         exit 1
 fi
 
-if [[ "$HOST" == "acer" ]] || [[ "$HOST" == "debian" ]]; then
+if [[ "$HOST" == "debian" ]]; then
         POWER=$(acpi -b)
         if [[ "$POWER" == "" ]]; then
                 exit 1

@@ -14,8 +14,7 @@ bindsym $mod+Ctrl+x exec iceweasel
 
 bindsym Print exec scrot -q 100  # Fn+t on X1 Carbon
 bindsym $mod+Print exec shutter -s  # For screenshot selections
-# bindsym $mod+d exec lighthouse -c ~/.i3/lighthouserc | sh
- bindsym $mod+d exec synapse
+bindsym $mod+d exec synapse
 
 # Floating windows by default:
 for_window [instance="chrome_app_list" window_role="bubble"] floating enable

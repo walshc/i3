@@ -1,7 +1,0 @@
-#/bin/bash
-
-while [ 1 ];
-do
-        bash ~/.i3/set-random-desktop-background;
-        sleep 30m;
-done

@@ -22,17 +22,12 @@ if [[ $(ps -U root -u root -N | grep -Fo 'spotify') == *spotify* ]]; then
                 if [[ $NCHAR -gt 30 ]]; then
                         TRACK=`echo "- "$TITLE " - " $ARTIST`
                         echo "$TRACK" | sed -e 's/?/\?/g'
-                        # echo "$TRACK" | sed -e 's/?/\?/g'
-                        # echo "#99CC99"
                 else
                         TRACK=`echo "- "$TITLE " - " $ARTIST " - " $ALBUM`
                         echo "$TRACK" | sed -e 's/?/\?/g'
-                        # echo "$TRACK" | sed -e 's/?/\?/g'
-                        # echo "#99CC99"
                 fi
         else
                 echo ""
-                # echo "#99CC99"
         fi
         if [[ $BLOCK_BUTTON == '1' ]]; then
                 i3-msg workspace number 5 
@@ -56,17 +51,12 @@ elif [[ $(ps -U root -u root -N | grep -Fo 'rhythmbox') == *rhythmbox* ]]; then
                 if [[ $NCHAR -gt 30 ]]; then
                         TRACK=`echo "- "$TITLE " - " $ARTIST`
                         echo "$TRACK" | sed -e 's/?/\?/g'
-                        # echo "$TRACK" | sed -e 's/?/\?/g'
-                        # echo "#99CC99"
                 else
                         TRACK=`echo "- "$TITLE " - " $ARTIST " - " $ALBUM`
                         echo "$TRACK" | sed -e 's/?/\?/g'
-                        # echo "$TRACK" | sed -e 's/?/\?/g'
-                        # echo "#99CC99"
                 fi
         else
                 echo ""
-                # echo "#99CC99"
         fi
         if [[ $BLOCK_BUTTON == '1' ]]; then
                 i3-msg workspace number 5 

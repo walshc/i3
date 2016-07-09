@@ -1,9 +1,5 @@
 #!/bin/bash
 echo "-"$(date "+%A, %e. %B, %H:%M")
 if [[ $BLOCK_BUTTON == '1' ]]; then
-        google-chrome https://www.google.com/calendar
+        chromium https://www.google.com/calendar
 fi
-if [[ $BLOCK_BUTTON == '3' ]]; then
-        notify-send "`python ~/.i3/calendar-events.py`"
-fi
-

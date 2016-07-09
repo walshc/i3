@@ -1,16 +1,9 @@
 #!/bin/bash
 
 # If free memory is lower than a cutoff, show it in the status bar.
+MEMORY_WARNING_CUTOFF=10
 MEMORY=$(free -h G | awk '{ print $4}' | sed -n '3p' | grep -oP '\d+.\d+')
 MEMORY=`echo $MEMORY "* 10" | bc -l | cut -d "." -f 1`
-
-HOST=$(hostname)
-# If using the Thinkpad, warn if below 2GB. Otherwise warn if below 1GB:
-if [[ "$HOST" == "debian" ]]; then
-       MEMORY_WARNING_CUTOFF=20
-else
-       MEMORY_WARNING_CUTOFF=10
-fi
 
 if [[ $((MEMORY)) -lt $((MEMORY_WARNING_CUTOFF)) ]]; then
         MEMORY=`echo $MEMORY "/ 10" | bc -l |  awk '{printf "%.1f\n", $0}'`

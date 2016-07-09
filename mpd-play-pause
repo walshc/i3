@@ -7,14 +7,12 @@ if [[ $MPC != 'error: Connection refused' ]]; then
         if [[ $STATE == "playing" ]]; then
                 echo ""
                 echo ""
-#                echo "#66CCCC"
                 if [[ $BLOCK_BUTTON == '1' ]]; then
                         mpc pause
                 fi
         elif [[ $STATE == "paused" ]]; then
                 echo ""
                 echo ""
-#                echo "#66CCCC"
                 if [[ $BLOCK_BUTTON == '1' ]]; then
                         mpc play
                 fi

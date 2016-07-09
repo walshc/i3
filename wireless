@@ -25,18 +25,14 @@ else
         fi
 
         wlan_state="$(cat /sys/class/net/wlan0/operstate)"
-        #ssid="$(iwgetid | cut -d '"' -f2)"
-        #ssid=$(sudo iwconfig wlan0 | grep "ESSID" | cut -d '"' -f2)
 
         if [ "$wlan_state" = "up" ]; then
                 echo ""
                 echo ""
-#                echo "#99CC99"
                 exit 0
         elif [ "$wlan_state" = "down" ]; then
                 echo ""
                 echo ""
-                # echo "#F2777A"
                 echo "#DC322F"
                 exit 0
         elif [ "$wlan_state" = "dormant" ]; then

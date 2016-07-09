@@ -21,7 +21,6 @@ fi
 # Mute volume in case anything else is on:
 amixer -q sset Master mute
 
-HOST=$(hostname)
 MESSAGE='Enter password'
 
 if [[ "$NUM_ACTIVE_SCREENS" == "2" ]]; then

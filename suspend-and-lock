@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Script for i3 keybinding to lock the screen and suspend.
-
-bash ~/.i3/blurred-lock
-sudo pm-suspend
