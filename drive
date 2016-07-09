@@ -1,0 +1,22 @@
+#!/bin/bash
+
+ICON=""
+
+
+if [[ $(insync get_status | grep -Fo 'seem to be running. Start it firs') ]]; then
+        COLOR="#DC322F"
+elif [[ $(insync get_status | grep -Fo 'SHARE') ]]; then
+        COLOR=""
+else
+        COLOR="#5294E2"
+fi
+
+# Click to see status:
+if [[ $BLOCK_BUTTON == '3' ]]; then
+        notify-send "`echo $(insync get_status)`" \
+                -i /usr/share/icons/Numix-Circle/scalable/apps/google-drive.svg
+fi
+
+echo $ICON
+echo $ICON
+echo $COLOR
