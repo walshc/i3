@@ -20,6 +20,7 @@ shadow-exclude = [
   "class_g ?= 'Firefox'",
   "class_g ?= 'Iceweasel'",
   "class_g ?= 'Chrome'",
+  "class_g ?= 'google-chrome'",
   "class_g ?= 'Chromium'",
   "class_g ?= 'Nautilus'",
   "class_g ?= 'Evince'",
@@ -29,7 +30,7 @@ shadow-exclude = [
 ########################
 # Opacity/Transparancy #
 ########################
-menu-opacity = 0.95;  # Default is 1.0
+# menu-opacity = 0.95;  # Default is 1.0
 inactive-opacity = 1.0;
 detect-client-opacity = true;
 blur-background-fixed = false;
@@ -41,7 +42,7 @@ wintypes:
 {
   tooltip = { fade = true; shadow = true; opacity = 0.95; focus = true; };
   # For transparent i3bar:
-  dock = { opacity = 0.85; };
+  # dock = { opacity = 0.85; };
 };
 
 #########

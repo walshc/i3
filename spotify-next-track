@@ -4,9 +4,18 @@
 
 if [[ $(ps -U root -u root -N | grep -Fo 'spotify') == *spotify* ]]; then
         echo ""
-        echo ""
-        echo "#99CC99"
+        # echo ""
+        # echo "#99CC99"
         if [[ $BLOCK_BUTTON == '1' ]]; then
                 playerctl -p spotify next
         fi
+elif [[ $(ps -U root -u root -N | grep -Fo 'rhythmbox') == *rhythmbox* ]]; then
+        echo ""
+        # echo ""
+        # echo "#99CC99"
+        if [[ $BLOCK_BUTTON == '1' ]]; then
+                playerctl -p rhythmbox next
+        fi
+else
+        exit 0
 fi

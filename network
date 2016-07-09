@@ -11,7 +11,7 @@ if [[ "$eth_state" == "up" ]]; then
 elif [[ "$eth_state" == "dormant" ]]; then
         echo ""
         echo ""
-        echo "#F99157"
+        echo "#DC322F"
 fi
 
 ip_addr=`echo "IP: "$(hostname -I)`

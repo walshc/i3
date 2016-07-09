@@ -4,7 +4,7 @@
 # If the playlist is empty, display just a symbol.
 # Clicking the track/symbol will open ncmpcpp.
 
-TRACK="- "$(mpc -h 192.168.0.106 -f \
+TRACK="- "$(mpc -h 192.168.0.106 -f \
         "[[[%title% - ]%artist% - ]%album%]" | head -1)
 
 # If the mpd server is not connected, display nothing in i3bar.
@@ -15,13 +15,13 @@ fi
 # If the mpd servier is connected but nothing is in the playlist, display just
 # a music symbol, which can be clicked to open ncmpcpp.
 if [[ $TRACK == *volume:* ]]; then
-        TRACK=""
+        TRACK=""
 fi
 
 # If the track is really long then don't display it:
 NCHAR=(${#TRACK})
 if [[ $NCHAR -gt 100 ]]; then
-        TRACK=""
+        TRACK=""
 fi
 
 if [[ $BLOCK_BUTTON == '1' ]]; then
@@ -29,6 +29,3 @@ if [[ $BLOCK_BUTTON == '1' ]]; then
 fi
 
 echo $TRACK | sed -e 's/?/\?/g'
-echo $TRACK | sed -e 's/?/\?/g'
-echo "#F2777A"
-

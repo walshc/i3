@@ -36,7 +36,8 @@ else
         elif [ "$wlan_state" = "down" ]; then
                 echo ""
                 echo ""
-                echo "#F2777A"
+                # echo "#F2777A"
+                echo "#DC322F"
                 exit 0
         elif [ "$wlan_state" = "dormant" ]; then
                 echo ""

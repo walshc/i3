@@ -22,8 +22,6 @@ esac
 # # What to display in i3bar:
 if [[ $STATE == '[off]' ]]; then
         echo ""
-        echo ""
-        echo "#F2CC66"
         exit 0
 else
         VOLNUM=$(echo -e $VOLUME | egrep -o "[0-9]+")

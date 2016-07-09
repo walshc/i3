@@ -1,38 +1,83 @@
 #!/bin/bash
 
 # Display the current track on Spotify if it's running.
-if [[ $(ps -U root -u root -N | grep -Fo 'spotify') == *spotify* ]]; then
-        echo ""
-        echo ""
-        echo "#99CC99"
-        # If "title - artist - album" is very long, just display the title
-        # and artist.
-#                echo "#99CC99"
-#                echo "#99CC99"
-#                echo "#99CC99"
-#        NCHAR=(${#TITLE} + ${#ARTIST} + ${#ALBUM})
-#        if [[ $NCHAR -gt 30 ]]; then
-#                TRACK=`echo "- "$TITLE " - " $ARTIST`
-#                echo "$TRACK" | sed -e 's/?/\?/g'
-#                echo "$TRACK" | sed -e 's/?/\?/g'
-#                echo "#99CC99"
-#        else
-#                TRACK=`echo "- "$TITLE " - " $ARTIST " - " $ALBUM`
-#                echo "$TRACK" | sed -e 's/?/\?/g'
-#                echo "$TRACK" | sed -e 's/?/\?/g'
-#                echo "#99CC99"
-#        fi
-else
-        exit 0
+
+HOST=$(hostname)
+if [[ "$HOST" == "m73" ]]; then
+        DISPLAY_TRACK=false
+elif [[ "$HOST" == "debian" ]]; then
+        DISPLAY_TRACK=true
 fi
 
-if [[ $BLOCK_BUTTON == '1' ]]; then
-        i3-msg workspace number 5 
-fi
-if [[ $BLOCK_BUTTON == '3' ]]; then
-        TITLE=`playerctl -p spotify metadata 'xesam:title'`
-        ARTIST=`playerctl -p spotify metadata 'xesam:artist'`
-        ALBUM=`playerctl -p spotify metadata 'xesam:album'`
-        notify-send "`echo -e $TITLE'\n'$ARTIST'\n'$ALBUM`" \
-                -i /usr/share/icons/Numix-Circle/scalable/apps/Spotify.svg
+if [[ $(ps -U root -u root -N | grep -Fo 'spotify') == *spotify* ]]; then
+
+        if [ "$DISPLAY_TRACK" = true ]; then
+
+                TITLE=`playerctl -p spotify metadata 'xesam:title'`
+                ARTIST=`playerctl -p spotify metadata 'xesam:artist'`
+                ALBUM=`playerctl -p spotify metadata 'xesam:album'`
+                # If "title - artist - album" is very long, just display the title
+                # and artist.
+                NCHAR=(${#TITLE} + ${#ARTIST} + ${#ALBUM})
+                if [[ $NCHAR -gt 30 ]]; then
+                        TRACK=`echo "- "$TITLE " - " $ARTIST`
+                        echo "$TRACK" | sed -e 's/?/\?/g'
+                        # echo "$TRACK" | sed -e 's/?/\?/g'
+                        # echo "#99CC99"
+                else
+                        TRACK=`echo "- "$TITLE " - " $ARTIST " - " $ALBUM`
+                        echo "$TRACK" | sed -e 's/?/\?/g'
+                        # echo "$TRACK" | sed -e 's/?/\?/g'
+                        # echo "#99CC99"
+                fi
+        else
+                echo ""
+                # echo "#99CC99"
+        fi
+        if [[ $BLOCK_BUTTON == '1' ]]; then
+                i3-msg workspace number 5 
+        fi
+        if [[ $BLOCK_BUTTON == '3' ]]; then
+                TITLE=`playerctl -p spotify metadata 'xesam:title'`
+                ARTIST=`playerctl -p spotify metadata 'xesam:artist'`
+                ALBUM=`playerctl -p spotify metadata 'xesam:album'`
+                notify-send "`echo -e $TITLE'\n'$ARTIST'\n'$ALBUM`" \
+                        -i /usr/share/icons/Numix-Circle/scalable/apps/Spotify.svg
+        fi
+elif [[ $(ps -U root -u root -N | grep -Fo 'rhythmbox') == *rhythmbox* ]]; then
+        if [ "$DISPLAY_TRACK" = true ]; then
+
+                TITLE=`playerctl -p rhythmbox metadata 'xesam:title'`
+                ARTIST=`playerctl -p rhythmbox metadata 'xesam:artist'`
+                ALBUM=`playerctl -p rhythmbox metadata 'xesam:album'`
+                # If "title - artist - album" is very long, just display the title
+                # and artist.
+                NCHAR=(${#TITLE} + ${#ARTIST} + ${#ALBUM})
+                if [[ $NCHAR -gt 30 ]]; then
+                        TRACK=`echo "- "$TITLE " - " $ARTIST`
+                        echo "$TRACK" | sed -e 's/?/\?/g'
+                        # echo "$TRACK" | sed -e 's/?/\?/g'
+                        # echo "#99CC99"
+                else
+                        TRACK=`echo "- "$TITLE " - " $ARTIST " - " $ALBUM`
+                        echo "$TRACK" | sed -e 's/?/\?/g'
+                        # echo "$TRACK" | sed -e 's/?/\?/g'
+                        # echo "#99CC99"
+                fi
+        else
+                echo ""
+                # echo "#99CC99"
+        fi
+        if [[ $BLOCK_BUTTON == '1' ]]; then
+                i3-msg workspace number 5 
+        fi
+        if [[ $BLOCK_BUTTON == '3' ]]; then
+                TITLE=`playerctl -p rhythmbox metadata 'xesam:title'`
+                ARTIST=`playerctl -p rhythmbox metadata 'xesam:artist'`
+                ALBUM=`playerctl -p rhythmbox metadata 'xesam:album'`
+                notify-send "`echo -e $TITLE'\n'$ARTIST'\n'$ALBUM`" \
+                        -i /usr/share/icons/Numix-Circle/scalable/apps/rhythmbox.svg
+        fi
+else
+        exit 0
 fi

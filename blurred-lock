@@ -22,11 +22,7 @@ fi
 amixer -q sset Master mute
 
 HOST=$(hostname)
-if [[ "$HOST" == "debian" ]]; then
-        MESSAGE='Press enter and swipe fingerprint'
-else
-        MESSAGE='Enter password'
-fi
+MESSAGE='Enter password'
 
 if [[ "$NUM_ACTIVE_SCREENS" == "2" ]]; then
         # Screenshot:

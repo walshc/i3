@@ -27,7 +27,7 @@ FA_FILE_PDF_O = ''
 FA_FILE_TEXT_O = ''
 FA_FILES_O = ''
 FA_FIREFOX = ''
-FA_MUSIC = ''
+FA_MUSIC = ''
 FA_PICTURE_O = ''
 FA_SPOTIFY = ''
 FA_TERMINAL = ''
@@ -37,13 +37,26 @@ FA_HANGOUTS = ''
 FA_APPFINDER = ''
 FA_BOOK = ''
 FA_R_PLOT = 'R'
+FA_TRANSMISSION = ''
+FA_PRINTER = ''
+FA_ENPASS = ''
+FA_VOLUME = ''
+FA_VLC = ''
+FA_EMAIL = ''
+FA_SETTINGS = ''
+FA_WIFI = ''
+FA_GIMP = ''
+FA_GNOME = ''
 
 WINDOW_ICONS = {
     'urxvt': FA_TERMINAL,
     'xfce4-terminal': FA_TERMINAL,
     'google-chrome': FA_CHROME,
+    'chromium': FA_CHROME,
+    'chromium-browser': FA_CHROME,
     'subl': FA_CODE,
     'subl3': FA_CODE,
+    'gedit': FA_CODE,
     'spotify': FA_SPOTIFY,
     'Spotify': FA_SPOTIFY,
     'Firefox': FA_FIREFOX,
@@ -53,6 +66,7 @@ WINDOW_ICONS = {
     'feh': FA_PICTURE_O,
     'mupdf': FA_FILE_PDF_O,
     'evince': FA_FILE_PDF_O,
+    'okukar': FA_FILE_PDF_O,
     'nautilus': FA_FILES_O,
     'thunar': FA_FILES_O,
     'rstudio': FA_RSTUDIO,
@@ -64,7 +78,20 @@ WINDOW_ICONS = {
     'kbibtex': FA_BOOK,
     'calibre': FA_BOOK,
     'r_x11': FA_R_PLOT,
-    'R_x11': FA_R_PLOT
+    'R_x11': FA_R_PLOT,
+    'transmission-gtk' : FA_TRANSMISSION,
+    'Transmission' : FA_TRANSMISSION,
+    'system-config-printer.py' : FA_PRINTER,
+    'Enpass' : FA_ENPASS,
+    'Rhythmbox' : FA_MUSIC,
+    'Pavucontrol' : FA_VOLUME,
+    'vlc' : FA_VLC,
+    'eog' : FA_PICTURE_O,
+    'geary' : FA_EMAIL,
+    'gnome-control-center' : FA_SETTINGS,
+    'Wicd Network Manager' : FA_WIFI,
+    'wicd-client.py' : FA_WIFI,
+    'gimp' : FA_GIMP
 }
 
 

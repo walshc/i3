@@ -8,9 +8,7 @@ if [[ ${MPC} =~ "error:" ]] || [[ ${MPC} =~ "volume:" ]]; then
         STATE=$(echo -e "$MPC" | sed -n '2p' | cut -d "[" -f2 | cut -d "]" -f1)
         # If a song is playing or paused, display a next track symbol.
         if [[ "$STATE" == "playing" ]] || [[ "$STATE" == "paused" ]]; then
-                echo ""
-                echo ""
-                echo "#F2777A"
+                echo ""
                 if [[ $BLOCK_BUTTON == '1' ]]; then
                         mpc -h 192.168.0.106 next
                 fi

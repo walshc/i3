@@ -5,17 +5,17 @@ ICON=""
 if [[ $(dropbox status | grep -Fo 'Up to date') ]]; then
         COLOR=""
 elif [[ $(dropbox status | grep -Fo 'Uploading') ]]; then
-        COLOR="#99CC99"
+        COLOR="#5294E2"
 elif [[ $(dropbox status | grep -Fo 'Syncing') ]]; then
-        COLOR="#99CC99"
+        COLOR="#5294E2"
 elif [[ $(dropbox status | grep -Fo 'Downloading') ]]; then
-        COLOR="#99CC99"
+        COLOR="#5294E2"
 elif [[ $(dropbox status | grep -Fo "Starting") ]]; then
-        COLOR="#99CC99"
+        COLOR="#5294E2"
 elif [[ $(dropbox status | grep -Fo "Indexing") ]]; then
-        COLOR="#99CC99"
+        COLOR="#5294E2"
 elif [[ $(dropbox status | grep -Fo "Dropbox isn't running") ]]; then
-        COLOR="#F2777A"  # Red for if it stopped for some reason
+        COLOR="#DC322F"  # Red for if it stopped for some reason
 fi
 
 # Click to see status:
