@@ -6,4 +6,4 @@ exec xautolock \
         -detectsleep \
         -locker ~/.i3/blurred-lock \
         -notify 5 \
-        -notifier "notify-send -t 1000 -i ~/.i3/lock-icon.png 'Locking Screen...'"
+        -notifier "notify-send -t 1000 -i ~/.i3/icons/lock-icon.png 'Locking Screen...'"

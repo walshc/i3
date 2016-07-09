@@ -13,4 +13,4 @@ BRIGHTNESS=$(printf %.0f $BRIGHTNESS)
 killall -q mate-notification-daemon
 
 # Send the notification with the icon:
-notify-send "Brightness:" $BRIGHTNESS -t 1000 -i ~/.i3/brightness-icon.png
+notify-send "Brightness:" $BRIGHTNESS -t 1000 -i ~/.i3/icons/brightness-icon.png

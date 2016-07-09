@@ -54,7 +54,7 @@ elif [[ "$STATE" == "discharging" ]]; then
                 SYMBOL=""
                 #COLOR="#F2777A"
                 COLOR="#DC322F"
-                notify-send -t 1000 -i ~/.i3/low-battery.png 'Battery Low'
+                notify-send -t 1000 -i ~/.i3/icons/low-battery.png 'Battery Low'
         elif [[ "$PERCENTAGE" -lt "20" ]]; then
                 SYMBOL=""
                 #COLOR="#F2777A"

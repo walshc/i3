@@ -22,16 +22,13 @@ for_window [class="Gedit"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="plank"] floating enable
 for_window [instance ="plank"] floating enable
-#for_window [title="Hangouts" class="chrome"] floating enable; move position center
-#for_window [title="Google Keep" class="chrome"] floating enable; move position center
 for_window [title="Pocket Casts" class="chrome"] floating enable; move position center
-#for_window [title="Pocket" class="chrome"] floating enable; move position center
 for_window [class="Florence"] floating enable
 
 # Shortcuts for scripts:
 bindsym $mod+Ctrl+d exec xrandr --auto
-bindsym $mod+Ctrl+w exec ~/.i3/set-random-desktop-background
-bindsym Ctrl+Mod1+s exec ~/.i3/suspend-and-lock
+bindsym $mod+Ctrl+w exec ~/.i3/scripts/set-random-desktop-background
+bindsym Ctrl+Mod1+s exec ~/.i3/scripts/suspend-and-lock
 
 # Kill focused window (add Alt+F4 as well):
 bindsym $mod+Shift+q kill
@@ -48,161 +45,22 @@ bindsym $mod+Ctrl+Shift+p gaps outer current minus 5
 floating_modifier $mod
 
 # Adjust volume up and down with a notification:
-bindsym XF86AudioRaiseVolume exec amixer sset Master on 10%+ & exec ~/.i3/vol-notify
-bindsym Mod4+F3 exec amixer sset Master on 10%+ & exec ~/.i3/vol-notify
-bindsym XF86AudioLowerVolume exec amixer sset Master 10%- & exec ~/.i3/vol-notify
-bindsym Mod4+F1 exec amixer sset Master 10%- & exec ~/.i3/vol-notify
-bindsym XF86AudioMute exec amixer sset Master toggle & exec ~/.i3/vol-notify
-bindsym Mod4+F2 exec amixer sset Master toggle & exec ~/.i3/vol-notify
+bindsym XF86AudioRaiseVolume exec amixer sset Master on 10%+ & exec ~/.i3/scripts/vol-notify
+bindsym Mod4+F3 exec amixer sset Master on 10%+ & exec ~/.i3/scripts/vol-notify
+bindsym XF86AudioLowerVolume exec amixer sset Master 10%- & exec ~/.i3/scripts/vol-notify
+bindsym Mod4+F1 exec amixer sset Master 10%- & exec ~/.i3/scripts/vol-notify
+bindsym XF86AudioMute exec amixer sset Master toggle & exec ~/.i3/scripts/vol-notify
+bindsym Mod4+F2 exec amixer sset Master toggle & exec ~/.i3/scripts/vol-notify
 
 # Change brightness
-bindsym XF86MonBrightnessDown exec xbacklight -time 10 -dec 10 & exec ~/.i3/brightness-notify
-bindsym Mod4+F4 exec xbacklight -time 10 -dec 10 & exec ~/.i3/brightness-notify
-bindsym XF86MonBrightnessUp exec xbacklight -time 10 -inc 10 & exec ~/.i3/brightness-notify
-bindsym Mod4+F5 exec xbacklight -time 10 -inc 10 & exec ~/.i3/brightness-notify
+bindsym XF86MonBrightnessDown exec xbacklight -time 10 -dec 10 & exec ~/.i3/scripts/brightness-notify
+bindsym Mod4+F4 exec xbacklight -time 10 -dec 10 & exec ~/.i3/scripts/brightness-notify
+bindsym XF86MonBrightnessUp exec xbacklight -time 10 -inc 10 & exec ~/.i3/scripts/brightness-notify
+bindsym Mod4+F5 exec xbacklight -time 10 -inc 10 & exec ~/.i3/scripts/brightness-notify
 
 # Shortcut to pause Spotify, Rhythmbox, etc.
 bindsym $mod+Shift+XF86AudioMute exec playerctl play-pause
 bindsym $mod+Shift+F2 exec playerctl play-pause
-
-bindsym XF86AddFavorite exec urxvt
-bindsym XF86ApplicationLeft exec urxvt
-bindsym XF86ApplicationRight exec urxvt
-bindsym XF86AudioMedia exec urxvt
-bindsym XF86AudioNext exec urxvt
-bindsym XF86AudioPause exec urxvt
-bindsym XF86AudioPlay exec urxvt
-bindsym XF86AudioPrev exec urxvt
-bindsym XF86AudioRecord exec urxvt
-bindsym XF86AudioRewind exec urxvt
-bindsym XF86AudioStop exec urxvt
-bindsym XF86Away exec urxvt
-bindsym XF86Back exec urxvt
-bindsym XF86Book exec urxvt
-bindsym XF86BrightnessAdjust exec urxvt
-bindsym XF86CD exec urxvt
-bindsym XF86Calculator exec urxvt
-bindsym XF86Calendar exec urxvt
-bindsym XF86Clear exec urxvt
-bindsym XF86ClearGrab exec urxvt
-bindsym XF86Close exec urxvt
-bindsym XF86Community exec urxvt
-bindsym XF86ContrastAdjust exec urxvt
-bindsym XF86Copy exec urxvt
-bindsym XF86Cut exec urxvt
-bindsym XF86DOS exec urxvt
-bindsym XF86Display exec urxvt
-bindsym XF86Documents exec urxvt
-bindsym XF86Eject exec urxvt
-bindsym XF86Excel exec urxvt
-bindsym XF86Explorer exec urxvt
-bindsym XF86Favorites exec urxvt
-bindsym XF86Finance exec urxvt
-bindsym XF86Forward exec urxvt
-bindsym XF86Game exec urxvt
-bindsym XF86Go exec urxvt
-bindsym XF86History exec urxvt
-bindsym XF86HomePage exec urxvt
-bindsym XF86HotLinks exec urxvt
-bindsym XF86Launch0 exec urxvt
-bindsym XF86Launch1 exec urxvt
-bindsym XF86Launch2 exec urxvt
-bindsym XF86Launch3 exec urxvt
-bindsym XF86Launch4 exec urxvt
-bindsym XF86Launch5 exec urxvt
-bindsym XF86Launch6 exec urxvt
-bindsym XF86Launch7 exec urxvt
-bindsym XF86Launch8 exec urxvt
-bindsym XF86Launch9 exec urxvt
-bindsym XF86LaunchA exec urxvt
-bindsym XF86LaunchB exec urxvt
-bindsym XF86LaunchC exec urxvt
-bindsym XF86LaunchD exec urxvt
-bindsym XF86LaunchE exec urxvt
-bindsym XF86LaunchF exec urxvt
-bindsym XF86LightBulb exec urxvt
-bindsym XF86LogOff exec urxvt
-bindsym XF86Mail exec urxvt
-bindsym XF86MailForward exec urxvt
-bindsym XF86Market exec urxvt
-bindsym XF86Meeting exec urxvt
-bindsym XF86Memo exec urxvt
-bindsym XF86MenuKB exec urxvt
-bindsym XF86MenuPB exec urxvt
-bindsym XF86Messenger exec urxvt
-bindsym XF86Music exec urxvt
-bindsym XF86MyComputer exec urxvt
-bindsym XF86MySites exec urxvt
-bindsym XF86New exec urxvt
-bindsym XF86News exec urxvt
-bindsym XF86Next_VMode exec urxvt
-bindsym XF86Prev_VMode exec urxvt
-bindsym XF86OfficeHome exec urxvt
-bindsym XF86Open exec urxvt
-bindsym XF86OpenURL exec urxvt
-bindsym XF86Option exec urxvt
-bindsym XF86Paste exec urxvt
-bindsym XF86Phone exec urxvt
-bindsym XF86Pictures exec urxvt
-bindsym XF86PowerDown exec urxvt
-bindsym XF86PowerOff exec urxvt
-bindsym XF86Q exec urxvt
-bindsym XF86Refresh exec urxvt
-bindsym XF86Reload exec urxvt
-bindsym XF86Reply exec urxvt
-bindsym XF86RockerDown exec urxvt
-bindsym XF86RockerEnter exec urxvt
-bindsym XF86RockerUp exec urxvt
-bindsym XF86RotateWindows exec urxvt
-bindsym XF86RotationKB exec urxvt
-bindsym XF86RotationPB exec urxvt
-bindsym XF86Save exec urxvt
-bindsym XF86ScreenSaver exec urxvt
-bindsym XF86ScrollClick exec urxvt
-bindsym XF86ScrollDown exec urxvt
-bindsym XF86ScrollUp exec urxvt
-bindsym XF86Search exec urxvt
-bindsym XF86Send exec urxvt
-bindsym XF86Shop exec urxvt
-bindsym XF86Sleep exec urxvt
-bindsym XF86Spell exec urxvt
-bindsym XF86SplitScreen exec urxvt
-bindsym XF86Standby exec urxvt
-bindsym XF86Start exec urxvt
-bindsym XF86Stop exec urxvt
-bindsym XF86Support exec urxvt
-bindsym XF86Switch_VT_1 exec urxvt
-bindsym XF86Switch_VT_10 exec urxvt
-bindsym XF86Switch_VT_11 exec urxvt
-bindsym XF86Switch_VT_12 exec urxvt
-bindsym XF86Switch_VT_2 exec urxvt
-bindsym XF86Switch_VT_3 exec urxvt
-bindsym XF86Switch_VT_4 exec urxvt
-bindsym XF86Switch_VT_5 exec urxvt
-bindsym XF86Switch_VT_6 exec urxvt
-bindsym XF86Switch_VT_7 exec urxvt
-bindsym XF86Switch_VT_8 exec urxvt
-bindsym XF86Switch_VT_9 exec urxvt
-bindsym XF86TaskPane exec urxvt
-bindsym XF86Terminal exec urxvt
-bindsym XF86ToDoList exec urxvt
-bindsym XF86Tools exec urxvt
-bindsym XF86Travel exec urxvt
-bindsym XF86Ungrab exec urxvt
-bindsym XF86User1KB exec urxvt
-bindsym XF86User2KB exec urxvt
-bindsym XF86UserPB exec urxvt
-bindsym XF86VendorHome exec urxvt
-bindsym XF86Video exec urxvt
-bindsym XF86WWW exec urxvt
-bindsym XF86WebCam exec urxvt
-bindsym XF86WheelButton exec urxvt
-bindsym XF86Word exec urxvt
-bindsym XF86XF86BackForward exec urxvt
-bindsym XF86Xfer exec urxvt
-bindsym XF86ZoomIn exec urxvt
-bindsym XF86ZoomOut exec urxvt
-bindsym XF86iTouchexec urxvt
 
 # Change focus
 bindsym $mod+h focus left
@@ -289,16 +147,6 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
-# Gaps on specific workspaces:
-# smart_gaps on
-# gaps inner 20
-# workspace 1 gaps inner 20
-# workspace 2 gaps inner 20
-# workspace 3 gaps inner 20
-# workspace "$w1" gaps inner 20
-# workspace "$w2" gaps inner 20
-# workspace "$w3" gaps inner 20
-
 # Move to next closest workspace, left and right:
 bindsym Ctrl+mod1+Left  workspace prev
 bindsym Ctrl+mod1+Right workspace next
@@ -338,14 +186,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Lock screen:
-bindsym $mod+Ctrl+l exec ~/.i3/blurred-lock
+bindsym $mod+Ctrl+l exec ~/.i3/scripts/blurred-lock
 
 # Display startup script:
-exec --no-startup-id  bash ~/.i3/display-startup
+exec --no-startup-id  bash ~/.i3/scripts/display-startup
 
-# Change background script, or set random background on startup, or choose one:
-# exec --no-startup-id bash ~/.i3/change-background-every-x-minutes
-# exec --no-startup-id ~/.i3/set-random-desktop-background
 exec --no-startup-id sleep 1; feh --bg-scale ~/Dropbox/wallpapers/stars-mountain.jpg
 
 new_window none
@@ -388,19 +233,18 @@ hide_edge_borders both
 exec --no-startup-id numlockx on
 exec --no-startup-id xset -b # turn off beeps
 exec --no-startup-id nm-applet
-# exec --no-startup-id mopidy
 exec --no-startup-id gnome-settings-daemon
 # Hot corners:
 # exec --no-startup-id xdotool behave_screen_edge bottom-left exec skippy-xd
 exec --no-startup-id compton -b --conf ~/.i3/compton
 exec --no-startup-id rofi -key-run F12 -font "Inconsolata 14" -opacity 97
-exec --no-startup-id python3 /home/christoph/.i3/autoname-workspaces.py
+exec --no-startup-id python3 /home/christoph/.i3/scripts/autoname-workspaces.py
 bindsym Mod1+F2 exec rofi -show run -font "Inconsolata 14" -opacity 97
 exec --no-startup-id rofi -key-window Alt+Tab -font "Inconsolata 14" -opacity 97
 exec --no-startup-id "sh -c 'sleep 5; exec ~/.dropbox-dist/dropboxd'"
 exec --no-startup-id insync start
 exec --no-startup-id redshift -l 42.36:-71.06
-exec --no-startup-id "bash -c 'sleep 10; exec ~/.i3/autolock'"
+exec --no-startup-id "bash -c 'sleep 10; exec ~/.i3/scripts/autolock'"
 
 # Start on workspace 1:
 exec --no-startupid i3-msg 'workspace $w1'

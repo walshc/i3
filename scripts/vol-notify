@@ -20,15 +20,15 @@ killall -q mate-notification-daemon
 # Have a different symbol for varying volume levels:
 if [[ $STATE != '[off]' ]]; then
         if [ $VOLUME == "0" ]; then
-                notify-send "Volume: $VOLUME" -t 1000 -i ~/.i3/vol-mute.png
+                notify-send "Volume: $VOLUME" -t 1000 -i ~/.i3/icons/vol-mute.png
         elif [ $VOLUME -lt "33" ] && [ $VOLUME -gt "0" ]; then
-                notify-send "Volume: $VOLUME" -t 1000 -i ~/.i3/vol-low.png
+                notify-send "Volume: $VOLUME" -t 1000 -i ~/.i3/icons/vol-low.png
         elif [ $VOLUME -lt "67" ] && [ $VOLUME -ge "33" ]; then
-                notify-send "Volume: $VOLUME" -t 1000 -i ~/.i3/vol-med.png
+                notify-send "Volume: $VOLUME" -t 1000 -i ~/.i3/icons/vol-med.png
         else
-                notify-send "Volume: $VOLUME" -t 1000 -i ~/.i3/vol-high.png
+                notify-send "Volume: $VOLUME" -t 1000 -i ~/.i3/icons/vol-high.png
         fi
 # If volume is muted, display the mute sybol:
 else
-        notify-send "Mute" -t 1000  -i ~/.i3/vol-mute.png
+        notify-send "Mute" -t 1000  -i ~/.i3/icons/vol-mute.png
 fi
