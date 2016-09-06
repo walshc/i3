@@ -40,10 +40,10 @@ function hdmi-is-connected {
 }
 
 if hdmi-is-connected & [[ "$HOST" == "debian" ]]; then
-        #monitor-only
-        dual-displays
+        monitor-only & monitor-fonts
+        # dual-displays
 elif hdmi-is-connected & [[ "$HOST" == "acer" ]]; then
         dual-displays
 else
-        display-on-laptop-only
+        display-on-laptop-only & laptop-fonts
 fi

@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 import geocoder
 import json
+import locale
+import os
 import requests
+import pandas as pd
+import urllib
 
 # forecast.io api key:
 f = open('/home/christoph/.config/forecast-io-key')
@@ -9,8 +13,11 @@ key = f.readline().rstrip()
 f.close()
 
 # Get current longitude and latitude based on IP address:
-loc = geocoder.ip(requests.get('http://ipinfo.io/ip').text.rstrip())
+ip = requests.get('http://ipinfo.io/ip').text.rstrip()
+loc = geocoder.freegeoip(ip)
 city = loc.locality
+if city == None:
+    city = geocoder.google([loc.lat, loc.lng], method='reverse').city
 
 # Get weather info:
 root_url = 'https://api.forecast.io/forecast/'
@@ -23,42 +30,39 @@ temperature = round((weather['currently']['temperature'] - 32) * 5/9)
 # Get current weather condition:
 condition = weather['currently']['summary']
 
-# Translate city into Irish:
-cdict = dict({'Boston': {'irish': 'Bostún'}})
+# Translate city when approriate:
+cdict = dict({'Boston': {'ga': 'Bostún'},
+    'Dublin': {'ga': 'Baile Átha Cliath'}})
 
-try:
-    cathair = cdict[city]['irish']
-except KeyError:
-    cathair = city
+language = locale.getlocale()[0]
+if language == 'ga_IE':
+    try:
+        city = cdict[city]['ga']
+    except KeyError:
+        city = city
+elif language == 'de_DE':
+    try:
+        city = cdict[city]['de']
+    except KeyError:
+        city = city
 
-icons = dict({'Cloudy' : '\uf590', 'Fog' : '\uf591', 'Snow' : '\uf592',
-    'Thunder' : '\uf593', 'Clear (Night)': '\uf594',
-    'Partly Cloudy' : '\uf595', 'Rain' : '\uf596',
-    'Sunny' : '\uf599'})
+# Get weather translation and icon:
+df = pd.read_csv(os.path.expanduser('~/') + '.i3/scripts/weather.csv')
+df = df[df.en == condition]
 
-# Based on current condition, get icon and Irish translation:
-wdict = dict({'Overcast': {'icon': icons['Cloudy'], 'irish': 'Modartha'},
-    'Partly Cloudy': {'icon': icons['Partly Cloudy'],
-        'irish': 'Breacscamallach'},
-    'Mostly Cloudy': {'icon': icons['Cloudy'], 'irish': 'Scamallach'},
-    'Scattered Clouds': {'icon': icons['Partly Cloudy'],
-        'irish': 'Scamaill Scaipthe'},
-    'Sunny': {'icon': icons['Sunny'], 'irish': 'Tá an ghrian ag taitneamh'},
-    'Clear': {'icon': icons['Sunny'], 'irish': 'Lá breá atá ann'},
-    'Light Rain': {'icon': icons['Rain'], 'irish': 'Báisteach Éadrom'},
-    'Drizzle': {'icon': icons['Rain'], 'irish': 'Ceobhrán'}})
-
-# Get an icon based on the current weather condition:
-try:
-    icon = wdict[condition]['icon']
-except KeyError:
+if df.shape[0] == 0:
     icon = ''
-
-try:
-    aimsir=wdict[condition]['irish']
-except KeyError:
-    aimsir=condition
+    weather = condition
+else:
+    icon = df.icon.values[0]
+    icon = bytes(icon, 'ascii').decode('unicode-escape')
+    if language == 'de_DE':
+        weather = df.de.values[0]
+    elif language == 'ga_IE':
+        weather = df.ga.values[0]
+    else:
+        weather = condition
 
 # Print output:
-out = icon + '-' + cathair + ': ' + aimsir + ', ' + str(temperature) + '°C'
+out = icon + '-' + city + ': ' + weather + ', ' + str(temperature) + '°C'
 print(out)

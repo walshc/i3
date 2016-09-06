@@ -2,20 +2,40 @@
 
 ICON=""
 
-if [[ $(dropbox status | grep -Fo 'Up to date') ]]; then
-        COLOR=""
-elif [[ $(dropbox status | grep -Fo 'Uploading') ]]; then
-        COLOR="#5294E2"
-elif [[ $(dropbox status | grep -Fo 'Syncing') ]]; then
-        COLOR="#5294E2"
-elif [[ $(dropbox status | grep -Fo 'Downloading') ]]; then
-        COLOR="#5294E2"
-elif [[ $(dropbox status | grep -Fo "Starting") ]]; then
-        COLOR="#5294E2"
-elif [[ $(dropbox status | grep -Fo "Indexing") ]]; then
-        COLOR="#5294E2"
-elif [[ $(dropbox status | grep -Fo "Dropbox isn't running") ]]; then
-        COLOR="#DC322F"  # Red for if it stopped for some reason
+DB_STATUS=$(dropbox status)
+
+if [[ $LANG == "de_DE.UTF-8" ]]; then
+        if [[ $(echo $DB_STATUS | grep -Fo 'Aktualisiert') ]]; then
+                COLOR=""
+        elif [[ $(echo $DB_STATUS | grep -Fo 'Uploading') ]]; then
+                COLOR="#5294E2"
+        elif [[ $(echo $DB_STATUS | grep -Fo 'Synchronisieren') ]]; then
+                COLOR="#5294E2"
+        elif [[ $(echo $DB_STATUS | grep -Fo 'Downloading') ]]; then
+                COLOR="#5294E2"
+        elif [[ $(echo $DB_STATUS | grep -Fo "Starten") ]]; then
+                COLOR="#5294E2"
+        elif [[ $(echo $DB_STATUS | grep -Fo "Index wird erstellt") ]]; then
+                COLOR="#5294E2"
+        elif [[ $(echo $DB_STATUS | grep -Fo "Dropbox isn't running") ]]; then
+                COLOR="#DC322F"  # Red for if it stopped for some reason
+        fi
+else
+        if [[ $(echo $DB_STATUS | grep -Fo 'Up to date') ]]; then
+                COLOR=""
+        elif [[ $(echo $DB_STATUS | grep -Fo 'Uploading') ]]; then
+                COLOR="#5294E2"
+        elif [[ $(echo $DB_STATUS | grep -Fo 'Syncing') ]]; then
+                COLOR="#5294E2"
+        elif [[ $(echo $DB_STATUS | grep -Fo 'Downloading') ]]; then
+                COLOR="#5294E2"
+        elif [[ $(echo $DB_STATUS | grep -Fo "Starting") ]]; then
+                COLOR="#5294E2"
+        elif [[ $(echo $DB_STATUS | grep -Fo "Indexing") ]]; then
+                COLOR="#5294E2"
+        elif [[ $(echo $DB_STATUS | grep -Fo "Dropbox isn't running") ]]; then
+                COLOR="#DC322F"  # Red for if it stopped for some reason
+        fi
 fi
 
 # Click to see status:

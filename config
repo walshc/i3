@@ -1,7 +1,8 @@
 # Super/Windows key is $mod
 set $mod Mod4
 
-font pango: Futura Bk BT, Material Design Icons 13
+#font pango: Futura Bk BT, Material Design Icons 13
+font pango: Fira Sans Light, Material Design Icons 18
 
 # Shortcuts to open common apps:
 bindsym $mod+Return exec urxvt
@@ -14,7 +15,6 @@ bindsym $mod+Ctrl+x exec iceweasel
 
 bindsym Print exec scrot -q 100  # Fn+t on X1 Carbon
 bindsym $mod+Print exec shutter -s  # For screenshot selections
-bindsym $mod+d exec synapse
 
 # Floating windows by default:
 for_window [instance="chrome_app_list" window_role="bubble"] floating enable
@@ -24,6 +24,8 @@ for_window [class="plank"] floating enable
 for_window [instance ="plank"] floating enable
 for_window [title="Pocket Casts" class="chrome"] floating enable; move position center
 for_window [class="Florence"] floating enable
+for_window [instance="gnome-tweak-tool"] floating enable
+for_window [instance="transmission-gtk"] floating enable
 
 # Shortcuts for scripts:
 bindsym $mod+Ctrl+d exec xrandr --auto
@@ -195,16 +197,13 @@ exec --no-startup-id sleep 1; feh --bg-scale ~/Dropbox/wallpapers/stars-mountain
 
 new_window none
 
-# foreground is a dark colour:
+# Set colors (selected is blue):
 set $foreground #323641
-# Background is a very soft gray:
 set $background #e1e4e7
-# Selected is blue:
 set $selected #5294e2
-set $white #ffffff
-# Text is dark
 set $text #525d76
 set $grey #9299a4
+set $white #ffffff
 set $red #dc322f
 
 # Window colors:
@@ -215,7 +214,7 @@ client.unfocused        $background $background $text $grey
 bar {
   status_command i3blocks -c ~/.i3/i3blocks.conf
   position top
-  tray_output none
+  # tray_output none
   colors {
     separator  $background
     background $background
@@ -234,14 +233,15 @@ exec --no-startup-id numlockx on
 exec --no-startup-id xset -b # turn off beeps
 exec --no-startup-id nm-applet
 exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id synapse -s
 # Hot corners:
 # exec --no-startup-id xdotool behave_screen_edge bottom-left exec skippy-xd
 exec --no-startup-id compton -b --conf ~/.i3/compton
 exec --no-startup-id rofi -key-run F12 -font "Inconsolata 14" -opacity 97
-exec --no-startup-id python3 /home/christoph/.i3/scripts/autoname-workspaces.py
-bindsym Mod1+F2 exec rofi -show run -font "Inconsolata 14" -opacity 97
 exec --no-startup-id rofi -key-window Alt+Tab -font "Inconsolata 14" -opacity 97
-exec --no-startup-id "sh -c 'sleep 5; exec ~/.dropbox-dist/dropboxd'"
+exec --no-startup-id python3 /home/christoph/.i3/scripts/autoname-workspaces.py
+# exec --no-startup-id "sh -c 'sleep 5; exec ~/.dropbox-dist/dropboxd'"
+exec --no-startup-id dropbox start
 exec --no-startup-id insync start
 exec --no-startup-id redshift -l 42.36:-71.06
 exec --no-startup-id "bash -c 'sleep 10; exec ~/.i3/scripts/autolock'"

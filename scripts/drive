@@ -5,6 +5,8 @@ ICON=""
 
 if [[ $(insync get_status | grep -Fo 'seem to be running. Start it firs') ]]; then
         COLOR="#DC322F"
+elif [[ $(insync get_status | grep -Fo 'SYNCED') ]]; then
+        COLOR=""
 elif [[ $(insync get_status | grep -Fo 'SHARE') ]]; then
         COLOR=""
 else

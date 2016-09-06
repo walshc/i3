@@ -47,6 +47,8 @@ FA_SETTINGS = ''
 FA_WIFI = ''
 FA_GIMP = ''
 FA_GNOME = ''
+FA_GPIO = ''
+FA_SKYPE = ''
 
 WINDOW_ICONS = {
     'urxvt': FA_TERMINAL,
@@ -66,7 +68,7 @@ WINDOW_ICONS = {
     'feh': FA_PICTURE_O,
     'mupdf': FA_FILE_PDF_O,
     'evince': FA_FILE_PDF_O,
-    'okukar': FA_FILE_PDF_O,
+    'okular': FA_FILE_PDF_O,
     'nautilus': FA_FILES_O,
     'thunar': FA_FILES_O,
     'rstudio': FA_RSTUDIO,
@@ -91,7 +93,12 @@ WINDOW_ICONS = {
     'gnome-control-center' : FA_SETTINGS,
     'Wicd Network Manager' : FA_WIFI,
     'wicd-client.py' : FA_WIFI,
-    'gimp' : FA_GIMP
+    'gimp' : FA_GIMP,
+    'oregano' : FA_GPIO,
+    'Fritzing' : FA_GPIO,
+    'Ghetto Skype' : FA_SKYPE,
+    'pokemon-go-map' : FA_QGIS,
+    'referencer' : FA_BOOK
 }
 
 

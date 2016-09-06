@@ -4,13 +4,23 @@
 sleep 0.2
 
 # Get the brightness percentage:
-BRIGHTNESS=$(xbacklight -get)
+BRIGHTNESS_VALUE=$(xbacklight -get)
 
 # Round the brightness percentage:
-BRIGHTNESS=$(printf %.0f $BRIGHTNESS)
+LC_ALL=C
+BRIGHTNESS_VALUE=$(printf "%.*f\n" 0 $BRIGHTNESS_VALUE)
 
 # Kill previous notifications so the brightness notifications don't pile up:
 killall -q mate-notification-daemon
 
+if [[ $LANG == "de_DE.UTF-8" ]]; then
+        BRIGHTNESS="Helligkeit"
+elif [[ $LANG == "ga_IE.UTF-8" ]]; then
+        BRIGHTNESS="Gile"
+else
+        BRIGHTNESS="Brightness"
+fi
+
 # Send the notification with the icon:
-notify-send "Brightness:" $BRIGHTNESS -t 1000 -i ~/.i3/icons/brightness-icon.png
+notify-send `echo $BRIGHTNESS: $BRIGHTNESS_VALUE` \
+        -t 1000 -i ~/.i3/icons/brightness-icon.png
