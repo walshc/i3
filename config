@@ -1,8 +1,7 @@
 # Super/Windows key is $mod
 set $mod Mod4
 
-#font pango: Futura Bk BT, Material Design Icons 13
-font pango: Fira Sans Light, Material Design Icons 18
+font pango: Futura Bk BT, Material Design Icons 13
 
 # Shortcuts to open common apps:
 bindsym $mod+Return exec urxvt
@@ -231,7 +230,7 @@ hide_edge_borders both
 # Startup programs:
 exec --no-startup-id numlockx on
 exec --no-startup-id xset -b # turn off beeps
-exec --no-startup-id nm-applet
+exec --no-startup-id "bash -c 'if ! [[ `hostname | grep m73` ]]; then nm-applet; fi'"
 exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id synapse -s
 # Hot corners:
@@ -244,7 +243,7 @@ exec --no-startup-id python3 /home/christoph/.i3/scripts/autoname-workspaces.py
 exec --no-startup-id dropbox start
 exec --no-startup-id insync start
 exec --no-startup-id redshift -l 42.36:-71.06
-exec --no-startup-id "bash -c 'sleep 10; exec ~/.i3/scripts/autolock'"
+exec --no-startup-id xautolock -time 5 -bell 0 -detectsleep -locker ~/.i3/scripts/blurred-lock -notify 5 -notifier "notify-send -t 1000 -i ~/.i3/icons/lock-icon.png 'Locking Screen...'"
 
 # Start on workspace 1:
 exec --no-startupid i3-msg 'workspace $w1'

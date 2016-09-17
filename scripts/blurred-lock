@@ -50,11 +50,12 @@ else
         # mogrify -scale 5% -scale 2000% $IMAGE
         convert $IMAGE -blur 0x8 $IMAGE
         convert $IMAGE $LOCK_ICON -gravity center -composite -matte $IMAGE
-        convert -size 3000x60 xc:white -pointsize 26 \
-                -fill black -gravity center -annotate +0+0 \
-                "$MESSAGE" $TEXT
-        convert $TEXT -alpha set -channel A -evaluate set 50% $TEXT
-        convert $IMAGE $TEXT -gravity center -geometry +0+200 -composite $IMAGE
+        # convert -size 3000x60 xc:white -pointsize 26 \
+        #         -fill black -gravity center -annotate +0+0 \
+        #         "$MESSAGE" $TEXT
+        # convert $TEXT -alpha set -channel A -evaluate set 50% $TEXT
+        # convert $IMAGE $TEXT -gravity center -geometry +0+200 -composite $IMAGE
+
 fi
 
 i3lock -u -i $IMAGE --pointer=win

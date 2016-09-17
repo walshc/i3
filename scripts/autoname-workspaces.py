@@ -49,6 +49,7 @@ FA_GIMP = ''
 FA_GNOME = ''
 FA_GPIO = ''
 FA_SKYPE = ''
+FA_XSTATA = 'Stata'
 
 WINDOW_ICONS = {
     'urxvt': FA_TERMINAL,
@@ -97,8 +98,12 @@ WINDOW_ICONS = {
     'oregano' : FA_GPIO,
     'Fritzing' : FA_GPIO,
     'Ghetto Skype' : FA_SKYPE,
+    'Skype' : FA_SKYPE,
+    'skypeforlinux' : FA_SKYPE,
     'pokemon-go-map' : FA_QGIS,
-    'referencer' : FA_BOOK
+    'referencer' : FA_BOOK,
+    'xstata' : FA_XSTATA,
+    'StataSE-64.exe' : FA_XSTATA
 }
 
 

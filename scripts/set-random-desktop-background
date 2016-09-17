@@ -8,4 +8,4 @@ FILES=($DIR/*)
 WALLPAPER=`printf "%s\n" "${FILES[RANDOM % ${#FILES[@]}]}"`
 
 # Set as desktop background:
-feh --bg-scale $WALLPAPER
+feh --bg-scale "$WALLPAPER"
