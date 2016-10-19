@@ -9,14 +9,10 @@ HOST=$(hostname)
 
 if [[ "$HOST" == "debian" ]]; then
         LAPTOP=eDP1
-        LAPTOP_RES_HDMI_ON=2560x1440
-        LAPTOP_RES_HDMI_OFF=2560x1440
+        LAPTOP_RES=2560x1440
         EXTERNAL=HDMI2
 elif [[ "$HOST" == "m73" ]]; then
         bash /home/christoph/.i3/scripts/monitor-fonts
-#        xrandr --output HDMI1 --mode 1920x1080 --left-of VGA1 \
-#                --output VGA1 --mode 1280x1024 \
-#                --output HDMI1 --primary
         xrandr --output HDMI1 --mode 1920x1080 --output VGA1 --off
         exit 1
 else
@@ -25,7 +21,7 @@ fi
 
 function dual-displays {
         xrandr --output $EXTERNAL --mode 1920x1080 --primary --left-of $LAPTOP \
-                --output $LAPTOP --mode $LAPTOP_RES_HDMI_ON
+                --output $LAPTOP --mode $LAPTOP_RES
 }
 
 function monitor-only {
@@ -34,7 +30,7 @@ function monitor-only {
 
 function display-on-laptop-only {
         xrandr --output $EXTERNAL --off --output $LAPTOP \
-                --mode $LAPTOP_RES_HDMI_OFF
+                --mode $LAPTOP_RES
 }
 
 function hdmi-is-connected {

@@ -17,7 +17,6 @@ bindsym $mod+Print exec shutter -s  # For screenshot selections
 
 # Floating windows by default:
 for_window [instance="chrome_app_list" window_role="bubble"] floating enable
-for_window [class="Gedit"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="plank"] floating enable
 for_window [instance ="plank"] floating enable
@@ -235,7 +234,7 @@ exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id synapse -s
 # Hot corners:
 # exec --no-startup-id xdotool behave_screen_edge bottom-left exec skippy-xd
-exec --no-startup-id compton -b --conf ~/.i3/compton
+# exec --no-startup-id compton -b --conf ~/.i3/compton
 exec --no-startup-id rofi -key-run F12 -font "Inconsolata 14" -opacity 97
 exec --no-startup-id rofi -key-window Alt+Tab -font "Inconsolata 14" -opacity 97
 exec --no-startup-id python3 /home/christoph/.i3/scripts/autoname-workspaces.py
@@ -243,7 +242,7 @@ exec --no-startup-id python3 /home/christoph/.i3/scripts/autoname-workspaces.py
 exec --no-startup-id dropbox start
 exec --no-startup-id insync start
 exec --no-startup-id redshift -l 42.36:-71.06
-exec --no-startup-id xautolock -time 5 -bell 0 -detectsleep -locker ~/.i3/scripts/blurred-lock -notify 5 -notifier "notify-send -t 1000 -i ~/.i3/icons/lock-icon.png 'Locking Screen...'"
+#exec --no-startup-id xautolock -time 5 -bell 0 -detectsleep -locker ~/.i3/scripts/blurred-lock -notify 5 -notifier "notify-send -t 1000 -i ~/.i3/icons/lock-icon.png 'Locking Screen...'"
 
 # Start on workspace 1:
 exec --no-startupid i3-msg 'workspace $w1'

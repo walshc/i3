@@ -1,13 +1,7 @@
 #!/bin/bash
 
 # Display the current track on Spotify if it's running.
-
-HOST=$(hostname)
-if [[ "$HOST" == "m73" ]]; then
-        DISPLAY_TRACK=false
-elif [[ "$HOST" == "debian" ]]; then
-        DISPLAY_TRACK=true
-fi
+DISPLAY_TRACK=false
 
 if [[ $(ps -U root -u root -N | grep -Fo 'spotify') == *spotify* ]]; then
 

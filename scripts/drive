@@ -2,7 +2,6 @@
 
 ICON=""
 
-
 if [[ $(insync get_status | grep -Fo 'seem to be running. Start it first') ]]; then
         COLOR="#DC322F"
 elif [[ $(insync get_status | grep -Fo 'OFFLINE') ]]; then

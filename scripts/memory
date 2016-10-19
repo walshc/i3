@@ -11,8 +11,6 @@ else
         MEMORY=`echo $MEMORY "* 10" | bc -l | cut -d "." -f 1`
 fi
 
-
-
 if [[ $((MEMORY)) -lt $((MEMORY_WARNING_CUTOFF)) ]]; then
         if [[ $LANG == "de_DE.utf8" ]] | [[ $LANG == "de_DE.UTF-8" ]] ; then
                 MEMORY=`echo $MEMORY "/ 10" | bc -l |  awk '{printf "%,1f\n", $0}'`

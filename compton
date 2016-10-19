@@ -27,10 +27,20 @@ shadow-exclude = [
   "class_g ?= 'Okular'"
 ];
 
+##########
+# Fading #
+##########
+fading = true;
+fade-delta = 8;
+fade-in-step = 0.03;
+fade-out-step = 0.03;
+no-fading-openclose = false;
+fade-exclude = [];
+
 ########################
 # Opacity/Transparancy #
 ########################
-# menu-opacity = 0.95;  # Default is 1.0
+menu-opacity = 1.0;
 inactive-opacity = 1.0;
 detect-client-opacity = true;
 blur-background-fixed = false;

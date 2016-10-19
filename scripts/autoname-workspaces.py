@@ -50,6 +50,8 @@ FA_GNOME = ''
 FA_GPIO = ''
 FA_SKYPE = ''
 FA_XSTATA = 'Stata'
+FA_STEAM = ''
+FA_SPREADSHEET = ''
 
 WINDOW_ICONS = {
     'urxvt': FA_TERMINAL,
@@ -64,7 +66,8 @@ WINDOW_ICONS = {
     'Spotify': FA_SPOTIFY,
     'Firefox': FA_FIREFOX,
     'Iceweasel': FA_FIREFOX,
-    'libreoffice': FA_FILE_TEXT_O,
+    'libreoffice-calc': FA_SPREADSHEET,
+    'libreoffice-writer': FA_FILE_TEXT_O,
     'soffice': FA_FILE_TEXT_O,
     'feh': FA_PICTURE_O,
     'mupdf': FA_FILE_PDF_O,
@@ -100,10 +103,10 @@ WINDOW_ICONS = {
     'Ghetto Skype' : FA_SKYPE,
     'Skype' : FA_SKYPE,
     'skypeforlinux' : FA_SKYPE,
-    'pokemon-go-map' : FA_QGIS,
     'referencer' : FA_BOOK,
     'xstata' : FA_XSTATA,
-    'StataSE-64.exe' : FA_XSTATA
+    'StataSE-64.exe' : FA_XSTATA,
+    'Steam' : FA_STEAM
 }
 
 
