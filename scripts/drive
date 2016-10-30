@@ -6,6 +6,8 @@ if [[ $(insync get_status | grep -Fo 'seem to be running. Start it first') ]]; t
         COLOR="#DC322F"
 elif [[ $(insync get_status | grep -Fo 'OFFLINE') ]]; then
         COLOR="#DC322F"
+elif [[ $(insync get_status | grep -Fo 'ERROR') ]]; then
+        COLOR="#DC322F"
 elif [[ $(insync get_status | grep -Fo 'SYNCED') ]]; then
         COLOR=""
 elif [[ $(insync get_status | grep -Fo 'SHARE') ]]; then

@@ -1,12 +1,12 @@
 # Super/Windows key is $mod
 set $mod Mod4
 
-font pango: Futura Bk BT, Material Design Icons 13
+font pango: Futura Bk BT, Material Design Icons 15
 
 # Shortcuts to open common apps:
 bindsym $mod+Return exec urxvt
 bindsym Ctrl+Mod1+t exec xfce4-terminal
-bindsym $mod+t exec urxvt  -title "float" -geometry 85x24
+bindsym $mod+t exec urxvt -title "float" -geometry 85x24
 for_window [instance="urxvt" title="float"] floating enable
 bindsym $mod+Ctrl+f exec nautilus --no-desktop -g 860x480
 bindsym $mod+Ctrl+e exec evince
@@ -36,10 +36,12 @@ bindsym Mod1+F4 kill
 bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
 
 # Keybindings to add and remove i3-gaps:
-bindsym $mod+Ctrl+g gaps inner current plus 5
+bindsym $mod+ctrl+g gaps inner current plus 5
 bindsym $mod+Ctrl+Shift+g gaps outer current plus 5
 bindsym $mod+Ctrl+p gaps inner current minus 5
 bindsym $mod+Ctrl+Shift+p gaps outer current minus 5
+gaps inner 40
+smart_gaps on
 
 # Use Mouse+$mod to drag floating windows to their wanted position:
 floating_modifier $mod
@@ -191,37 +193,46 @@ bindsym $mod+Ctrl+l exec ~/.i3/scripts/blurred-lock
 # Display startup script:
 exec --no-startup-id  bash ~/.i3/scripts/display-startup
 
-exec --no-startup-id sleep 1; feh --bg-scale ~/Dropbox/wallpapers/stars-mountain.jpg
+exec --no-startup-id sleep 1; feh --bg-scale ~/Dropbox/wallpapers/road.jpg
 
 new_window none
 
-# Set colors (selected is blue):
-set $foreground #323641
-set $background #e1e4e7
-set $selected #5294e2
-set $text #525d76
-set $grey #9299a4
-set $white #ffffff
-set $red #dc322f
+# Set colors for worspaces:
+set $f_ws_fg #2d2d2d
+set $f_ws_bg #cccccc
+set $a_ws_fg #2d2d2d
+set $a_ws_bg #999999
+set $i_ws_fg #cccccc
+set $i_ws_bg #2d2d2d
+set $u_ws_fg #2d2d2d
+set $u_ws_bg #f2777a
+
+# Set colors for windows:
+set $f_wd_fg #2d2d2d
+set $f_wd_bg #cccccc
+set $i_wd_fg #cccccc
+set $i_wd_bg #999999
+set $u_wd_fg #cccccc
+set $u_wd_bg #2d2d2d
 
 # Window colors:
-# colorclass            border  bckgrnd text    indicator
-client.focused          $selected $selected $white $grey
-client.focused_inactive $selected $selected $text $grey
-client.unfocused        $background $background $text $grey
+# colorclass            border   bg       text
+client.focused          $f_wd_bg $f_wd_bg $f_wd_fg
+client.focused_inactive $i_wd_bg $i_wd_bg $i_wd_fg
+client.unfocused        $u_wd_bg $u_wd_bg $u_wd_fg
 bar {
   status_command i3blocks -c ~/.i3/i3blocks.conf
   position top
-  # tray_output none
+  tray_output none
   colors {
-    separator  $background
-    background $background
-    statusline $text
-    # colorclass        border  bckgrnd text
-    focused_workspace   $selected $selected $white
-    active_workspace    $selected $selected $text
-    inactive_workspace  $background $background $text
-    urgent_workspace    $red $red $white
+    separator  $i_ws_bg
+    background $i_ws_bg
+    statusline $i_ws_fg
+    # colorclass        border   bg       text
+    focused_workspace   $f_ws_bg $f_ws_bg $f_ws_fg
+    active_workspace    $a_ws_bg $a_ws_bg $a_ws_fg
+    inactive_workspace  $i_ws_bg $i_ws_bg $i_ws_fg
+    urgent_workspace    $u_ws_bg $u_ws_bg $u_ws_bg
   }
 }
 hide_edge_borders both
@@ -234,7 +245,7 @@ exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id synapse -s
 # Hot corners:
 # exec --no-startup-id xdotool behave_screen_edge bottom-left exec skippy-xd
-# exec --no-startup-id compton -b --conf ~/.i3/compton
+ exec --no-startup-id compton -b --conf ~/.i3/compton
 exec --no-startup-id rofi -key-run F12 -font "Inconsolata 14" -opacity 97
 exec --no-startup-id rofi -key-window Alt+Tab -font "Inconsolata 14" -opacity 97
 exec --no-startup-id python3 /home/christoph/.i3/scripts/autoname-workspaces.py

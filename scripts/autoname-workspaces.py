@@ -52,6 +52,8 @@ FA_SKYPE = ''
 FA_XSTATA = 'Stata'
 FA_STEAM = ''
 FA_SPREADSHEET = ''
+FA_PLAY = ''
+FA_WEB = ''
 
 WINDOW_ICONS = {
     'urxvt': FA_TERMINAL,
@@ -66,6 +68,7 @@ WINDOW_ICONS = {
     'Spotify': FA_SPOTIFY,
     'Firefox': FA_FIREFOX,
     'Iceweasel': FA_FIREFOX,
+    'LibreOffice' : FA_FILE_TEXT_O,
     'libreoffice-calc': FA_SPREADSHEET,
     'libreoffice-writer': FA_FILE_TEXT_O,
     'soffice': FA_FILE_TEXT_O,
@@ -106,7 +109,9 @@ WINDOW_ICONS = {
     'referencer' : FA_BOOK,
     'xstata' : FA_XSTATA,
     'StataSE-64.exe' : FA_XSTATA,
-    'Steam' : FA_STEAM
+    'Steam' : FA_STEAM,
+    'gPodder' : FA_PLAY,
+    'vivaldi-stable' : FA_WEB
 }
 
 

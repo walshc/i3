@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# sed -i ~/.i3/config -e 's/Material Design Icons 13/Material Design Icons 14/g'
-# i3-msg reload
+sed -i ~/.i3/config -e 's/Material Design Icons 13/Material Design Icons 15/g'
+
+sed -i ~/.i3/config -e 's/^gaps inner.*/gaps inner 40/g'
+i3-msg reload
+nohup python3 ~/.i3/scripts/autoname-workspaces.py > /dev/null &
 
 gsettings set org.gnome.desktop.wm.preferences titlebar-font \
         'Futura Bk BT Book 14'
@@ -15,6 +18,9 @@ gsettings set org.gnome.desktop.interface document-font-name \
 gsettings set org.gnome.desktop.interface monospace-font-name \
         'Inconsolata Medium 14'
 
-XDEFAULTS=~/Dropbox/dotfiles/.Xdefaults
-sed -i $XDEFAULTS -e '6,9s/^/!/g' -e '10,13s/!//g' \
-        && xrdb -load $XDEFAULTS
+sed -i ~/Dropbox/dotfiles/.Xdefaults -e 's/size=16/size=22/g'
+sed -i ~/Dropbox/dotfiles/.Xdefaults-solarized-dark -e 's/size=16/size=22/g'
+sed -i ~/Dropbox/dotfiles/.Xdefaults-solarized-light -e 's/size=16/size=22/g'
+sed -i ~/Dropbox/dotfiles/.Xdefaults-tomorrow-night-eighties -e 's/size=16/size=22/g'
+
+xrdb -load ~/Dropbox/dotfiles/.Xdefaults

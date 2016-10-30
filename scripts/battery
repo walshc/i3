@@ -64,10 +64,20 @@ else
         COLOR=""
 fi
 
-echo $SYMBOL$PERCENTAGE%
-echo $SYMBOL$PERCENTAGE%
+#echo $SYMBOL$PERCENTAGE%
+#echo $SYMBOL$PERCENTAGE%
+#echo $COLOR
+
+echo $SYMBOL
+echo $SYMBOL
 echo $COLOR
 
+if [[ $BLOCK_BUTTON == '1' ]]; then
+        notify-send "Battery: $PERCENTAGE%" -t 2000 \
+                -i /usr/share/icons/Numix-Circle/scalable/apps/battery.svg
+fi
+
 if [[ $BLOCK_BUTTON == '3' ]]; then
-        notify-send "$REMAINING" -t 2000
+        notify-send "$REMAINING" -t 2000 \
+                -i /usr/share/icons/Numix-Circle/scalable/apps/battery.svg
 fi

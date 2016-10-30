@@ -35,6 +35,8 @@ else
                 COLOR="#5294E2"
         elif [[ $(echo $DB_STATUS | grep -Fo "Dropbox isn't running") ]]; then
                 COLOR="#DC322F"  # Red for if it stopped for some reason
+        elif [[ $(echo $DB_STATUS | grep -Fo "Connecting") ]]; then
+                COLOR="#DC322F"  # Red for if it stopped for some reason
         fi
 fi
 

@@ -8,10 +8,10 @@ clear-shadow = true;  # No shadows through the window if transparent.
 no-dock-shadow = true; # No shadow from i3bar.
 no-dnd-shadow-shadow = true; # No shadows on Drag and Drop windows.
 shadow-ignore-shaped = true; # No shadows on shaped windows.
-shadow-radius = 12; # The blur radius for the shadows (default 12).
+shadow-radius = 20; # The blur radius for the shadows (default 12).
 shadow-offset-x = -15; # The left offset for shadows (default -15).
 shadow-offset-y = -15; # The top offset for shadows (default -15).
-shadow-opacity = 0.75; # The translucency for shadows (default .75).
+shadow-opacity = 0.85; # The translucency for shadows (default .75).
 
 # Do not have shadows on the following apps:
 shadow-exclude = [
@@ -24,13 +24,14 @@ shadow-exclude = [
   "class_g ?= 'Chromium'",
   "class_g ?= 'Nautilus'",
   "class_g ?= 'Evince'",
-  "class_g ?= 'Okular'"
+  "class_g ?= 'Okular'",
+  "class_g ?= 'Rstudio'"
 ];
 
 ##########
 # Fading #
 ##########
-fading = true;
+fading = false;
 fade-delta = 8;
 fade-in-step = 0.03;
 fade-out-step = 0.03;
@@ -52,7 +53,7 @@ wintypes:
 {
   tooltip = { fade = true; shadow = true; opacity = 0.95; focus = true; };
   # For transparent i3bar:
-  # dock = { opacity = 0.85; };
+  dock = { opacity = 0.85; };
 };
 
 #########
