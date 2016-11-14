@@ -13,7 +13,7 @@ STATE=`amixer sget Master | egrep -m 1 'Playback.*?\[o' | egrep -o '\[o.+\]'`
 if [[ $STATE == '[off]' ]]; then
         ICON=""
 else
-        VOLNUM=$(echo -e $VOLUME | egrep -o "[0-9]+")
+        VOLUME=$(echo -e $VOLUME | egrep -o "[0-9]+")
         if [ $VOLUME -lt "33" ]; then
                 ICON=""
         elif [ $VOLUME -lt "66" ]; then
