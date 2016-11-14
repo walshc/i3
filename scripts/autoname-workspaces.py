@@ -54,6 +54,7 @@ FA_STEAM = ''
 FA_SPREADSHEET = ''
 FA_PLAY = ''
 FA_WEB = ''
+FA_CALENDAR = ''
 
 WINDOW_ICONS = {
     'urxvt': FA_TERMINAL,
@@ -111,7 +112,10 @@ WINDOW_ICONS = {
     'StataSE-64.exe' : FA_XSTATA,
     'Steam' : FA_STEAM,
     'gPodder' : FA_PLAY,
-    'vivaldi-stable' : FA_WEB
+    'vivaldi-stable' : FA_WEB,
+    'crx_knipolnnllmklapflnccelgolnpehhpl' : FA_HANGOUTS,
+    'evolution' : FA_CALENDAR,
+    'libreoffice-startcenter' : FA_FILE_TEXT_O
 }
 
 

@@ -30,7 +30,7 @@ sed -i ~/.i3/config -e 's/^set \$f_ws_bg.*$/set $f_ws_bg #5294e2/g'
 sed -i ~/.i3/config -e 's/^set \$a_ws_fg.*$/set $a_ws_fg #323641/g'
 sed -i ~/.i3/config -e 's/^set \$a_ws_bg.*$/set $a_ws_bg #5294e2/g'
 sed -i ~/.i3/config -e 's/^set \$i_ws_fg.*$/set $i_ws_fg #323641/g'
-sed -i ~/.i3/config -e 's/^set \$i_ws_bg.*$/set $i_ws_bg #e1e4e7/g'
+sed -i ~/.i3/config -e 's/^set \$i_ws_bg.*$/set $i_ws_bg #e7e8eb/g'
 sed -i ~/.i3/config -e 's/^set \$u_ws_fg.*$/set $u_ws_fg #323641/g'
 sed -i ~/.i3/config -e 's/^set \$u_ws_bg.*$/set $u_ws_bg #dc322f/g'
 sed -i ~/.i3/config -e 's/^set \$f_wd_fg.*$/set $f_wd_fg #ffffff/g'
@@ -38,7 +38,7 @@ sed -i ~/.i3/config -e 's/^set \$f_wd_bg.*$/set $f_wd_bg #5294e2/g'
 sed -i ~/.i3/config -e 's/^set \$i_wd_fg.*$/set $i_wd_fg #323641/g'
 sed -i ~/.i3/config -e 's/^set \$i_wd_bg.*$/set $i_wd_bg #5294e2/g'
 sed -i ~/.i3/config -e 's/^set \$u_wd_fg.*$/set $u_wd_fg #323641/g'
-sed -i ~/.i3/config -e 's/^set \$u_wd_bg.*$/set $u_wd_bg #e1e4e7/g'
+sed -i ~/.i3/config -e 's/^set \$u_wd_bg.*$/set $u_wd_bg #e7e8eb/g'
 i3-msg reload
 
 # Change gtk theme:

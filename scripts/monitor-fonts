@@ -5,6 +5,7 @@ sed -i ~/.i3/config -e 's/^gaps inner.*/gaps inner 25/g'
 i3-msg reload
 nohup python3 ~/.i3/scripts/autoname-workspaces.py > /dev/null &
 
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.0
 gsettings set org.gnome.desktop.wm.preferences titlebar-font \
         'Futura Bk BT 11'
 

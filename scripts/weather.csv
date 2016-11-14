@@ -1,16 +1,16 @@
-icon,en,ga,de
-\uf590,Cloudy,Scamallach,Bewölkt
-\uf590,Mostly Cloudy,Scamallach,Überwiegend Bewölkt
-\uf590,Humid and Mostly Cloudy,Bogthais agus Scamallach,Feucht und Überwiegend Bewölkt
-\uf590,Overcast,Modartha,Bewölkt
-\uf591,Fog,Ceo,Nebel
-\uf592,Snow,Sneachta,Schnee
-\uf593,Thunder,Toirneach,Donnerwetter
-\uf595,Partly Cloudy,Breacscamallach,Teilweise Bewölkt
-\uf595,Scattered Clouds,Scamaill Scaipthe,Gelockerte Bewölkung
-\uf596,Rain,Báisteach,Regen
-\uf596,Light Rain,Báisteach Éadrom,Leichter Regen
-\uf596,Heavy Rain,Báisteach Throm,Starker Regen
-\uf596,Drizzle,Ceobhrán,Nieselregen
-\uf599,Sunny,Tá an Ghrian ag Taitneamh,Sonnig
-\uf599,Clear,Lá breá atá ann,Heiter
+icon,web_icon,en,ga,de
+\uf590,weather-cloudy,Cloudy,Scamallach,Bewölkt
+\uf590,weather-cloudy,Mostly Cloudy,Scamallach,Überwiegend Bewölkt
+\uf590,weather-cloudy,Humid and Mostly Cloudy,Bogthais agus Scamallach,Feucht und Überwiegend Bewölkt
+\uf590,weather-cloudy,Overcast,Modartha,Bewölkt
+\uf591,weather-fog,Fog,Ceo,Nebel
+\uf592,weather-snowy,Snow,Sneachta,Schnee
+\uf593,weather-lightning,Thunder,Toirneach,Donnerwetter
+\uf595,weather-partlycloudy,Partly Cloudy,Breacscamallach,Teilweise Bewölkt
+\uf595,weather-partlycloudy,Scattered Clouds,Scamaill Scaipthe,Gelockerte Bewölkung
+\uf596,weather-rainy,Rain,Báisteach,Regen
+\uf596,weather-rainy,Light Rain,Báisteach Éadrom,Leichter Regen
+\uf596,weather-rainy,Heavy Rain,Báisteach Throm,Starker Regen
+\uf596,weather-rainy,Drizzle,Ceobhrán,Nieselregen
+\uf599,white-balance-sunny,Sunny,Tá an Ghrian ag Taitneamh,Sonnig
+\uf599,white-balance-sunny,Clear,Lá breá atá ann,Heiter

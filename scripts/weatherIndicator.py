@@ -57,9 +57,11 @@ class weatherIndicator:
 
         if df.shape[0] == 0:
             self.icon = ''
+            self.web_icon = ''
             self.weather = condition
         else:
             self.icon = df.icon.values[0]
+            self.web_icon = df.web_icon.values[0]
             self.icon = bytes(self.icon, 'ascii').decode('unicode-escape')
             if language == 'de_DE':
                 self.weather = df.de.values[0]
@@ -68,9 +70,14 @@ class weatherIndicator:
             else:
                 self.weather = condition
 
-    def shortWeather(self):
-        print(self.icon + str(self.temperature) + '°C')
+    def weatherInBar(self):
+        return self.icon + str(self.temperature) + '°C'
 
-    def longWeather(self):
-        print(self.icon + '-' + self.city + ': ' + self.weather + ', ' + \
-                str(self.temperature) + '°C')
+    def weatherNotification(self):
+        return self.city + ': ' + self.weather + ', ' + \
+                str(self.temperature) + '°C'
+
+    def weatherForHomepage(self):
+        return 'document.write("<h4><i class=\'mdi mdi-' + self.web_icon + \
+                '\'></i> ' + str(self.temperature) + '°C and ' + \
+                self.weather.lower() + ' in ' + self.city + '</h4>");'

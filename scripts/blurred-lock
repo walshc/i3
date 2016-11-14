@@ -58,4 +58,4 @@ else
 
 fi
 
-i3lock -u -i $IMAGE --pointer=win
+i3lock -u -i $IMAGE

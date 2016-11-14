@@ -4,18 +4,22 @@
 MEMORY_WARNING_CUTOFF=20
 
 if [[ $LANG == "de_DE.utf8" ]] | [[ $LANG == "de_DE.UTF-8" ]] ; then
-        MEMORY=$(free -h G | awk '{ print $4}' | sed -n '3p' | grep -oP '\d+,\d+')
+        MEMORY=$(free -h G | awk '{ print $4}' | sed -n '3p' | \
+                grep -oP '\d+,\d+')
         MEMORY=`echo $MEMORY | sed -e 's/,//g'`
 else
-        MEMORY=$(free -h G | awk '{ print $4}' | sed -n '3p' | grep -oP '\d+.\d+')
+        MEMORY=$(free -h G | awk '{ print $4}' | sed -n '3p' | \
+                grep -oP '\d+.\d+')
         MEMORY=`echo $MEMORY "* 10" | bc -l | cut -d "." -f 1`
 fi
 
 if [[ $((MEMORY)) -lt $((MEMORY_WARNING_CUTOFF)) ]]; then
         if [[ $LANG == "de_DE.utf8" ]] | [[ $LANG == "de_DE.UTF-8" ]] ; then
-                MEMORY=`echo $MEMORY "/ 10" | bc -l |  awk '{printf "%,1f\n", $0}'`
+                MEMORY=`echo $MEMORY "/ 10" | bc -l | \
+                        awk '{printf "%,1f\n", $0}'`
         else
-                MEMORY=`echo $MEMORY "/ 10" | bc -l |  awk '{printf "%.1f\n", $0}'`
+                MEMORY=`echo $MEMORY "/ 10" | bc -l | \
+                        awk '{printf "%.1f\n", $0}'`
         fi
         echo "-RAM:" $MEMORY"G"
         echo "-RAM:" $MEMORY"G"

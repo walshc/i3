@@ -1,7 +1,7 @@
 # Super/Windows key is $mod
 set $mod Mod4
 
-font pango: Futura Bk BT, Material Design Icons 15
+font pango: Roboto, Material Design Icons 13
 
 # Shortcuts to open common apps:
 bindsym $mod+Return exec urxvt
@@ -40,7 +40,7 @@ bindsym $mod+ctrl+g gaps inner current plus 5
 bindsym $mod+Ctrl+Shift+g gaps outer current plus 5
 bindsym $mod+Ctrl+p gaps inner current minus 5
 bindsym $mod+Ctrl+Shift+p gaps outer current minus 5
-gaps inner 40
+gaps inner 25
 smart_gaps on
 
 # Use Mouse+$mod to drag floating windows to their wanted position:
@@ -191,29 +191,29 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Ctrl+l exec ~/.i3/scripts/blurred-lock
 
 # Display startup script:
-exec --no-startup-id  bash ~/.i3/scripts/display-startup
+exec --no-startup-id bash ~/.i3/scripts/display-startup
 
 exec --no-startup-id sleep 1; feh --bg-scale ~/Dropbox/wallpapers/road.jpg
 
 new_window none
 
 # Set colors for worspaces:
-set $f_ws_fg #2d2d2d
-set $f_ws_bg #cccccc
-set $a_ws_fg #2d2d2d
-set $a_ws_bg #999999
-set $i_ws_fg #cccccc
-set $i_ws_bg #2d2d2d
-set $u_ws_fg #2d2d2d
-set $u_ws_bg #f2777a
+set $f_ws_fg #ffffff
+set $f_ws_bg #5294e2
+set $a_ws_fg #323641
+set $a_ws_bg #5294e2
+set $i_ws_fg #323641
+set $i_ws_bg #e7e8eb
+set $u_ws_fg #323641
+set $u_ws_bg #dc322f
 
 # Set colors for windows:
-set $f_wd_fg #2d2d2d
-set $f_wd_bg #cccccc
-set $i_wd_fg #cccccc
-set $i_wd_bg #999999
-set $u_wd_fg #cccccc
-set $u_wd_bg #2d2d2d
+set $f_wd_fg #ffffff
+set $f_wd_bg #5294e2
+set $i_wd_fg #323641
+set $i_wd_bg #5294e2
+set $u_wd_fg #323641
+set $u_wd_bg #e7e8eb
 
 # Window colors:
 # colorclass            border   bg       text
@@ -232,7 +232,7 @@ bar {
     focused_workspace   $f_ws_bg $f_ws_bg $f_ws_fg
     active_workspace    $a_ws_bg $a_ws_bg $a_ws_fg
     inactive_workspace  $i_ws_bg $i_ws_bg $i_ws_fg
-    urgent_workspace    $u_ws_bg $u_ws_bg $u_ws_bg
+    urgent_workspace    $u_ws_bg $u_ws_bg $u_ws_fg
   }
 }
 hide_edge_borders both
