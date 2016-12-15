@@ -71,6 +71,7 @@ WINDOW_ICONS = {
     'Iceweasel': FA_FIREFOX,
     'LibreOffice' : FA_FILE_TEXT_O,
     'libreoffice-calc': FA_SPREADSHEET,
+    'gnumeric': FA_SPREADSHEET,
     'libreoffice-writer': FA_FILE_TEXT_O,
     'soffice': FA_FILE_TEXT_O,
     'feh': FA_PICTURE_O,
@@ -115,7 +116,8 @@ WINDOW_ICONS = {
     'vivaldi-stable' : FA_WEB,
     'crx_knipolnnllmklapflnccelgolnpehhpl' : FA_HANGOUTS,
     'evolution' : FA_CALENDAR,
-    'libreoffice-startcenter' : FA_FILE_TEXT_O
+    'libreoffice-startcenter' : FA_FILE_TEXT_O,
+    'acroread' : FA_FILE_PDF_O
 }
 
 

@@ -1,19 +1,28 @@
 #!/bin/bash
 
 ICON=""
+ERROR_COLOR=`cat ~/.colors | grep base08 | cut -d = -f 2`
+SYNCING_COLOR=`cat ~/.colors | grep base0E | cut -d = -f 2`
+PAUSED_COLOR=`cat ~/.colors | grep base0A | cut -d = -f 2`
 
 if [[ $(insync get_status | grep -Fo 'seem to be running. Start it first') ]]; then
-        COLOR="#DC322F"
+        COLOR=`echo $ERROR_COLOR`
 elif [[ $(insync get_status | grep -Fo 'OFFLINE') ]]; then
-        COLOR="#DC322F"
+        COLOR=`echo $ERROR_COLOR`
 elif [[ $(insync get_status | grep -Fo 'ERROR') ]]; then
-        COLOR="#DC322F"
+        COLOR=`echo $ERROR_COLOR`
 elif [[ $(insync get_status | grep -Fo 'SYNCED') ]]; then
+        COLOR=""
+elif [[ $(insync get_status | grep -Fo 'FEED') ]]; then
         COLOR=""
 elif [[ $(insync get_status | grep -Fo 'SHARE') ]]; then
         COLOR=""
+elif [[ $(insync get_status | grep -Fo 'PAUSED') ]]; then
+        COLOR=`echo $PAUSED_COLOR`
+elif [[ $(insync get_status | grep -Fo 'SYNCING') ]]; then
+        COLOR=`echo $SYNCING_COLOR`
 else
-        COLOR="#5294E2"
+        COLOR=`echo $ERROR_COLOR`
 fi
 
 # Click to see status:

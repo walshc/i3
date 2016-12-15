@@ -15,7 +15,8 @@ shadow-opacity = 0.85; # The translucency for shadows (default .75).
 
 # Do not have shadows on the following apps:
 shadow-exclude = [
-  "!focused",  # no shadows on unfocussed windows
+  #"!focused",  # no shadows on unfocussed windows
+  "class_g ?= 'i3-frame'",
   "class_g ?= 'Notify-osd'",
   "class_g ?= 'Firefox'",
   "class_g ?= 'Iceweasel'",

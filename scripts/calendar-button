@@ -1,8 +1,7 @@
 #!/bin/bash
-#echo ""$(date "+%H:%M")
 echo $(date "+%H:%M")
 if [[ $BLOCK_BUTTON == '1' ]]; then
-        firefox https://www.google.com/calendar
+        urxvt
 elif [[ $BLOCK_BUTTON == '3' ]]; then
         notify-send "$(date "+%A, %e. %B, %H:%M")" -t 1000 \
                 -i /usr/share/icons/Numix-Circle/scalable/apps/gnome-clocks.svg

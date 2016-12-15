@@ -1,14 +1,15 @@
 #!/bin/bash
 
-# Show the CPU temperature in red if it's hotter than 70 degrees celcius.t
+# Show the CPU temperature in red if it's hotter than 70 degrees celcius.
 
 TEMP=$(echo -e `acpi -t | grep -oP '\d+\\d+'`)
 if [[ $((TEMP)) -gt 70 ]]; then
+        COLOR=`cat ~/.colors | grep base08 | cut -d = -f 2`
         echo ""$TEMP "°C"
         echo ""$TEMP "°C"
-        echo "#F2777A"
+        echo "$COLOR"
         if [[ $BLOCK_BUTTON == '1' ]]; then
-                urxvt -title "float" -geometry 80x12 -hold -e acpi -t
+                notify-send "`echo $(acpi -t)`" -i /usr/share/icons/Numix-Circle/scalable/apps/setroubleshoot_icon.svg
         fi
 fi
 

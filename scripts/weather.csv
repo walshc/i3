@@ -4,7 +4,6 @@ icon,web_icon,en,ga,de
 \uf590,weather-cloudy,Humid and Mostly Cloudy,Bogthais agus Scamallach,Feucht und Überwiegend Bewölkt
 \uf590,weather-cloudy,Overcast,Modartha,Bewölkt
 \uf591,weather-fog,Fog,Ceo,Nebel
-\uf592,weather-snowy,Snow,Sneachta,Schnee
 \uf593,weather-lightning,Thunder,Toirneach,Donnerwetter
 \uf595,weather-partlycloudy,Partly Cloudy,Breacscamallach,Teilweise Bewölkt
 \uf595,weather-partlycloudy,Scattered Clouds,Scamaill Scaipthe,Gelockerte Bewölkung
@@ -12,5 +11,8 @@ icon,web_icon,en,ga,de
 \uf596,weather-rainy,Light Rain,Báisteach Éadrom,Leichter Regen
 \uf596,weather-rainy,Heavy Rain,Báisteach Throm,Starker Regen
 \uf596,weather-rainy,Drizzle,Ceobhrán,Nieselregen
+\uf598,weather-snowy,Snow,Sneachta,Schnee
+\uf598,weather-snowy,Light Snow,Sneachta Éadrom,Leichter Schnee
+\uf598,weather-snowy,Light Sleet,Flichshneachta Éadrom,Leichter Schneefall
 \uf599,white-balance-sunny,Sunny,Tá an Ghrian ag Taitneamh,Sonnig
 \uf599,white-balance-sunny,Clear,Lá breá atá ann,Heiter

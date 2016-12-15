@@ -22,10 +22,10 @@ if [[ "$STATE" == "charging" ]]; then
         elif [[ "$PERCENTAGE" -lt "45" ]]; then
                 SYMBOL=""
         elif [[ "$PERCENTAGE" -lt "60" ]]; then
-                SYMBOL=""
-        elif [[ "$PERCENTAGE" -lt "75" ]]; then
                 SYMBOL=""
-        elif [[ "$PERCENTAGE" -lt "90" ]]; then
+        elif [[ "$PERCENTAGE" -lt "75" ]]; then
+                SYMBOL=""
+        elif [[ "$PERCENTAGE" -lt "97" ]]; then
                 SYMBOL=""
         else
                 SYMBOL=""
@@ -33,16 +33,17 @@ if [[ "$STATE" == "charging" ]]; then
 elif [[ "$STATE" == "discharging" ]]; then
         if [[ "$PERCENTAGE" -lt "10" ]]; then
                 SYMBOL=""
-                COLOR="#DC322F"
+                COLOR=`cat ~/.colors | grep base08 | cut -d = -f 2`
                 notify-send -t 1000 -i ~/.i3/icons/low-battery.png 'Battery Low'
         elif [[ "$PERCENTAGE" -lt "20" ]]; then
                 SYMBOL=""
-                COLOR="#DC322F"
+                COLOR=`cat ~/.colors | grep base09 | cut -d = -f 2`
         elif [[ "$PERCENTAGE" -lt "30" ]]; then
                 SYMBOL=""
-                COLOR="#DC322F"
+                COLOR=`cat ~/.colors | grep base0A | cut -d = -f 2`
         elif [[ "$PERCENTAGE" -lt "40" ]]; then
                 SYMBOL=""
+                COLOR=`cat ~/.colors | grep base0B | cut -d = -f 2`
         elif [[ "$PERCENTAGE" -lt "50" ]]; then
                 SYMBOL=""
         elif [[ "$PERCENTAGE" -lt "60" ]]; then
@@ -63,10 +64,6 @@ else
         SYMBOL=""
         COLOR=""
 fi
-
-#echo $SYMBOL$PERCENTAGE%
-#echo $SYMBOL$PERCENTAGE%
-#echo $COLOR
 
 echo $SYMBOL
 echo $SYMBOL

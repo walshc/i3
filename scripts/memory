@@ -2,6 +2,7 @@
 
 # If free memory is lower than a cutoff, show it in the status bar.
 MEMORY_WARNING_CUTOFF=20
+COLOR=`cat ~/.colors | grep base0F | cut -d = -f 2`
 
 if [[ $LANG == "de_DE.utf8" ]] | [[ $LANG == "de_DE.UTF-8" ]] ; then
         MEMORY=$(free -h G | awk '{ print $4}' | sed -n '3p' | \
@@ -23,7 +24,7 @@ if [[ $((MEMORY)) -lt $((MEMORY_WARNING_CUTOFF)) ]]; then
         fi
         echo "-RAM:" $MEMORY"G"
         echo "-RAM:" $MEMORY"G"
-        echo "#F2777A"
+        echo $COLOR
         if [[ $BLOCK_BUTTON == '3' ]]; then
                 notify-send "`echo Free RAM: "$MEMORY"G`"
         fi

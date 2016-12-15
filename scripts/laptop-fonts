@@ -1,8 +1,9 @@
 #!/bin/bash
 
 #sed -i ~/.i3/config -e 's/Material Design Icons 13/Material Design Icons 13/g'
+sed -i ~/.i3/config -e 's/Inconsolata 14/Inconsolata 20/g'
 
-sed -i ~/.i3/config -e 's/^gaps inner.*/gaps inner 40/g'
+sed -i ~/.i3/config -e 's/^gaps inner.*/gaps inner 70/g'
 i3-msg reload
 nohup python3 ~/.i3/scripts/autoname-workspaces.py > /dev/null &
 
@@ -19,9 +20,11 @@ gsettings set org.gnome.desktop.interface text-scaling-factor 1.5
 # gsettings set org.gnome.desktop.interface monospace-font-name \
 #         'Inconsolata Medium 14'
 
-sed -i ~/Dropbox/dotfiles/.Xdefaults -e 's/size=16/size=22/g'
-sed -i ~/Dropbox/dotfiles/.Xdefaults-solarized-dark -e 's/size=16/size=22/g'
-sed -i ~/Dropbox/dotfiles/.Xdefaults-solarized-light -e 's/size=16/size=22/g'
-sed -i ~/Dropbox/dotfiles/.Xdefaults-tomorrow-night-eighties -e 's/size=16/size=22/g'
+sed -i ~/Dropbox/dotfiles/.Xdefaults -e 's/size=15/size=20/g'
+# sed -i ~/Dropbox/dotfiles/.Xdefaults-solarized-dark -e 's/size=15/size=20/g'
+# sed -i ~/Dropbox/dotfiles/.Xdefaults-solarized-light -e 's/size=15/size=20/g'
+# sed -i ~/Dropbox/dotfiles/.Xdefaults-tomorrow-night-eighties -e 's/size=15/size=20/g'
 
 xrdb -load ~/Dropbox/dotfiles/.Xdefaults
+colorscheme=`cat ~/.config/colorscheme`
+zsh ~/.i3/scripts/colorscheme-switcher $colorscheme

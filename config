@@ -1,7 +1,7 @@
 # Super/Windows key is $mod
 set $mod Mod4
 
-font pango: Roboto, Material Design Icons 13
+font pango: Futura Bk BT, Material Design Icons 13
 
 # Shortcuts to open common apps:
 bindsym $mod+Return exec urxvt
@@ -11,6 +11,8 @@ for_window [instance="urxvt" title="float"] floating enable
 bindsym $mod+Ctrl+f exec nautilus --no-desktop -g 860x480
 bindsym $mod+Ctrl+e exec evince
 bindsym $mod+Ctrl+x exec iceweasel
+bindsym F12 exec rofi -show run -font "Inconsolata 14" -opacity 100
+bindsym Alt+Tab exec rofi -show window -font "Inconsolata 14" -opacity 100
 
 bindsym Print exec scrot -q 100  # Fn+t on X1 Carbon
 bindsym $mod+Print exec shutter -s  # For screenshot selections
@@ -40,7 +42,7 @@ bindsym $mod+ctrl+g gaps inner current plus 5
 bindsym $mod+Ctrl+Shift+g gaps outer current plus 5
 bindsym $mod+Ctrl+p gaps inner current minus 5
 bindsym $mod+Ctrl+Shift+p gaps outer current minus 5
-gaps inner 25
+gaps inner 70
 smart_gaps on
 
 # Use Mouse+$mod to drag floating windows to their wanted position:
@@ -169,16 +171,16 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg e
 # Resize window (you can also use the mouse for that)
 mode "resize" {
   # These bindings trigger as soon as you enter the resize mode
-  bindsym h resize shrink width 30 px or 30 ppt
-  bindsym j resize grow height 30 px or 30 ppt
-  bindsym k resize shrink height 30 px or 30 ppt
-  bindsym l resize grow width 30 px or 30 ppt
+  bindsym h resize shrink width 5 px or 5 ppt
+  bindsym j resize grow height 5 px or 5 ppt
+  bindsym k resize shrink height 5 px or 5 ppt
+  bindsym l resize grow width 5 px or 5 ppt
 
   # same bindings, but for the arrow keys
-  bindsym Left resize shrink width 10 px or 10 ppt
-  bindsym Down resize grow height 10 px or 10 ppt
-  bindsym Up resize shrink height 10 px or 10 ppt
-  bindsym Right resize grow width 10 px or 10 ppt
+  bindsym Left resize shrink width 5 px or 5 ppt
+  bindsym Down resize grow height 5 px or 5 ppt
+  bindsym Up resize shrink height 5 px or 5 ppt
+  bindsym Right resize grow width 5 px or 5 ppt
 
   # back to normal: Enter or Escape
   bindsym Return mode "default"
@@ -193,27 +195,27 @@ bindsym $mod+Ctrl+l exec ~/.i3/scripts/blurred-lock
 # Display startup script:
 exec --no-startup-id bash ~/.i3/scripts/display-startup
 
-exec --no-startup-id sleep 1; feh --bg-scale ~/Dropbox/wallpapers/road.jpg
+exec --no-startup-id sleep 1; feh --bg-scale ~/Dropbox/wallpapers/snow-road.jpg
 
 new_window none
 
 # Set colors for worspaces:
-set $f_ws_fg #ffffff
-set $f_ws_bg #5294e2
-set $a_ws_fg #323641
-set $a_ws_bg #5294e2
-set $i_ws_fg #323641
-set $i_ws_bg #e7e8eb
-set $u_ws_fg #323641
-set $u_ws_bg #dc322f
+set $f_ws_fg #b8afad
+set $f_ws_bg #645240
+set $a_ws_fg #7e705a
+set $a_ws_bg #645240
+set $i_ws_fg #b8afad
+set $i_ws_bg #3B3228
+set $u_ws_fg #FFFFFF
+set $u_ws_bg #cb6077
 
 # Set colors for windows:
-set $f_wd_fg #ffffff
-set $f_wd_bg #5294e2
-set $i_wd_fg #323641
-set $i_wd_bg #5294e2
-set $u_wd_fg #323641
-set $u_wd_bg #e7e8eb
+set $f_wd_fg #b8afad
+set $f_wd_bg #645240
+set $i_wd_fg #b8afad
+set $i_wd_bg #3B3228
+set $u_wd_fg #b8afad
+set $u_wd_bg #3B3228
 
 # Window colors:
 # colorclass            border   bg       text
@@ -245,15 +247,15 @@ exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id synapse -s
 # Hot corners:
 # exec --no-startup-id xdotool behave_screen_edge bottom-left exec skippy-xd
- exec --no-startup-id compton -b --conf ~/.i3/compton
-exec --no-startup-id rofi -key-run F12 -font "Inconsolata 14" -opacity 97
-exec --no-startup-id rofi -key-window Alt+Tab -font "Inconsolata 14" -opacity 97
+exec --no-startup-id compton -b --conf ~/.i3/compton
+#exec --no-startup-id rofi -key-run F12 -font "Inconsolata 14" -opacity 97
+#exec --no-startup-id rofi -key-window Alt+Tab -font "Inconsolata 14" -opacity 97
 exec --no-startup-id python3 /home/christoph/.i3/scripts/autoname-workspaces.py
 # exec --no-startup-id "sh -c 'sleep 5; exec ~/.dropbox-dist/dropboxd'"
 exec --no-startup-id dropbox start
 exec --no-startup-id insync start
 exec --no-startup-id redshift -l 42.36:-71.06
-#exec --no-startup-id xautolock -time 5 -bell 0 -detectsleep -locker ~/.i3/scripts/blurred-lock -notify 5 -notifier "notify-send -t 1000 -i ~/.i3/icons/lock-icon.png 'Locking Screen...'"
+exec --no-startup-id xautolock -time 5 -bell 0 -detectsleep -locker ~/.i3/scripts/blurred-lock -notify 5 -notifier "notify-send -t 1000 -i ~/.i3/icons/lock-icon.png 'Locking Screen...'"
 
 # Start on workspace 1:
 exec --no-startupid i3-msg 'workspace $w1'
