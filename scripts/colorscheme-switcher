@@ -11,20 +11,12 @@
 sh ~/.config/base16-shell/scripts/base16-$1.sh
 rm ~/.base16_theme
 cp ~/.config/base16-shell/scripts/base16-$1.sh ~/.base16_theme
-XRESOURCES=~/BU-Drive/debian/base16-xresources/xresources/base16-$1-256.Xresources
+XRESOURCES=~/Drive/debian/base16-xresources/xresources/base16-$1-256.Xresources
+cp $XRESOURCES ~/.Xresources
 xrdb -merge $XRESOURCES
-# ROFI=~/BU-Drive/debian/rofi-themes/$1
-# xrdb -merge $ROFI
 
 # Change i3:
-i3-colorscheme-switcher $1
-
-# Sometimes I want to use a different colorscheme for i3bar (e.g. Arc):
-if [ $# -eq 2 ]; then
-        i3-colorscheme-switcher $2
-        ROFI=~/BU-Drive/debian/rofi-themes/$2
-        xrdb -merge $ROFI
-fi
+bash ~/.i3/scripts/i3-colorscheme-switcher $1
 
 echo "base00="`cat $XRESOURCES | grep base00 | head -1 | cut -d ' ' -f 3` > ~/.colors
 echo "base01="`cat $XRESOURCES | grep base01 | head -1 | cut -d ' ' -f 3` >> ~/.colors

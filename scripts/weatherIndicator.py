@@ -81,3 +81,8 @@ class weatherIndicator:
         return 'document.write("<h4><i class=\'mdi mdi-' + self.web_icon + \
                 '\'></i> ' + str(self.temperature) + '°C and ' + \
                 self.weather.lower() + ' in ' + self.city + '</h4>");'
+
+    def weatherForConky(self):
+        return self.city + '\n' + \
+                self.weather + '\n' + \
+                str(self.temperature) + '°C'

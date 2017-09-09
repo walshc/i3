@@ -54,7 +54,11 @@ FA_STEAM = ''
 FA_SPREADSHEET = ''
 FA_PLAY = ''
 FA_WEB = ''
+FA_GPM = ''
 FA_CALENDAR = ''
+FA_CONKY = ''
+FA_DARKTABLE = ''
+FA_WINE = ''
 
 WINDOW_ICONS = {
     'urxvt': FA_TERMINAL,
@@ -100,6 +104,7 @@ WINDOW_ICONS = {
     'eog' : FA_PICTURE_O,
     'geary' : FA_EMAIL,
     'gnome-control-center' : FA_SETTINGS,
+    'unity-control-center' : FA_SETTINGS,
     'Wicd Network Manager' : FA_WIFI,
     'wicd-client.py' : FA_WIFI,
     'gimp' : FA_GIMP,
@@ -117,7 +122,12 @@ WINDOW_ICONS = {
     'crx_knipolnnllmklapflnccelgolnpehhpl' : FA_HANGOUTS,
     'evolution' : FA_CALENDAR,
     'libreoffice-startcenter' : FA_FILE_TEXT_O,
-    'acroread' : FA_FILE_PDF_O
+    'acroread' : FA_FILE_PDF_O,
+    'conky' : FA_CONKY,
+    'Conky' : FA_CONKY,
+    'google play music desktop player' : FA_GPM,
+    'darktable' : FA_DARKTABLE,
+    'PlayOnLinux' : FA_WINE
 }
 
 

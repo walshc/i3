@@ -27,11 +27,10 @@ fi
 
 # Click to see status:
 if [[ $BLOCK_BUTTON == '1' ]]; then
-        notify-send "`echo $(insync get_recent_changes)`" \
-                -i /usr/share/icons/Numix-Circle/scalable/apps/google-drive.svg
+        urxvt -title "float" -hold -e insync manage_selective_sync walshcb@bu.edu
 elif [[ $BLOCK_BUTTON == '3' ]]; then
         notify-send "`echo $(insync get_status)`" \
-                -i /usr/share/icons/Numix-Circle/scalable/apps/google-drive.svg
+                -i /usr/share/icons/Numix-Circle/48/apps/google-drive.svg
 fi
 
 echo $ICON

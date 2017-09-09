@@ -47,6 +47,7 @@ menu-opacity = 1.0;
 inactive-opacity = 1.0;
 detect-client-opacity = true;
 blur-background-fixed = false;
+opacity-rule = [ "90:class_g = 'URxvt'", "90:class_g = 'i3bar'"];
 
 ########################
 # Window type settings #
@@ -55,7 +56,7 @@ wintypes:
 {
   tooltip = { fade = true; shadow = true; opacity = 0.95; focus = true; };
   # For transparent i3bar:
-  dock = { opacity = 1.00; };
+  dock = { opacity = 0.90; };
 };
 
 #########

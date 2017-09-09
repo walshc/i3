@@ -31,7 +31,7 @@ if [[ $(ps -U root -u root -N | grep -Fo 'spotify') == *spotify* ]]; then
                 ARTIST=`playerctl -p spotify metadata 'xesam:artist'`
                 ALBUM=`playerctl -p spotify metadata 'xesam:album'`
                 notify-send "`echo -e $TITLE'\n'$ARTIST'\n'$ALBUM`" \
-                        -i /usr/share/icons/Numix-Circle/scalable/apps/Spotify.svg
+                        -i /usr/share/icons/Numix-Circle/48/apps/Spotify.svg
         fi
 elif [[ $(ps -U root -u root -N | grep -Fo 'rhythmbox') == *rhythmbox* ]]; then
         if [ "$DISPLAY_TRACK" = true ]; then
@@ -60,7 +60,7 @@ elif [[ $(ps -U root -u root -N | grep -Fo 'rhythmbox') == *rhythmbox* ]]; then
                 ARTIST=`playerctl -p rhythmbox metadata 'xesam:artist'`
                 ALBUM=`playerctl -p rhythmbox metadata 'xesam:album'`
                 notify-send "`echo -e $TITLE'\n'$ARTIST'\n'$ALBUM`" \
-                        -i /usr/share/icons/Numix-Circle/scalable/apps/rhythmbox.svg
+                        -i /usr/share/icons/Numix-Circle/48/apps/rhythmbox.svg
         fi
 else
         exit 0

@@ -1,18 +1,20 @@
 # Super/Windows key is $mod
 set $mod Mod4
 
-font pango: Futura Bk BT, Material Design Icons 13
+font pango: Futura Bk BT, Material Design Icons 12
 
 # Shortcuts to open common apps:
 bindsym $mod+Return exec urxvt
-bindsym Ctrl+Mod1+t exec xfce4-terminal
+bindsym Ctrl+Mod1+t exec urxvt
 bindsym $mod+t exec urxvt -title "float" -geometry 85x24
 for_window [instance="urxvt" title="float"] floating enable
 bindsym $mod+Ctrl+f exec nautilus --no-desktop -g 860x480
 bindsym $mod+Ctrl+e exec evince
-bindsym $mod+Ctrl+x exec iceweasel
-bindsym F12 exec rofi -show run -font "Inconsolata 14" -opacity 100
-bindsym Alt+Tab exec rofi -show window -font "Inconsolata 14" -opacity 100
+bindsym $mod+Ctrl+x exec firefox
+bindsym $mod+Ctrl+s exec spotify --force-device-scale-factor=1.5
+bindsym F12 exec rofi -show run -font "Inconsolata 14" -opacity 90 -dpi 144
+bindsym $mod+d exec rofi -show drun -font "Inconsolata 14" -opacity 90 -dpi 144
+bindsym Mod1+Tab exec rofi -show window -font "Inconsolata 14" -opacity 90 -dpi 144
 
 bindsym Print exec scrot -q 100  # Fn+t on X1 Carbon
 bindsym $mod+Print exec shutter -s  # For screenshot selections
@@ -49,18 +51,20 @@ smart_gaps on
 floating_modifier $mod
 
 # Adjust volume up and down with a notification:
-bindsym XF86AudioRaiseVolume exec amixer sset Master on 10%+ & exec ~/.i3/scripts/vol-notify
-bindsym Mod4+F3 exec amixer sset Master on 10%+ & exec ~/.i3/scripts/vol-notify
-bindsym XF86AudioLowerVolume exec amixer sset Master 10%- & exec ~/.i3/scripts/vol-notify
-bindsym Mod4+F1 exec amixer sset Master 10%- & exec ~/.i3/scripts/vol-notify
-bindsym XF86AudioMute exec amixer sset Master toggle & exec ~/.i3/scripts/vol-notify
-bindsym Mod4+F2 exec amixer sset Master toggle & exec ~/.i3/scripts/vol-notify
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master on 10%+ & exec ~/.i3/scripts/vol-notify
+bindsym Mod4+F3 exec amixer -D pulse sset Master on 10%+ & exec ~/.i3/scripts/vol-notify
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 10%- & exec ~/.i3/scripts/vol-notify
+bindsym Mod4+F1 exec amixer -D pulse sset Master 10%- & exec ~/.i3/scripts/vol-notify
+bindsym XF86AudioMute exec amixer -D pulse sset Master toggle & exec ~/.i3/scripts/vol-notify
+bindsym Mod4+F2 exec amixer -D pulse sset Master toggle & exec ~/.i3/scripts/vol-notify
 
 # Change brightness
-bindsym XF86MonBrightnessDown exec xbacklight -time 10 -dec 10 & exec ~/.i3/scripts/brightness-notify
-bindsym Mod4+F4 exec xbacklight -time 10 -dec 10 & exec ~/.i3/scripts/brightness-notify
-bindsym XF86MonBrightnessUp exec xbacklight -time 10 -inc 10 & exec ~/.i3/scripts/brightness-notify
-bindsym Mod4+F5 exec xbacklight -time 10 -inc 10 & exec ~/.i3/scripts/brightness-notify
+bindsym XF86MonBrightnessDown exec sudo brightness -d 5 & exec ~/.i3/scripts/brightness-notify
+bindsym Mod4+F4 exec sudo brightness 5 -d 5 & exec ~/.i3/scripts/brightness-notify
+bindsym XF86MonBrightnessUp exec sudo brightness -i 5 & exec ~/.i3/scripts/brightness-notify
+bindsym Mod4+F5 exec sudo brightness -i 5 & exec ~/.i3/scripts/brightness-notify
+bindsym $mod+XF86MonBrightnessDown exec sudo brightness -d 1 & exec ~/.i3/scripts/brightness-notify
+bindsym $mod+XF86MonBrightnessUp exec sudo brightness -i 1 & exec ~/.i3/scripts/brightness-notify
 
 # Shortcut to pause Spotify, Rhythmbox, etc.
 bindsym $mod+Shift+XF86AudioMute exec playerctl play-pause
@@ -171,10 +175,10 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg e
 # Resize window (you can also use the mouse for that)
 mode "resize" {
   # These bindings trigger as soon as you enter the resize mode
-  bindsym h resize shrink width 5 px or 5 ppt
-  bindsym j resize grow height 5 px or 5 ppt
-  bindsym k resize shrink height 5 px or 5 ppt
-  bindsym l resize grow width 5 px or 5 ppt
+  bindsym h resize shrink width 1 px or 1 ppt
+  bindsym j resize grow height 1 px or 1 ppt
+  bindsym k resize shrink height 1 px or 1 ppt
+  bindsym l resize grow width 1 px or 1 ppt
 
   # same bindings, but for the arrow keys
   bindsym Left resize shrink width 5 px or 5 ppt
@@ -193,29 +197,28 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Ctrl+l exec ~/.i3/scripts/blurred-lock
 
 # Display startup script:
-exec --no-startup-id bash ~/.i3/scripts/display-startup
-
-exec --no-startup-id sleep 1; feh --bg-scale ~/Dropbox/wallpapers/snow-road.jpg
+exec --no-startup-id sleep 1; bash ~/.i3/scripts/display-startup
+exec --no-startup-id sleep 1; feh --bg-fill ~/Dropbox/wallpapers/lighthouse-2.jpg
 
 new_window none
 
 # Set colors for worspaces:
-set $f_ws_fg #b8afad
-set $f_ws_bg #645240
-set $a_ws_fg #7e705a
-set $a_ws_bg #645240
-set $i_ws_fg #b8afad
-set $i_ws_bg #3B3228
+set $f_ws_fg #C9CCD3
+set $f_ws_bg #37474F
+set $a_ws_fg #707880
+set $a_ws_bg #37474F
+set $i_ws_fg #C9CCD3
+set $i_ws_bg #263238
 set $u_ws_fg #FFFFFF
-set $u_ws_bg #cb6077
+set $u_ws_bg #EC5F67
 
 # Set colors for windows:
-set $f_wd_fg #b8afad
-set $f_wd_bg #645240
-set $i_wd_fg #b8afad
-set $i_wd_bg #3B3228
-set $u_wd_fg #b8afad
-set $u_wd_bg #3B3228
+set $f_wd_fg #C9CCD3
+set $f_wd_bg #37474F
+set $i_wd_fg #C9CCD3
+set $i_wd_bg #263238
+set $u_wd_fg #C9CCD3
+set $u_wd_bg #263238
 
 # Window colors:
 # colorclass            border   bg       text
@@ -240,22 +243,14 @@ bar {
 hide_edge_borders both
 
 # Startup programs:
+exec --no-startup-id mopidy
 exec --no-startup-id numlockx on
 exec --no-startup-id xset -b # turn off beeps
-exec --no-startup-id "bash -c 'if ! [[ `hostname | grep m73` ]]; then nm-applet; fi'"
 exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id synapse -s
-# Hot corners:
-# exec --no-startup-id xdotool behave_screen_edge bottom-left exec skippy-xd
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec --no-startup-id sudo service chrome-remote-desktop restart
 exec --no-startup-id compton -b --conf ~/.i3/compton
-#exec --no-startup-id rofi -key-run F12 -font "Inconsolata 14" -opacity 97
-#exec --no-startup-id rofi -key-window Alt+Tab -font "Inconsolata 14" -opacity 97
-exec --no-startup-id python3 /home/christoph/.i3/scripts/autoname-workspaces.py
-# exec --no-startup-id "sh -c 'sleep 5; exec ~/.dropbox-dist/dropboxd'"
 exec --no-startup-id dropbox start
 exec --no-startup-id insync start
-exec --no-startup-id redshift -l 42.36:-71.06
-exec --no-startup-id xautolock -time 5 -bell 0 -detectsleep -locker ~/.i3/scripts/blurred-lock -notify 5 -notifier "notify-send -t 1000 -i ~/.i3/icons/lock-icon.png 'Locking Screen...'"
-
-# Start on workspace 1:
-exec --no-startupid i3-msg 'workspace $w1'
+exec --no-startup-id redshift -l 42.36:-71.06  # Boston
+exec --no-startup-id xautolock -time 10 -bell 0 -detectsleep -locker ~/.i3/scripts/blurred-lock -notify 5 -notifier "notify-send -t 1000 -i ~/.i3/icons/lock-icon.png 'Locking Screen...'"

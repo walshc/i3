@@ -11,7 +11,7 @@ fi
 STATE=$(echo $POWER | cut -d : -f 2 | cut -d , -f 1 | tr '[:upper:]' '[:lower:]' \
         | sed 's/[[:space:]]//g')
 PERCENTAGE=$(echo $POWER | grep -o '[^ ]*%' | grep -o '[0-9]*')
-REMAINING=$(acpi -b | cut -d % -f 2 | cut -d , -f 2)
+REMAINING=$(echo $POWER | cut -d % -f 2 | cut -d , -f 2)
 
 if [[ "$STATE" == "charging" ]]; then
         COLOR=""
@@ -71,10 +71,10 @@ echo $COLOR
 
 if [[ $BLOCK_BUTTON == '1' ]]; then
         notify-send "Battery: $PERCENTAGE%" -t 2000 \
-                -i /usr/share/icons/Numix-Circle/scalable/apps/battery.svg
+                -i /usr/share/icons/Numix-Circle/48/apps/battery.svg
 fi
 
 if [[ $BLOCK_BUTTON == '3' ]]; then
         notify-send "$REMAINING" -t 2000 \
-                -i /usr/share/icons/Numix-Circle/scalable/apps/battery.svg
+                -i /usr/share/icons/Numix-Circle/48/apps/battery.svg
 fi

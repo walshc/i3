@@ -4,10 +4,13 @@
 # scrolling over the symbol and toggle mute with right click.
 
 # Get the volume percentage:
-VOLUME=$(amixer sget Master | egrep -o -m 1 "[0-9]+%")
+VOLUME=$(amixer -D pulse sget Master | egrep -o -m 1 "[0-9]+%")
+#VOLUME=$(amixer sget Master | egrep -o -m 1 "[0-9]+%")
 
 # Check if muted:
-STATE=`amixer sget Master | egrep -m 1 'Playback.*?\[o' | egrep -o '\[o.+\]'`
+STATE=`amixer -D pulse sget Master | egrep -m 1 'Playback.*?\[o' \
+        | egrep -o '\[o.+\]'`
+#STATE=`amixer sget Master | egrep -m 1 'Playback.*?\[o' | egrep -o '\[o.+\]'`
 
 # # What to display in i3bar:
 if [[ $STATE == '[off]' ]]; then
@@ -27,11 +30,11 @@ fi
 case $BLOCK_BUTTON in
   1) ~/.i3/scripts/vol-notify ;;
   # Right click to toggle mute
-  3) amixer -q sset Master toggle & ~/.i3/scripts/vol-notify ;;
+  3) amixer -D pulse -q sset Master toggle & ~/.i3/scripts/vol-notify ;;
   # Scroll up to increase volume
-  4) amixer -q sset Master 5%+ & echo $ICON$VOLUME;;
+  4) amixer -D pulse -q sset Master 5%+ & echo $ICON$VOLUME;;
   # Scroll down to decrease volume
-  5) amixer -q sset Master 5%- & echo $ICON$VOLUME;;
+  5) amixer -D pulse -q sset Master 5%- & echo $ICON$VOLUME;;
 esac
 
 echo $ICON

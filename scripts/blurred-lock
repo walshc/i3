@@ -27,17 +27,18 @@ if [[ "$NUM_ACTIVE_SCREENS" == "2" ]]; then
         # Screenshot:
         scrot $IMAGE
         # Pixelate:
-        # mogrify -scale 5% -scale 2000% $IMAGE
-        convert $IMAGE -blur 0x8 $IMAGE
+        mogrify -scale 10% -scale 1000% $IMAGE
+        # convert $IMAGE -blur 0x8 $IMAGE
         # Get the monitor resolution of both displays:
         SCREEN1_RES=`xrandr | grep \* | cut -d' ' -f4 | sed -n '1p'`
         SCREEN2_RES=`xrandr | grep \* | cut -d' ' -f4 | sed -n '2p'`
-        # Get the width of the external display:
+        # Get the width of the displays:
+        SCREEN1_WIDTH=`echo $SCREEN1_RES | cut -d x -f 1`
         SCREEN2_WIDTH=`echo $SCREEN2_RES | cut -d x -f 1`
         # Extract the left display from the screenshot:
-        convert $IMAGE -crop $SCREEN2_RES+0+0 $LEFT
+        convert $IMAGE -crop $SCREEN1_RES+0+0 $LEFT
         # Extract the right display from the screenshot:
-        convert $IMAGE -crop $SCREEN1_RES+$SCREEN2_WIDTH+0 $RIGHT
+        convert $IMAGE -crop $SCREEN1_RES+$SCREEN1_WIDTH+0 $RIGHT
         # Add the lock symbol to the center of each display:
         convert $LEFT $LOCK_ICON -gravity center -composite -matte $LEFT
         convert $RIGHT $LOCK_ICON -gravity center -composite -matte $RIGHT
@@ -50,11 +51,6 @@ else
         # mogrify -scale 5% -scale 2000% $IMAGE
         convert $IMAGE -blur 0x8 $IMAGE
         convert $IMAGE $LOCK_ICON -gravity center -composite -matte $IMAGE
-        # convert -size 3000x60 xc:white -pointsize 26 \
-        #         -fill black -gravity center -annotate +0+0 \
-        #         "$MESSAGE" $TEXT
-        # convert $TEXT -alpha set -channel A -evaluate set 50% $TEXT
-        # convert $IMAGE $TEXT -gravity center -geometry +0+200 -composite $IMAGE
 
 fi
 

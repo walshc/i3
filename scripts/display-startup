@@ -1,22 +1,35 @@
 #!/bin/bash
 
 
-function hdmi-is-connected {
-        ! xrandr | grep HDMI2 | grep disconnected
-}
 
 HOST=$(hostname)
 
-if [[ "$HOST" == "debian" ]]; then
+if [[ "$HOST" == "x1carbon" ]]; then
+        function hdmi-is-connected {
+                ! xrandr | grep 'HDMI-2' | grep disconnected
+        }
         if hdmi-is-connected; then
-                bash /home/christoph/.i3/scripts/monitor-fonts
-                xrandr --output HDMI2 --mode 1920x1080 --output eDP1 --off
+                xrandr --output 'HDMI-2' --mode 1920x1080 --output 'eDP-1' --off
+                dconf write /org/gnome/desktop/interface/text-scaling-factor "1.0"
+                sed -i ~/.i3/config -e 's/dpi 144/dpi 96/g'
+                i3-msg restart
+                xrdb -load ~/.Xdefaults
+                xrdb -merge ~/.Xresources
+                feh --bg-fill ~/Dropbox/wallpapers/lighthouse-2.jpg
+                nohup python3 /home/christoph/.i3/scripts/autoname-workspaces.py > /dev/null &
         else
-                xrandr --output HDMI2 --off --output eDP1 --mode 2560x1440
-                xrandr --output eDP1 --dpi 144
-                bash /home/christoph/.i3/scripts/laptop-fonts
+                xrandr --output 'HDMI-2' --off --output 'eDP-1' --mode 2560x1440
+                xrandr --output 'eDP-1' --dpi 144
+                dconf write /org/gnome/desktop/interface/text-scaling-factor "1.5"
+                sed -i ~/.i3/config -e 's/dpi 96/dpi 144/g'
+                i3-msg restart
+                xrdb -load ~/.Xdefaults
+                xrdb -merge ~/.Xresources
+                nohup python3 /home/christoph/.i3/scripts/autoname-workspaces.py > /dev/null &
         fi
 elif [[ "$HOST" == "m73" ]]; then
-        bash /home/christoph/.i3/scripts/monitor-fonts
-        xrandr --output HDMI1 --mode 1920x1080 --output VGA1 --off
+        xrandr --output HDMI1 --mode 1920x1080 --output VGA1 --mode 1280x1024
+        sed -i ~/.i3/config -e 's/dpi 144/dpi 96/g'
+        i3-msg restart
+        nohup python3 /home/christoph/.i3/scripts/autoname-workspaces.py > /dev/null &
 fi

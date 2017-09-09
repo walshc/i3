@@ -1,5 +1,5 @@
 #!/bin/bash
 
-if [[ `sudo ifconfig | grep tun0` ]]; then
-        echo "VPN"
+if [[ `ifconfig | grep tun0` ]]; then
+        echo ""
 fi

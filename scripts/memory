@@ -5,11 +5,11 @@ MEMORY_WARNING_CUTOFF=20
 COLOR=`cat ~/.colors | grep base0F | cut -d = -f 2`
 
 if [[ $LANG == "de_DE.utf8" ]] | [[ $LANG == "de_DE.UTF-8" ]] ; then
-        MEMORY=$(free -h G | awk '{ print $4}' | sed -n '3p' | \
+        MEMORY=$(free -h G | awk '{ print $6}' | sed -n '2p' | \
                 grep -oP '\d+,\d+')
         MEMORY=`echo $MEMORY | sed -e 's/,//g'`
 else
-        MEMORY=$(free -h G | awk '{ print $4}' | sed -n '3p' | \
+        MEMORY=$(free -h G | awk '{ print $6}' | sed -n '2p' | \
                 grep -oP '\d+.\d+')
         MEMORY=`echo $MEMORY "* 10" | bc -l | cut -d "." -f 1`
 fi

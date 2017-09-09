@@ -6,16 +6,17 @@
 sleep 0.05
 
 # Get the volume and check if muted or not (STATE):
-VOLUME=$(amixer sget Master      | \
+VOLUME=$(amixer -D pulse sget Master      | \
          egrep -o -m 1 "[0-9]+%" | \
          egrep -o "[0-9]+")
-STATE=`amixer sget Master          | \
+STATE=`amixer -D pulse sget Master          | \
        egrep -m 1 'Playback.*?\[o' | \
        egrep -o '\[o.+\]'`
 
 # To avoid many notifications piling on top of eachother when pressing the
 # volume buttons multiple times, kill the notification daemon each time.
-killall -q mate-notification-daemon
+NOTIFD=`cat /usr/share/dbus-1/services/org.freedesktop.Notifications.service | grep Exec | cut -d = -f 2`
+killall -q $NOTIFD
 
 if [[ $LANG == "de_DE.UTF-8" ]]; then
         MUTE="Stumm"

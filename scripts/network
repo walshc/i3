@@ -1,9 +1,36 @@
 #!/bin/bash
 
 # If ethernet is connected, show symbol as green.
-# If it's not connected, show it as red. If it's dormant, show as yellow.
+# If it's not connected, show it as red.
 
-eth_state="$(cat /sys/class/net/eth0/operstate)"
+# Set name of ethernet interface here:
+HOST=$(hostname)
+if [[ "$HOST" == "x1carbon" ]]; then
+        ETH="enp0s25"
+elif [[ "$HOST" == "m73" ]]; then
+        ETH="eno1"
+fi
+
+if ! [ -f /sys/class/net/$ETH/operstate ]; then
+        exit 0
+fi
+
+eth_state="$(cat /sys/class/net/$ETH/operstate)"
+ERROR_COLOR=`cat ~/.colors | grep base08 | cut -d = -f 2`
+
+if [[ $BLOCK_BUTTON == '1' ]]; then
+        gnome-control-center network
+fi
+
+ip_addr=`echo "IP: "$(hostname -I)`
+current_mac=`echo "MAC: "$(ifconfig $ETH | head -1 | sed -e 's/.*HWaddr //')`
+
+if [[ $BLOCK_BUTTON == '3' ]]; then
+        LOCAL_IP=`ifconfig $ETH | grep 'inet addr' | cut -d ":" -f2 | \
+                cut -d "B" -f1`
+        notify-send "`echo -e 'Local IP: '$LOCAL_IP`" \
+                -i /usr/share/icons/Numix-Circle/48/apps/networkmanager.svg
+fi
 
 if [[ "$eth_state" == "up" ]]; then
         echo ""
@@ -11,14 +38,6 @@ if [[ "$eth_state" == "up" ]]; then
 elif [[ "$eth_state" == "dormant" ]]; then
         echo ""
         echo ""
-        echo "#DC322F"
-fi
-
-ip_addr=`echo "IP: "$(hostname -I)`
-current_mac=`echo "MAC: "$(ifconfig eth0 | head -1 | sed -e 's/.*HWaddr //')`
-
-if [[ $BLOCK_BUTTON == '1' ]]; then
-        notify-send "`echo -e $ip_addr'\n'$current_mac`"\
-                -i /usr/share/icons/Numix-Circle/48x48/apps/networkmanager.svg
+        echo $ERROR_COLOR
 fi
 

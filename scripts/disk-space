@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # If free disk space is lower than 5GB show it in the status bar:
-DISK_SPACE=$(df -h | awk '{ print $4 }' | sed -n "2p" | tr -d 'G')
+DISK_SPACE=$(df -h | awk '{ print $4 }' | sed -n "4p" | tr -d 'G')
 DISK_SPACE=`echo $DISK_SPACE "* 10" | bc -l | cut -d "." -f 1`
 ICON=/usr/share/icons/Numix-Circle/scalable/apps/diskmonitor.svg
 if [[ $((DISK_SPACE)) -lt 50 ]]; then
