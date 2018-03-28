@@ -1,0 +1,16 @@
+#!/bin/bash
+
+HOST=$(hostname)
+
+if [[ "$HOST" == "m73" ]]; then
+        exit 0
+fi
+STATUS=$(/etc/init.d/bluetooth status)
+if [[ `echo "$STATUS" | sed -n 3p | grep "Active: active (running)"` ]]; then
+        echo ""
+fi
+
+
+if [[ $BLOCK_BUTTON == '1' ]]; then
+        gnome-control-center bluetooth
+fi

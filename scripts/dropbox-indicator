@@ -20,7 +20,17 @@ if [[ $LANG == "de_DE.UTF-8" ]]; then
         elif [[ $(echo $DB_STATUS | grep -Fo "Index wird erstellt") ]]; then
                 COLOR=`echo $SYNCING_COLOR`
         elif [[ $(echo $DB_STATUS | grep -Fo "Dropbox isn't running") ]]; then
+                # COLOR=`echo $ERROR_COLOR`
+                exit 0
+        fi
+elif [[ $LANG == "nl_NL.UTF-8" ]]; then
+        if [[ $(echo $DB_STATUS | grep -Fo 'Bijgewerkt') ]]; then
+                COLOR=""
+        elif [[ $(echo $DB_STATUS | grep -Fo "Dropbox isn't running") ]]; then
                 COLOR=`echo $ERROR_COLOR`
+        else
+                notify-send "`echo $(DB_STATUS)`" \
+                        -i /usr/share/icons/Numix-Circle/48/apps/Dropbox.svg
         fi
 else
         if [[ $(echo $DB_STATUS | grep -Fo 'Up to date') ]]; then
@@ -36,6 +46,7 @@ else
         elif [[ $(echo $DB_STATUS | grep -Fo "Indexing") ]]; then
                 COLOR=`echo $SYNCING_COLOR`
         elif [[ $(echo $DB_STATUS | grep -Fo "Dropbox isn't running") ]]; then
+                exit 0
                 COLOR=`echo $ERROR_COLOR`
         elif [[ $(echo $DB_STATUS | grep -Fo "Connecting") ]]; then
                 COLOR=`echo $SYNCING_COLOR`

@@ -29,7 +29,7 @@ fi
 if [[ $BLOCK_BUTTON == '1' ]]; then
         urxvt -title "float" -hold -e insync manage_selective_sync walshcb@bu.edu
 elif [[ $BLOCK_BUTTON == '3' ]]; then
-        notify-send "`echo $(insync get_status)`" \
+        notify-send "`echo $(insync get_sync_progress)`" \
                 -i /usr/share/icons/Numix-Circle/48/apps/google-drive.svg
 fi
 

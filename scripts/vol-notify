@@ -6,10 +6,10 @@
 sleep 0.05
 
 # Get the volume and check if muted or not (STATE):
-VOLUME=$(amixer -D pulse sget Master      | \
+VOLUME=$(amixer sget Master      | \
          egrep -o -m 1 "[0-9]+%" | \
          egrep -o "[0-9]+")
-STATE=`amixer -D pulse sget Master          | \
+STATE=`amixer sget Master          | \
        egrep -m 1 'Playback.*?\[o' | \
        egrep -o '\[o.+\]'`
 

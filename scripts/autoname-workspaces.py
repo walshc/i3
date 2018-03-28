@@ -20,114 +20,127 @@ import sys
 # (WM_CLASS) names and the icons can be any text you want to display. However
 # most of these are character codes for font awesome:
 #   http://fortawesome.github.io/Font-Awesome/icons/
-FA_CHROME = ''
-FA_CODE = ''
-FA_RSTUDIO = 'R>'
-FA_FILE_PDF_O = ''
-FA_FILE_TEXT_O = ''
-FA_FILES_O = ''
-FA_FIREFOX = ''
-FA_MUSIC = ''
-FA_PICTURE_O = ''
-FA_SPOTIFY = ''
-FA_TERMINAL = ''
-FA_VIM = ''
-FA_QGIS = ''
-FA_HANGOUTS = ''
-FA_APPFINDER = ''
-FA_BOOK = ''
-FA_R_PLOT = 'R'
-FA_TRANSMISSION = ''
-FA_PRINTER = ''
-FA_ENPASS = ''
-FA_VOLUME = ''
-FA_VLC = ''
-FA_EMAIL = ''
-FA_SETTINGS = ''
-FA_WIFI = ''
-FA_GIMP = ''
-FA_GNOME = ''
-FA_GPIO = ''
-FA_SKYPE = ''
-FA_XSTATA = 'Stata'
-FA_STEAM = ''
-FA_SPREADSHEET = ''
-FA_PLAY = ''
-FA_WEB = ''
-FA_GPM = ''
-FA_CALENDAR = ''
-FA_CONKY = ''
-FA_DARKTABLE = ''
-FA_WINE = ''
+MDI_CHROME = ''
+MDI_CODE = ''
+MDI_RSTUDIO = 'R>'
+MDI_FILE_PDF_O = ''
+MDI_FILE_TEXT_O = ''
+MDI_FILES_O = ''
+MDI_FIREFOX = ''
+MDI_MUSIC = ''
+MDI_PICTURE_O = ''
+MDI_SPOTIFY = ''
+MDI_TERMINAL = ''
+MDI_VIM = ''
+MDI_QGIS = ''
+MDI_HANGOUTS = ''
+MDI_APPFINDER = ''
+MDI_BOOK = ''
+MDI_R_PLOT = 'R'
+MDI_TRANSMISSION = ''
+MDI_PRINTER = ''
+MDI_ENPASS = ''
+MDI_VOLUME = ''
+MDI_VLC = ''
+MDI_EMAIL = ''
+MDI_SETTINGS = ''
+MDI_WIFI = ''
+MDI_GIMP = ''
+MDI_GNOME = ''
+MDI_GPIO = ''
+MDI_SKYPE = ''
+MDI_XSTATA = 'Stata'
+MDI_STEAM = ''
+MDI_SPREADSHEET = ''
+MDI_PLAY = ''
+MDI_WEB = ''
+MDI_GPM = ''
+MDI_CALENDAR = ''
+MDI_CONKY = ''
+MDI_DARKTABLE = ''
+MDI_WINE = ''
+MDI_KEEP = ''
+MDI_CALENDAR = ''
+MDI_SLACK = ''
 
 WINDOW_ICONS = {
-    'urxvt': FA_TERMINAL,
-    'xfce4-terminal': FA_TERMINAL,
-    'google-chrome': FA_CHROME,
-    'chromium': FA_CHROME,
-    'chromium-browser': FA_CHROME,
-    'subl': FA_CODE,
-    'subl3': FA_CODE,
-    'gedit': FA_CODE,
-    'spotify': FA_SPOTIFY,
-    'Spotify': FA_SPOTIFY,
-    'Firefox': FA_FIREFOX,
-    'Iceweasel': FA_FIREFOX,
-    'LibreOffice' : FA_FILE_TEXT_O,
-    'libreoffice-calc': FA_SPREADSHEET,
-    'gnumeric': FA_SPREADSHEET,
-    'libreoffice-writer': FA_FILE_TEXT_O,
-    'soffice': FA_FILE_TEXT_O,
-    'feh': FA_PICTURE_O,
-    'mupdf': FA_FILE_PDF_O,
-    'evince': FA_FILE_PDF_O,
-    'okular': FA_FILE_PDF_O,
-    'nautilus': FA_FILES_O,
-    'thunar': FA_FILES_O,
-    'rstudio': FA_RSTUDIO,
-    'vim': FA_VIM,
-    'gvim': FA_VIM,
-    'qgis.bin': FA_QGIS,
-    'hangouts': FA_HANGOUTS,
-    'xfce4-appfinder': FA_APPFINDER,
-    'kbibtex': FA_BOOK,
-    'calibre': FA_BOOK,
-    'r_x11': FA_R_PLOT,
-    'R_x11': FA_R_PLOT,
-    'transmission-gtk' : FA_TRANSMISSION,
-    'Transmission' : FA_TRANSMISSION,
-    'system-config-printer.py' : FA_PRINTER,
-    'Enpass' : FA_ENPASS,
-    'Rhythmbox' : FA_MUSIC,
-    'Pavucontrol' : FA_VOLUME,
-    'vlc' : FA_VLC,
-    'eog' : FA_PICTURE_O,
-    'geary' : FA_EMAIL,
-    'gnome-control-center' : FA_SETTINGS,
-    'unity-control-center' : FA_SETTINGS,
-    'Wicd Network Manager' : FA_WIFI,
-    'wicd-client.py' : FA_WIFI,
-    'gimp' : FA_GIMP,
-    'oregano' : FA_GPIO,
-    'Fritzing' : FA_GPIO,
-    'Ghetto Skype' : FA_SKYPE,
-    'Skype' : FA_SKYPE,
-    'skypeforlinux' : FA_SKYPE,
-    'referencer' : FA_BOOK,
-    'xstata' : FA_XSTATA,
-    'StataSE-64.exe' : FA_XSTATA,
-    'Steam' : FA_STEAM,
-    'gPodder' : FA_PLAY,
-    'vivaldi-stable' : FA_WEB,
-    'crx_knipolnnllmklapflnccelgolnpehhpl' : FA_HANGOUTS,
-    'evolution' : FA_CALENDAR,
-    'libreoffice-startcenter' : FA_FILE_TEXT_O,
-    'acroread' : FA_FILE_PDF_O,
-    'conky' : FA_CONKY,
-    'Conky' : FA_CONKY,
-    'google play music desktop player' : FA_GPM,
-    'darktable' : FA_DARKTABLE,
-    'PlayOnLinux' : FA_WINE
+    'urxvt': MDI_TERMINAL,
+    'xfce4-terminal': MDI_TERMINAL,
+    'google-chrome': MDI_CHROME,
+    'chromium': MDI_CHROME,
+    'chromium-browser': MDI_CHROME,
+    'subl': MDI_CODE,
+    'subl3': MDI_CODE,
+    'gedit': MDI_CODE,
+    'spotify': MDI_SPOTIFY,
+    'Spotify': MDI_SPOTIFY,
+    'Firefox': MDI_FIREFOX,
+    'Firefox-esr': MDI_FIREFOX,
+    'Iceweasel': MDI_FIREFOX,
+    'LibreOffice' : MDI_FILE_TEXT_O,
+    'libreoffice-calc': MDI_SPREADSHEET,
+    'gnumeric': MDI_SPREADSHEET,
+    'libreoffice-writer': MDI_FILE_TEXT_O,
+    'soffice': MDI_FILE_TEXT_O,
+    'feh': MDI_PICTURE_O,
+    'mupdf': MDI_FILE_PDF_O,
+    'evince': MDI_FILE_PDF_O,
+    'okular': MDI_FILE_PDF_O,
+    'nautilus': MDI_FILES_O,
+    'thunar': MDI_FILES_O,
+    'rstudio': MDI_RSTUDIO,
+    'vim': MDI_VIM,
+    'gvim': MDI_VIM,
+    'qgis.bin': MDI_QGIS,
+    'hangouts': MDI_HANGOUTS,
+    'hangups' : MDI_HANGOUTS,
+    'xfce4-appfinder': MDI_APPFINDER,
+    'kbibtex': MDI_BOOK,
+    'calibre': MDI_BOOK,
+    'r_x11': MDI_R_PLOT,
+    'R_x11': MDI_R_PLOT,
+    'transmission-gtk' : MDI_TRANSMISSION,
+    'Transmission' : MDI_TRANSMISSION,
+    'system-config-printer.py' : MDI_PRINTER,
+    'Enpass' : MDI_ENPASS,
+    'Rhythmbox' : MDI_MUSIC,
+    'Pavucontrol' : MDI_VOLUME,
+    'vlc' : MDI_VLC,
+    'eog' : MDI_PICTURE_O,
+    'geary' : MDI_EMAIL,
+    'gnome-control-center' : MDI_SETTINGS,
+    'unity-control-center' : MDI_SETTINGS,
+    'Wicd Network Manager' : MDI_WIFI,
+    'wicd-client.py' : MDI_WIFI,
+    'gimp' : MDI_GIMP,
+    'oregano' : MDI_GPIO,
+    'Fritzing' : MDI_GPIO,
+    'Ghetto Skype' : MDI_SKYPE,
+    'Skype' : MDI_SKYPE,
+    'skypeforlinux' : MDI_SKYPE,
+    'referencer' : MDI_BOOK,
+    'xstata' : MDI_XSTATA,
+    'xstata-se' : MDI_XSTATA,
+    'StataSE-64.exe' : MDI_XSTATA,
+    'Steam' : MDI_STEAM,
+    'gPodder' : MDI_PLAY,
+    'vivaldi-stable' : MDI_WEB,
+    'crx_knipolnnllmklapflnccelgolnpehhpl' : MDI_HANGOUTS,
+    'crx_hmjkmjkepdijhoojdojkdfohbdgmmhki' : MDI_KEEP,
+    'evolution' : MDI_CALENDAR,
+    'libreoffice-startcenter' : MDI_FILE_TEXT_O,
+    'acroread' : MDI_FILE_PDF_O,
+    'conky' : MDI_CONKY,
+    'Conky' : MDI_CONKY,
+    'google play music desktop player' : MDI_GPM,
+    'darktable' : MDI_DARKTABLE,
+    'PlayOnLinux' : MDI_WINE,
+    'Thunderbird' : MDI_EMAIL,
+    'Mail' : MDI_EMAIL,
+    'Inbox - Mozilla Thunderbird' : MDI_EMAIL,
+    'minetime' : MDI_CALENDAR,
+    'california' : MDI_CALENDAR,
+    'slack' : MDI_SLACK
 }
 
 

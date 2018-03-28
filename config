@@ -1,7 +1,7 @@
 # Super/Windows key is $mod
 set $mod Mod4
 
-font pango: Futura Bk BT, Material Design Icons 12
+font pango: Fira Sans, Material Design Icons 12
 
 # Shortcuts to open common apps:
 bindsym $mod+Return exec urxvt
@@ -11,28 +11,23 @@ for_window [instance="urxvt" title="float"] floating enable
 bindsym $mod+Ctrl+f exec nautilus --no-desktop -g 860x480
 bindsym $mod+Ctrl+e exec evince
 bindsym $mod+Ctrl+x exec firefox
+bindsym Ctrl+space exec touchpad-toggle
 bindsym $mod+Ctrl+s exec spotify --force-device-scale-factor=1.5
-bindsym F12 exec rofi -show run -font "Inconsolata 14" -opacity 90 -dpi 144
-bindsym $mod+d exec rofi -show drun -font "Inconsolata 14" -opacity 90 -dpi 144
-bindsym Mod1+Tab exec rofi -show window -font "Inconsolata 14" -opacity 90 -dpi 144
+bindsym F12 exec rofi -show run -font "Inconsolata 14" -opacity 90 -dpi 96
+bindsym $mod+d exec rofi -show drun -font "Inconsolata 14" -opacity 90 -dpi 96
+bindsym Mod1+Tab exec rofi -show window -font "Inconsolata 14" -opacity 90 -dpi 96
 
-bindsym Print exec scrot -q 100  # Fn+t on X1 Carbon
-bindsym $mod+Print exec shutter -s  # For screenshot selections
+bindsym Print exec scrot -q 100
+bindsym $mod+Print exec shutter -s
 
 # Floating windows by default:
 for_window [instance="chrome_app_list" window_role="bubble"] floating enable
 for_window [class="feh"] floating enable
-for_window [class="plank"] floating enable
-for_window [instance ="plank"] floating enable
-for_window [title="Pocket Casts" class="chrome"] floating enable; move position center
-for_window [class="Florence"] floating enable
 for_window [instance="gnome-tweak-tool"] floating enable
-for_window [instance="transmission-gtk"] floating enable
 
 # Shortcuts for scripts:
-bindsym $mod+Ctrl+d exec xrandr --auto
+bindsym $mod+Ctrl+d exec ~/.i3/scripts/display-startup  # after switching monitors
 bindsym $mod+Ctrl+w exec ~/.i3/scripts/set-random-desktop-background
-bindsym Ctrl+Mod1+s exec ~/.i3/scripts/suspend-and-lock
 
 # Kill focused window (add Alt+F4 as well):
 bindsym $mod+Shift+q kill
@@ -44,18 +39,18 @@ bindsym $mod+ctrl+g gaps inner current plus 5
 bindsym $mod+Ctrl+Shift+g gaps outer current plus 5
 bindsym $mod+Ctrl+p gaps inner current minus 5
 bindsym $mod+Ctrl+Shift+p gaps outer current minus 5
-gaps inner 70
+gaps inner 50
 smart_gaps on
 
 # Use Mouse+$mod to drag floating windows to their wanted position:
 floating_modifier $mod
 
 # Adjust volume up and down with a notification:
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master on 10%+ & exec ~/.i3/scripts/vol-notify
+bindsym XF86AudioRaiseVolume exec amixer sset Master on 10%+ & exec ~/.i3/scripts/vol-notify
 bindsym Mod4+F3 exec amixer -D pulse sset Master on 10%+ & exec ~/.i3/scripts/vol-notify
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 10%- & exec ~/.i3/scripts/vol-notify
+bindsym XF86AudioLowerVolume exec amixer sset Master 10%- & exec ~/.i3/scripts/vol-notify
 bindsym Mod4+F1 exec amixer -D pulse sset Master 10%- & exec ~/.i3/scripts/vol-notify
-bindsym XF86AudioMute exec amixer -D pulse sset Master toggle & exec ~/.i3/scripts/vol-notify
+bindsym XF86AudioMute exec amixer sset Master toggle & exec ~/.i3/scripts/vol-notify
 bindsym Mod4+F2 exec amixer -D pulse sset Master toggle & exec ~/.i3/scripts/vol-notify
 
 # Change brightness
@@ -198,26 +193,26 @@ bindsym $mod+Ctrl+l exec ~/.i3/scripts/blurred-lock
 
 # Display startup script:
 exec --no-startup-id sleep 1; bash ~/.i3/scripts/display-startup
-exec --no-startup-id sleep 1; feh --bg-fill ~/Dropbox/wallpapers/lighthouse-2.jpg
+exec --no-startup-id sleep 1; feh --bg-fill `cat ~/.wallpaper`
 
 new_window none
 
 # Set colors for worspaces:
-set $f_ws_fg #C9CCD3
-set $f_ws_bg #37474F
+set $f_ws_fg #c9ccd3
+set $f_ws_bg #37474f
 set $a_ws_fg #707880
-set $a_ws_bg #37474F
-set $i_ws_fg #C9CCD3
+set $a_ws_bg #37474f
+set $i_ws_fg #c9ccd3
 set $i_ws_bg #263238
 set $u_ws_fg #FFFFFF
-set $u_ws_bg #EC5F67
+set $u_ws_bg #ec5f67
 
 # Set colors for windows:
-set $f_wd_fg #C9CCD3
-set $f_wd_bg #37474F
-set $i_wd_fg #C9CCD3
+set $f_wd_fg #c9ccd3
+set $f_wd_bg #37474f
+set $i_wd_fg #c9ccd3
 set $i_wd_bg #263238
-set $u_wd_fg #C9CCD3
+set $u_wd_fg #c9ccd3
 set $u_wd_bg #263238
 
 # Window colors:
@@ -246,7 +241,7 @@ hide_edge_borders both
 exec --no-startup-id mopidy
 exec --no-startup-id numlockx on
 exec --no-startup-id xset -b # turn off beeps
-exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id sudo service chrome-remote-desktop restart
 exec --no-startup-id compton -b --conf ~/.i3/compton

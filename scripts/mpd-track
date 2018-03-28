@@ -9,7 +9,7 @@ TRACK=$(mpc -f "[[[%title% by ]%artist% on ]%album%]" | head -1)
 # If the mpd server is not connected, display nothing in i3bar.
 if [[ "${TRACK}" =~ "error:" ]] | [[ "${TRACK}" == "" ]] ; then
         TRACK=""
-elif [ echo "$hostname" | grep -q "m73" ] ; then
+elif [ "$HOSTNAME" = "m73"  ] ; then
         TRACK=""
 else
         TRACK="$TRACK "
@@ -32,5 +32,4 @@ if [[ $BLOCK_BUTTON == '3' ]]; then
                 -i /usr/share/icons/Numix-Circle/48x48/apps/lxmusic.svg
 fi
 
-echo $TRACK | sed -e 's/?/\?/g'
 echo $TRACK | sed -e 's/?/\?/g'

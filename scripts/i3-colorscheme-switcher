@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE16_XRESOURCES_PATH=~/Drive/debian/base16-xresources/xresources
+BASE16_XRESOURCES_PATH=~/.config/base16-xresources/xresources
 
 if [ $1 == "arc" ]; then
         sed -i ~/.i3/config -e 's/^set \$f_ws_fg.*$/set $f_ws_fg #ffffff/g'

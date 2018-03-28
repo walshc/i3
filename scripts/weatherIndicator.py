@@ -5,7 +5,10 @@ import locale
 import os
 import requests
 import pandas as pd
+import socket
 import urllib
+import sys
+sys.dont_write_bytecode=True
 
 class weatherIndicator:
 
@@ -16,17 +19,23 @@ class weatherIndicator:
         f.close()
 
         # Get current longitude and latitude based on IP address:
-        ip = requests.get('http://ipinfo.io/ip').text.rstrip()
-        loc = geocoder.freegeoip(ip)
-        self.city = loc.locality
-        if self.city == None:
-            self.city = geocoder.google([loc.lat, loc.lng], \
-                    method='reverse').city
+        if socket.gethostname() == 'm73':
+            lng = -71.1
+            lat = 42.35
+            self.city = 'Boston'
+        else:
+            ip = requests.get('http://ipinfo.io/ip').text.rstrip()
+            loc = geocoder.freegeoip(ip)
+            lng, lat = (loc.lng, loc.lat)
+            self.city = loc.locality
+            if self.city == None:
+                self.city = geocoder.google([lat, lng], \
+                        method='reverse').city
 
         # Get weather info:
         root_url = 'https://api.forecast.io/forecast/'
-        weather = requests.get(root_url + key + '/' + str(loc.lat) + ',' + \
-                str(loc.lng))
+        weather = requests.get(root_url + key + '/' + str(lat) + ',' + \
+                str(lng))
         weather = json.loads(weather.text)
 
         # Convert temperature to Celcius:

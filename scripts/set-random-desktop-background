@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory of wallpapers:
-DIR="$HOME/Dropbox/wallpapers/"
+DIR="$HOME/Drive/wallpapers/"
 
 # Choose a random wallpaper from files in that directory:
 FILES=($DIR/*)
@@ -9,3 +9,4 @@ WALLPAPER=`printf "%s\n" "${FILES[RANDOM % ${#FILES[@]}]}"`
 
 # Set as desktop background:
 feh --bg-scale "$WALLPAPER"
+echo $WALLPAPER > ~/.wallpaper

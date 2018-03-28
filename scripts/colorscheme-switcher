@@ -11,7 +11,7 @@
 sh ~/.config/base16-shell/scripts/base16-$1.sh
 rm ~/.base16_theme
 cp ~/.config/base16-shell/scripts/base16-$1.sh ~/.base16_theme
-XRESOURCES=~/Drive/debian/base16-xresources/xresources/base16-$1-256.Xresources
+XRESOURCES=~/.config/base16-xresources/xresources/base16-$1-256.Xresources
 cp $XRESOURCES ~/.Xresources
 xrdb -merge $XRESOURCES
 

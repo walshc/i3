@@ -2,8 +2,13 @@
 cat ~/.cache/weather-in-bar.txt
 if [[ $BLOCK_BUTTON == '1' ]]; then
         python3 ~/.i3/scripts/weather-cache.py
-        notify-send "Weather updated" -t 10000 -i \
-                /usr/share/icons/Numix-Circle/48/apps/indicator-weather.svg
+        if [[ $LANG == "ga_IE.UTF-8" ]]; then
+                notify-send "Tá an aimsir nuashonraithe" -t 10000 -i \
+                        /usr/share/icons/Numix-Circle/48/apps/indicator-weather.svg
+        else
+                notify-send "Weather updated" -t 10000 -i \
+                        /usr/share/icons/Numix-Circle/48/apps/indicator-weather.svg
+        fi
 elif [[ $BLOCK_BUTTON == '3' ]]; then
         notify-send "$(cat ~/.cache/weather-notification.txt)" -t 10000 -i \
                 /usr/share/icons/Numix-Circle/48/apps/indicator-weather.svg

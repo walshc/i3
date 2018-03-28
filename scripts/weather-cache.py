@@ -1,4 +1,7 @@
-#!/usr/bin/python3
+#!/usr/bin/python3 -B
+
+import sys
+sys.dont_write_bytecode=True
 from weatherIndicator import weatherIndicator
 w = weatherIndicator()
 
