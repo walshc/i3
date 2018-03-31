@@ -10,18 +10,22 @@ if [[ "$HOST" == "x1carbon" ]]; then
                 xrandr --output 'HDMI-2' --mode 1920x1080 --output 'eDP-1' --off
                 xrandr --dpi 96
                 dconf write /org/gnome/desktop/interface/text-scaling-factor "1.0"
+                sed -i ~/.config/dunst/dunstrc -e 's/Fira Sans 20/Fira Sans 12/g'
                 sed -i ~/.i3/config -e 's/dpi 144/dpi 96/g'
         else
                 xrandr --output 'HDMI-2' --off --output 'eDP-1' --mode 2560x1440
                 xrandr --output 'eDP-1' --dpi 144
                 dconf write /org/gnome/desktop/interface/text-scaling-factor "1.5"
+                sed -i ~/.config/dunst/dunstrc -e 's/Fira Sans 12/Fira Sans 20/g'
                 sed -i ~/.i3/config -e 's/dpi 96/dpi 144/g'
         fi
 elif [[ "$HOST" == "m73" ]]; then
         xrandr --output 'HDMI-1' --mode 1920x1080 --output 'VGA-1' --mode 1280x1024 \
                 --output 'HDMI-1' --left-of 'VGA-1'
+        sed -i ~/.config/dunst/dunstrc -e 's/Fira Sans 20/Fira Sans 12/g'
         sed -i ~/.i3/config -e 's/dpi 144/dpi 96/g'
 fi
+pkill dunst
 i3-msg restart
 xrdb -load ~/.Xdefaults
 xrdb -merge ~/.Xresources

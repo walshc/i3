@@ -47,7 +47,7 @@ menu-opacity = 1.0;
 inactive-opacity = 1.0;
 detect-client-opacity = true;
 blur-background-fixed = false;
-opacity-rule = [ "90:class_g = 'URxvt'", "90:class_g = 'i3bar'"];
+opacity-rule = [ "80:class_g = 'URxvt'", "80:class_g = 'i3bar'", "80:class_g = 'Dunst'"];
 
 ########################
 # Window type settings #

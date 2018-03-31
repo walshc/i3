@@ -22,7 +22,7 @@ if [[ $LANG == "de_DE.UTF-8" ]]; then
         MUTE="Stumm"
         VOL="Lautstärke"
 elif [[ $LANG == "ga_IE.UTF-8" ]]; then
-        MUTE="Gan Guaim"
+        MUTE="Gan Fuaim"
         VOL="Airde"
 else
         MUTE="Mute"

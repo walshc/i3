@@ -6,6 +6,7 @@
 # - vim
 # - prompt
 # - Rprofile
+# - dunst
 
 # Change urxvt and vim using base16-shell:
 sh ~/.config/base16-shell/scripts/base16-$1.sh
@@ -14,6 +15,11 @@ cp ~/.config/base16-shell/scripts/base16-$1.sh ~/.base16_theme
 XRESOURCES=~/.config/base16-xresources/xresources/base16-$1-256.Xresources
 cp $XRESOURCES ~/.Xresources
 xrdb -merge $XRESOURCES
+
+# Change dunst
+sed -i '/base16/,$d' ~/.config/dunst/dunstrc
+cat ~/.config/base16-dunst/themes/base16-$1.dunstrc >> ~/.config/dunst/dunstrc
+pkill dunst
 
 # Change i3:
 bash ~/.i3/scripts/i3-colorscheme-switcher $1

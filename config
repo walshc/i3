@@ -13,9 +13,9 @@ bindsym $mod+Ctrl+e exec evince
 bindsym $mod+Ctrl+x exec firefox
 bindsym Ctrl+space exec touchpad-toggle
 bindsym $mod+Ctrl+s exec spotify --force-device-scale-factor=1.5
-bindsym F12 exec rofi -show run -font "Inconsolata 14" -opacity 90 -dpi 96
-bindsym $mod+d exec rofi -show drun -font "Inconsolata 14" -opacity 90 -dpi 96
-bindsym Mod1+Tab exec rofi -show window -font "Inconsolata 14" -opacity 90 -dpi 96
+bindsym F12 exec rofi -show run -font "Inconsolata 14" -opacity 90 -dpi 144
+bindsym $mod+d exec rofi -show drun -font "Inconsolata 14" -opacity 90 -dpi 144
+bindsym Mod1+Tab exec rofi -show window -font "Inconsolata 14" -opacity 90 -dpi 144
 
 bindsym Print exec scrot -q 100
 bindsym $mod+Print exec shutter -s
@@ -245,6 +245,7 @@ exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id sudo service chrome-remote-desktop restart
 exec --no-startup-id compton -b --conf ~/.i3/compton
+exec --no-startup-id ~/.i3/scripts/weather-cache.py
 exec --no-startup-id dropbox start
 exec --no-startup-id insync start
 exec --no-startup-id redshift -l 42.36:-71.06  # Boston
